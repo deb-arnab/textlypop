@@ -1,0 +1,65 @@
+Options -Indexes
+ServerSignature Off
+
+RewriteEngine On
+
+# Serve sitemap.php as sitemap.xml
+RewriteRule ^sitemap\.xml$ sitemap.php [L,QSA]
+
+# Force HTTPS — uncomment on live server only
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L,QSA]
+
+# Remove trailing slash (except root)
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [L,R=301]
+
+# Security headers
+<IfModule mod_headers.c>
+    # Hide PHP and Apache version fingerprints
+    Header always unset X-Powered-By
+    Header always unset Server
+
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "DENY"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+    # HSTS — uncomment on live server after HTTPS is confirmed working
+    # Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+
+    # microphone=(self) required for speech-to-text tool
+    Header always set Permissions-Policy "geolocation=(), microphone=(self), camera=()"
+
+    # CSP is set per-request by PHP (header.php) so nonces can be used.
+    # style-src keeps 'unsafe-inline' because inline <style> blocks are throughout the tool pages.
+</IfModule>
+
+# Browser caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+</IfModule>
+
+# Gzip compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/css application/javascript text/javascript text/plain application/json image/svg+xml
+</IfModule>
+
+# Block sensitive files
+<FilesMatch "\.(log|sql|env|ini|sh|bak)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+ErrorDocument 404 /404.php
