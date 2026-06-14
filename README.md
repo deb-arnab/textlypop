@@ -8,7 +8,7 @@ Free browser-based text tools. No signup. No ads. Your text never leaves your de
 
 ## What it is
 
-TextlyPop is a collection of 39 free text tools built with PHP and vanilla JavaScript. Every tool runs entirely client-side — nothing is sent to a server. The site is fast, mobile-friendly, and optimised for search.
+TextlyPop is a collection of 35+ free text tools built with PHP and vanilla JavaScript. Every tool runs entirely client-side — nothing is sent to a server. The site is fast, mobile-friendly, and optimised for search.
 
 ---
 
