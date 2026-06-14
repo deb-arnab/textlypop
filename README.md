@@ -122,4 +122,4 @@ php -S localhost:8000
 
 ## License
 
-MIT
+Copyright (c) 2025 Arnab Deb. Source available for viewing and personal reference only — not for redistribution or commercial use. See [LICENSE](LICENSE) for details.
