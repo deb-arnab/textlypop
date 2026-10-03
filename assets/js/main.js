@@ -62,6 +62,7 @@
     { slug: 'css-unit-converter',       name: 'CSS unit converter',           desc: 'Convert between px, rem, em, pt and percent with a configurable root font size.' },
     { slug: 'flashcard-maker',          name: 'Flashcard maker',              desc: 'Create flashcards from a list or one at a time, study with flip cards, export or print.' },
     { slug: 'serp-preview',             name: 'SERP preview tool',            desc: 'Preview your title tag and meta description in Google search results with pixel-width limits.' },
+    { slug: 'schema-markup-generator',  name: 'Schema markup generator',      desc: 'Generate JSON-LD structured data for Article, FAQ, Product, LocalBusiness, Event, Recipe and more.' },
   ];
 
   /* Synonym map for smarter search */
@@ -92,6 +93,8 @@
     'index cards': 'flashcard', 'spaced repetition': 'flashcard', 'memorize': 'flashcard', 'memorise': 'flashcard', 'anki': 'flashcard',
     'snippet': 'serp preview', 'google preview': 'serp preview', 'seo preview': 'serp preview', 'rich result': 'serp preview',
     'title tag': 'serp preview', 'meta description': 'serp preview', 'meta tag': 'serp preview', 'meta title': 'serp preview',
+    'structured data': 'schema markup', 'json-ld': 'schema markup', 'jsonld': 'schema markup', 'json ld': 'schema markup',
+    'schema.org': 'schema markup', 'rich snippet': 'schema markup', 'microdata': 'schema markup', 'ld+json': 'schema markup',
   };
 
   /* ── Theme ───────────────────────────────────────────────── */
