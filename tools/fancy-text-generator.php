@@ -2,8 +2,8 @@
 $tool_slug   = 'fancy-text-generator';
 $tool_name   = 'Fancy Text Generator';
 
-$page_title  = 'Fancy Text Generator — Bold, Italic, Cursive & 14 Unicode Styles | TextlyPop';
-$meta_desc   = 'Convert normal text into fancy Unicode styles instantly — bold, italic, cursive, bubble letters, fraktur, strikethrough, upside down and more. Perfect for Instagram bios, Twitter names, and Discord.';
+$page_title  = 'Fancy Text Generator — 14 Unicode Font Styles | TextlyPop';
+$meta_desc   = 'Turn normal text into fancy Unicode styles — bold, italic, cursive, bubble, fraktur, strikethrough and upside down. For Instagram, Discord and bios.';
 $canonical_url = 'https://textlypop.com/tools/fancy-text-generator';
 $og_title    = 'Free Fancy Text Generator — 14 Unicode Styles | TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,31 +39,31 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I make fancy text?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Type or paste your text into the input box and all 14 Unicode styles update instantly below. Click Copy next to any style to copy it to your clipboard, then paste it anywhere."
+        "text": "Type or paste your text and all 14 Unicode styles render instantly — bold, cursive, bubble, fraktur and more, each in its own card. Click Copy on the style you want and paste it into your bio, username or message; because the output is genuine text rather than an image, it pastes anywhere text does."
       }
     },
     {
       "@type": "Question",
-      "name": "Where can I use fancy text?",
+      "name": "Is fancy text bad for accessibility?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Fancy Unicode text works on any platform that supports Unicode — Instagram bios, Twitter display names, Discord usernames and server names, TikTok bios, YouTube channel names, Facebook posts, WhatsApp messages, Reddit posts, and most modern websites and apps."
+        "text": "Used heavily, yes. Screen readers announce these characters literally — 𝐡𝐞𝐥𝐥𝐨 may be read as 'mathematical bold small h, mathematical bold small e…' instead of the word hello. The accessible approach is moderation: a styled word or two is fine, but avoid writing whole sentences or important information in fancy Unicode."
       }
     },
     {
       "@type": "Question",
-      "name": "Why does fancy text work on Instagram and Discord?",
+      "name": "Can I use fancy text in usernames and handles?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The stylized characters are standard Unicode code points — specific characters like 𝐁 (Mathematical Bold Capital B) that happen to look bold, italic, or cursive. Because they are real text characters, not images or fonts, they paste and display anywhere Unicode text is accepted."
+        "text": "In display names, usually yes; in @handles, usually no — most platforms restrict the handle in your profile URL to plain letters, numbers and underscores. Display names, server names, bios and statuses are far more permissive, and Discord allows Unicode almost everywhere."
       }
     },
     {
       "@type": "Question",
-      "name": "Will fancy text look the same on all devices?",
+      "name": "Why does fancy text sometimes show as squares or boxes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Bold, italic, bubble, and wide styles are supported on virtually all modern devices. Fraktur and Double Struck may appear as squares on very old or limited devices. Strikethrough and underline use combining Unicode characters and work reliably on most platforms."
+        "text": "Those boxes — nicknamed tofu — appear when a device's fonts have no glyph for a character. Bold, italic and bubble styles are covered on virtually every modern device, while Fraktur and Double Struck are the usual culprits on older Android phones and basic SMS apps."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Is fancy text searchable on Instagram?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Not reliably. Instagram search indexes the underlying Unicode code points, not the visual appearance — a bold B and a plain B are different characters. The visual display in bios and display names works correctly, but searchability by the styled form is not guaranteed."
+        "text": "Not reliably. Search indexes the underlying code points, and 𝐁 is a genuinely different character from B — a bio in bold Unicode may not surface when someone searches the plain-text version. Keep searchable names and keywords in plain text and use fancy styles for decoration around them."
       }
     }
   ]
@@ -210,8 +210,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>What is a fancy text generator?</h2>
-    <p>A fancy text generator converts ordinary letters and numbers into Unicode equivalents that look like different fonts — bold, italic, cursive, bubble letters, and more. These stylised characters are actual Unicode code points defined in the Mathematical Alphanumeric Symbols and Enclosed Alphanumerics blocks. Because they are standard text characters and not images or custom fonts, they paste and display correctly on any platform that renders Unicode text.</p>
+    <h2>About fancy Unicode text</h2>
+    <p>A fancy text generator converts ordinary letters and numbers into Unicode equivalents that look like different fonts — bold, italic, cursive, bubble letters, and more. These stylised characters are actual Unicode code points defined in the Mathematical Alphanumeric Symbols and Enclosed Alphanumerics blocks — added to Unicode in 2001 for mathematicians, who needed bold and script letters to carry distinct meanings in formulas. Social media users discovered them years later and turned a mathematical typesetting feature into the internet's standard trick for styled bios and usernames. Because they are standard text characters and not images or custom fonts, they paste and display correctly on any platform that renders Unicode text.</p>
 
     <h2>How Unicode fancy text works</h2>
     <p>Standard Latin letters A through Z are Unicode code points 65 to 90. The Unicode standard also defines parallel sets of characters that look like styled versions of those letters. Mathematical Bold Capital A is code point 119808 (𝐀). Mathematical Script Capital A is code point 119964 (𝒜). Enclosed Alphanumeric Ⓐ is code point 9398. When you type A into this tool and choose Bold, the output character is 𝐀 — a completely different Unicode character that happens to look like a bold A. Platforms like Instagram, Discord, and Twitter render it correctly because they support full Unicode text rendering.</p>
@@ -231,27 +231,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">How do I make fancy text?</p>
-      <p class="faq-a">Type or paste your text into the input box and all 14 styles appear instantly. Click Copy on any style card to copy it to your clipboard, then paste it wherever you need it.</p>
+      <p class="faq-a">Type or paste your text into the input box and all 14 Unicode styles render instantly below it — bold, cursive, bubble, fraktur and the rest, each in its own card. Click Copy on the style you want and paste it into your bio, username, post or message; because the output is genuine text rather than an image, it pastes anywhere text does. Try a short phrase first to compare how each style reads at a glance.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Where can I use fancy text?</p>
-      <p class="faq-a">Anywhere that accepts Unicode text — Instagram bios, Twitter names, Discord usernames, TikTok bios, YouTube channel names, WhatsApp messages, Facebook posts, Reddit, and most websites and apps.</p>
+      <p class="faq-q">Is fancy text bad for accessibility?</p>
+      <p class="faq-a">Used heavily, yes — and this matters more than most people realise. Screen readers announce these characters literally, so 𝐡𝐞𝐥𝐥𝐨 may be read as "mathematical bold small h, mathematical bold small e…" instead of the word "hello", turning a stylised paragraph into noise for blind users. The accessible approach is moderation: a styled word or two in a bio or heading is fine, but avoid writing whole sentences or important information in fancy Unicode.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Why does fancy text work on Instagram and Discord?</p>
-      <p class="faq-a">The styled characters are standard Unicode code points — specific characters that look bold, italic, or cursive. Because they are real text characters and not images or fonts, they paste and display correctly anywhere Unicode text is supported.</p>
+      <p class="faq-q">Can I use fancy text in usernames and handles?</p>
+      <p class="faq-a">In display names, usually yes; in @handles, usually no. Most platforms restrict the actual handle — the part in your profile URL — to plain letters, numbers and underscores, so Instagram or Twitter will reject 𝓯𝓪𝓷𝓬𝔂 there. Display names, server names, bios and statuses are far more permissive, which is where fancy styles thrive: Discord in particular allows Unicode almost everywhere. Paste the style into the field to test; the platform's validation will tell you instantly.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Will fancy text look the same on all devices?</p>
-      <p class="faq-a">Most styles render consistently on modern devices. Fraktur and Double Struck may appear as squares on very old or limited devices. Strikethrough and underline are reliable across most platforms.</p>
+      <p class="faq-q">Why does fancy text sometimes show as squares or boxes?</p>
+      <p class="faq-a">Those boxes — nicknamed "tofu" — appear when a device's fonts have no glyph for a character, so it draws a placeholder instead. Bold, italic and bubble styles are covered by fonts on virtually every modern device, while the rarer blocks behind Fraktur and Double Struck are the usual tofu culprits on older Android phones and basic SMS apps. If your audience skews toward older devices, stick to the mainstream styles and test by viewing your profile from another phone.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Is fancy text searchable on Instagram?</p>
-      <p class="faq-a">Not reliably. Instagram sees the underlying Unicode code points, not the visual appearance. A bold B (𝐁) and a plain B are different characters. The visual display in bios works correctly but search by the styled form is inconsistent.</p>
+      <p class="faq-a">Not reliably. Search engines and platform search index the underlying code points, and 𝐁 is a genuinely different character from B — so a bio written in bold Unicode may not surface when someone searches the plain-text version of your name or keywords. The practical pattern: keep your searchable name and keywords in plain text, and use fancy styles for decorative flourishes around them rather than for the words people will search.</p>
     </div>
 
   </div>

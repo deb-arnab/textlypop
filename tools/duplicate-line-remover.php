@@ -2,8 +2,8 @@
 $tool_slug   = 'duplicate-line-remover';
 $tool_name   = 'Duplicate Line Remover';
 
-$page_title  = 'Duplicate Line Remover — Remove Duplicate Lines Online Free | TextlyPop';
-$meta_desc   = 'Remove duplicate lines from a list instantly. Paste one item per line — the tool keeps the first occurrence of each unique line and removes the rest. Free, no signup.';
+$page_title  = 'Duplicate Line Remover — Remove Repeated Lines | TextlyPop';
+$meta_desc   = 'Remove duplicate lines from any list instantly. Paste one item per line and keep only the unique ones, in their original order. Free, no signup.';
 $canonical_url = 'https://textlypop.com/tools/duplicate-line-remover';
 $og_title    = 'Free Duplicate Line Remover — TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How does the duplicate line remover work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The tool compares your text line by line — each line break creates a new item to compare. It keeps only the first occurrence of each unique line and removes all subsequent identical lines. This means your text needs to have one item per line. If you have a paragraph with duplicate sentences, split it into one sentence per line first using the remove line breaks tool, then run deduplication."
+        "text": "The tool compares your text line by line and keeps only the first occurrence of each unique line, removing every identical line that follows. The stats bar shows lines in, unique lines and duplicates removed. Because comparison is per line, split paragraph text into one item per line first before deduplicating."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Is the duplicate detection case sensitive?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "By default the tool is case insensitive so 'Apple' and 'apple' are treated as duplicates. Enable the case sensitive option to treat them as different lines and keep both."
+        "text": "By default, no — Apple, APPLE and apple all count as the same item, which suits email addresses and most everyday lists. Enable case sensitive mode for lists where capitalization is meaningful, like code identifiers. The trim whitespace option ensures items with stray trailing spaces still match."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Will blank lines be removed too?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You can choose. By default blank lines are kept as part of your list structure. Enable the remove blank lines option to strip all empty lines from the output at the same time."
+        "text": "Only if you choose. By default blank lines are preserved as list structure. Enable remove blank lines to strip all empty lines in the same pass — usually what you want when preparing a list for import into a system that expects one clean item per row."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What happens to the original order of my list?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The original order is preserved by default. Only duplicate lines are removed — the first occurrence of each line stays in its original position. You can optionally sort the output alphabetically after deduplication."
+        "text": "It is preserved — each unique line keeps the position of its first appearance, and only later repeats vanish, unlike spreadsheet workflows that often force a sort first. If you want alphabetical output, enable the sort option as a final step."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I use this to find unique values in a list?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. This tool keeps one copy of every unique line in your list, which is exactly the same as finding all unique values. Paste your list and the output contains every unique item exactly once."
+        "text": "Yes — keeping one copy of every distinct line is identical to extracting unique values, the same result as Excel's Remove Duplicates or SQL's SELECT DISTINCT. The stats bar tells you how many distinct items exist, making it the fastest way to answer how many different X are in this data."
       }
     }
   ]
@@ -325,41 +325,41 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
+    <h2>About deduplication</h2>
+    <p>Removing duplicates is one of the oldest jobs in computing. Unix has shipped a dedicated command for it — <code>uniq</code> — since the 1970s, and "dedupe the list" remains a daily task in data work half a century later because duplicates creep in everywhere: mailing lists merged from two sources, keyword research exported from three tools, log files repeating the same warning thousands of times. Duplicates are more than clutter — they skew counts, inflate email costs, and violate the uniqueness constraints databases depend on. A line-based deduplicator is the plain-text version of that database discipline: every line is an item, and every item appears exactly once.</p>
+
     <h2>How to remove duplicate lines from a list</h2>
-    <p>Paste your list into the input box with one item per line — each line is compared independently. The tool instantly identifies every line that appears more than once and removes all occurrences after the first, preserving the original order of your list. This tool works on lines, not sentences within a paragraph — if you need to process a paragraph, first use the line breaks tool to split it into individual lines. The stats bar below the panels shows exactly how many lines you started with, how many are unique, and how many duplicates were removed.</p>
-    <p>Use the options at the top to fine-tune the behaviour. Case sensitive mode treats "Apple" and "apple" as different items. Trim whitespace ignores leading and trailing spaces when comparing lines so "apple " and "apple" are treated as the same. Remove blank lines strips all empty lines at the same time. Sort output alphabetically reorders the deduplicated list from A to Z.</p>
+    <p>Paste your list with one item per line and the tool keeps the first occurrence of each distinct line and deletes every later repeat, leaving the original order intact. That ordering matters more than it sounds: sorting a list to group duplicates together — the usual manual workaround, and what the classic Unix <code>uniq</code> requires — destroys whatever sequence the list was in. Here nothing moves.</p>
+    <p>Two settings decide what counts as a duplicate. <strong>Case sensitivity</strong> determines whether "Apple" and "apple" are the same item; for email addresses and keywords they usually are, for identifiers and code they usually are not. <strong>Trimming whitespace</strong> decides whether a line with a trailing space matches the same line without one — almost always yes, since invisible padding from a spreadsheet copy is the single most common reason a duplicate survives deduplication and appears not to have been removed.</p>
 
     <h2>Common uses for duplicate line removal</h2>
     <p>Cleaning up email lists is one of the most frequent uses — pasting a list of email addresses and removing every duplicate in seconds. SEO professionals use it to deduplicate keyword lists before uploading to tools. Developers use it to find unique values in log output or configuration files. Data analysts paste spreadsheet columns and remove duplicates without needing Excel or a database query. Writers use it to deduplicate word lists and reference lists.</p>
-
-    <h2>Case sensitive vs case insensitive deduplication</h2>
-    <p>By default the tool treats lines as duplicates regardless of capitalization. "Apple", "APPLE" and "apple" are all considered the same line and only the first occurrence is kept. This is the right behaviour for most lists like email addresses and URLs where case does not matter. Enable case sensitive mode when your list contains items where capitalization is meaningful — for example a list of programming variables or commands where "getUserName" and "getusername" are genuinely different values.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
       <p class="faq-q">How does the duplicate line remover work?</p>
-      <p class="faq-a">The tool compares your text line by line — each line break creates a new item to compare. It keeps only the first occurrence of each unique line and removes all subsequent identical lines. This means your text needs to have one item per line. If you have a paragraph with duplicate sentences, split it into one sentence per line first using the remove line breaks tool, then run deduplication.</p>
+      <p class="faq-a">The tool compares your text line by line — each line break creates a new item — and keeps only the first occurrence of each unique line, removing every identical line that follows. The stats bar shows how many lines you started with, how many are unique, and how many duplicates were removed, so you can sanity-check the result at a glance. Because comparison is per line, paragraph text should be split into one item per line first (the remove line breaks tool does this) before deduplicating.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Is the duplicate detection case sensitive?</p>
-      <p class="faq-a">By default the tool is case insensitive so "Apple" and "apple" are treated as duplicates. Enable the case sensitive option to treat them as different lines and keep both.</p>
+      <p class="faq-a">By default, no — "Apple", "APPLE" and "apple" all count as the same item and only the first survives, which is the right behaviour for email addresses, domains and most everyday lists. Enable the case sensitive option when capitalization is meaningful, such as lists of code identifiers where "getUserName" and "getusername" are genuinely different values. The trim whitespace option works alongside it, so "apple " with a stray trailing space still matches "apple" instead of slipping through as unique.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Will blank lines be removed too?</p>
-      <p class="faq-a">You can choose. By default blank lines are kept as part of your list structure. Enable the remove blank lines option to strip all empty lines from the output.</p>
+      <p class="faq-a">Only if you choose. By default blank lines are preserved as part of your list's structure — useful when empty lines separate groups of items you want to keep visually distinct. Enable remove blank lines to strip all empty lines in the same pass as deduplication, which is usually what you want when preparing a list for import into another system that expects one clean item per row.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What happens to the original order of my list?</p>
-      <p class="faq-a">The original order is preserved by default. Only duplicate lines are removed — the first occurrence of each line stays in its original position. You can optionally sort the output alphabetically after deduplication.</p>
+      <p class="faq-a">It is preserved. Each unique line keeps the position of its first appearance, and only the later repeats vanish — so a curated list stays in its curated order after cleanup. This differs from spreadsheet dedupe workflows that often force a sort first. If you do want alphabetical output, enable the sort option and the deduplicated list is reordered A to Z as a final step.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I use this to find unique values in a list?</p>
-      <p class="faq-a">Yes. This tool keeps one copy of every unique line in your list, which is exactly the same as finding all unique values. Paste your list and the output contains every unique item exactly once.</p>
+      <p class="faq-a">Yes — keeping one copy of every distinct line is mathematically identical to extracting the unique values, the same result as Excel's Remove Duplicates or SQL's SELECT DISTINCT, but without opening either. Paste a spreadsheet column or log output, and the output panel is your unique-value set while the stats bar tells you how many distinct items exist. It is often the fastest way to answer "how many different X are in this data?"</p>
     </div>
 
   </div>

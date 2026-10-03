@@ -2,7 +2,7 @@
 $tool_slug   = 'html-encoder-decoder';
 $tool_name   = 'HTML Encoder / Decoder';
 
-$page_title  = 'HTML Encoder Decoder — Encode HTML Entities Online Free | TextlyPop';
+$page_title  = 'HTML Encoder & Decoder — HTML Entities | TextlyPop';
 $meta_desc   = 'Encode special characters to HTML entities and decode HTML entities back to text. Free online HTML encoder and decoder. No signup required.';
 $canonical_url = 'https://textlypop.com/tools/html-encoder-decoder';
 $og_title    = 'Free HTML Encoder / Decoder — TextlyPop';
@@ -36,18 +36,18 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is HTML encoding?",
+      "name": "Why does &amp; show up in my text instead of &?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "HTML encoding converts special characters into HTML entities so they display correctly in web browsers. For example the less-than sign < becomes &lt; and the ampersand & becomes &amp;. Without encoding these characters would be interpreted as HTML markup and cause display errors."
+        "text": "That is double encoding — text that was already HTML-encoded got encoded a second time, so the visible page shows the literal string '&amp;'. It usually happens when a CMS or API encodes content that a template encodes again. Paste the text here in Decode mode; each pass unwraps one layer until the plain characters emerge."
       }
     },
     {
       "@type": "Question",
-      "name": "When do I need to encode HTML?",
+      "name": "How does HTML encoding prevent XSS attacks?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You need to encode HTML when displaying user-generated content, code snippets, or any text containing special characters inside a web page. Unencoded special characters can break your HTML structure or create security vulnerabilities like cross-site scripting (XSS)."
+        "text": "Cross-site scripting sneaks executable markup into content a page displays. Encoding defuses it: once the less-than sign becomes &lt;, the browser renders the attack as harmless visible text instead of executing it. That is why the golden rule of web security is to encode all user-supplied content at the point of output."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the HTML entity for an ampersand?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The HTML entity for an ampersand is &amp;. When you write &amp; in HTML the browser displays it as the & character. Similarly < is &lt;, > is &gt;, double quotes are &quot;, and single quotes are &#39;."
+        "text": "&amp; — the most important entity of all, because the ampersand begins every entity, making an unencoded one ambiguous. The other four critical entities are &lt;, &gt;, &quot; and &#39;. Encode the ampersand first when doing it manually, or the other entities get corrupted."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the difference between HTML encoding and URL encoding?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "HTML encoding converts special characters to HTML entities for use inside HTML documents. URL encoding converts characters to percent-encoded format for use in URLs. They serve different purposes — use HTML encoding for web page content and URL encoding for web addresses."
+        "text": "They protect different contexts: HTML encoding turns markup-significant characters into entities so text displays safely in a page; URL encoding turns illegal address characters into percent sequences like %20 so they travel safely in a URL. The same string often needs both, applied separately."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does this tool encode all special characters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "By default TextlyPop encodes the five critical HTML characters — ampersand, less-than, greater-than, double quote, and single quote. Enable the Encode all non-ASCII option to also encode extended characters like accented letters, symbols, and emoji as numeric HTML entities."
+        "text": "By default it encodes the five characters that endanger HTML — the correct minimal encoding for modern UTF-8 pages. Enable Encode all non-ASCII when targeting legacy systems: every character outside basic ASCII becomes a numeric entity like &#233; for é, guaranteeing the text survives old email templates and databases."
       }
     }
   ]
@@ -285,32 +285,38 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <h2>Decoding HTML entities</h2>
     <p>HTML decoding converts entities back to their original characters. This is useful when you receive HTML-encoded text from an API or database and need to display or process the plain text version. Switch to Decode mode and paste your encoded HTML — all entities including both named entities like &amp;amp; and numeric entities like &amp;#38; are converted back to their characters.</p>
+    <p>Double-encoded text is the one case worth recognising. When a string passes through an encoder twice, <code>&amp;</code> becomes <code>&amp;amp;</code> on the first pass and <code>&amp;amp;amp;</code> on the second, so text that reaches you looking like <code>&amp;amp;amp;nbsp;</code> needs to be run through Decode more than once. Each pass strips one layer, and you are finished when the output stops changing.</p>
+
+    <h2>The htmlspecialchars convention</h2>
+    <p>Server-side languages ship their own encoders, and the best known is PHP's <code>htmlspecialchars()</code>, which converts exactly five characters: <code>&amp;</code>, <code>&lt;</code>, <code>&gt;</code>, and both quotation marks. Those five are the ones that can break out of markup or an attribute, which is why encoding them is the standard defence against cross-site scripting when user input is printed into a page. Python's <code>html.escape()</code> and JavaScript templating engines do essentially the same thing under different names.</p>
+    <p>The wider <code>htmlentities()</code> function converts every character with a named entity, accented letters and symbols included. That was necessary when pages were served in legacy encodings; on a modern UTF-8 page it is optional, and encoding only the five special characters keeps the source far more readable. This tool covers both approaches, so you can match whatever your codebase already does.</p>
+    <p>Related encodings solve the same problem in different places: <a href="/tools/url-encoder-decoder">URL encoding</a> escapes characters that would break a link, <a href="/tools/base64-encoder-decoder">Base64</a> packs arbitrary data into text-safe characters, and the <a href="/tools/special-characters">special characters</a> page lists the symbols and their entity codes side by side.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
-      <p class="faq-q">What is HTML encoding?</p>
-      <p class="faq-a">HTML encoding converts special characters into HTML entities so they display correctly in browsers. The less-than sign becomes &amp;lt; and the ampersand becomes &amp;amp;. Without encoding these characters would be interpreted as HTML markup.</p>
+      <p class="faq-q">Why does &amp;amp; show up in my text instead of &amp;?</p>
+      <p class="faq-a">That is double encoding — text that was already HTML-encoded got encoded a second time, turning <code>&amp;amp;</code> into <code>&amp;amp;amp;</code>, which then displays as the literal string "&amp;amp;". It usually happens when a CMS, feed or API encodes content that a template encodes again. The fix is to decode once: paste the text here in Decode mode, and repeat if the text was encoded multiple times — each pass unwraps one layer until the plain characters emerge.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">When do I need to encode HTML?</p>
-      <p class="faq-a">When displaying user-generated content, code snippets, or text containing special characters in a web page. Unencoded special characters can break HTML structure or create XSS security vulnerabilities.</p>
+      <p class="faq-q">How does HTML encoding prevent XSS attacks?</p>
+      <p class="faq-a">Cross-site scripting works by sneaking executable markup — typically a <code>&lt;script&gt;</code> tag — into content a page displays. Encoding defuses it: once the less-than sign becomes <code>&amp;lt;</code>, the browser renders the attack as harmless visible text instead of executing it. That is why the golden rule of web security is to encode all user-supplied content at the point of output. This tool applies the same transformation web frameworks perform, which makes it useful for testing what properly encoded output should look like.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the HTML entity for an ampersand?</p>
-      <p class="faq-a">The HTML entity for an ampersand is &amp;amp;. Similarly &lt; is &amp;lt;, &gt; is &amp;gt;, double quotes are &amp;quot;, and single quotes are &amp;#39;.</p>
+      <p class="faq-a"><code>&amp;amp;</code> — and it is the most important entity of all, because the ampersand is the character that begins every entity. An unencoded ampersand in HTML is ambiguous: the browser cannot tell whether "&amp;copy" means the copyright symbol or the literal text. The other four critical entities are <code>&amp;lt;</code> for &lt;, <code>&amp;gt;</code> for &gt;, <code>&amp;quot;</code> for double quotes and <code>&amp;#39;</code> for single quotes. Encode the ampersand first when doing it manually, or the other entities get corrupted.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the difference between HTML encoding and URL encoding?</p>
-      <p class="faq-a">HTML encoding converts characters to HTML entities for use inside HTML documents. URL encoding converts characters to percent-encoded format for use in URLs. Use HTML encoding for web page content and URL encoding for web addresses.</p>
+      <p class="faq-a">They protect different contexts. HTML encoding turns markup-significant characters into entities (<code>&amp;lt;</code>) so text displays safely inside a web page. URL encoding turns characters that are illegal or meaningful in web addresses into percent sequences (%20 for a space) so they travel safely inside a URL. The same string often needs both, applied separately: a search term goes URL-encoded into the query string, then HTML-encoded when echoed back onto the results page. TextlyPop has a separate URL encoder/decoder for the other half of the job.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Does this tool encode all special characters?</p>
-      <p class="faq-a">By default it encodes the five critical HTML characters. Enable Encode all non-ASCII to also encode extended characters like accented letters, symbols, and emoji as numeric entities.</p>
+      <p class="faq-a">By default it encodes the five characters that actually endanger HTML — ampersand, less-than, greater-than, and both quote styles — which is the correct minimal encoding for modern UTF-8 pages, where accented letters and emoji are safe as-is. Enable Encode all non-ASCII when targeting systems that cannot handle Unicode: every character outside basic ASCII then becomes a numeric entity like <code>&amp;#233;</code> for é, guaranteeing the text survives even in legacy email templates and old databases.</p>
     </div>
 
   </div>

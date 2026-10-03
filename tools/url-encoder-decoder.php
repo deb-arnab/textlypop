@@ -2,7 +2,7 @@
 $tool_slug   = 'url-encoder-decoder';
 $tool_name   = 'URL Encoder / Decoder';
 
-$page_title  = 'URL Encoder Decoder — Encode and Decode URLs Online Free | TextlyPop';
+$page_title  = 'URL Encoder & Decoder — Encode or Decode URLs | TextlyPop';
 $meta_desc   = 'Encode and decode URLs instantly. Convert spaces and special characters to percent encoding and back. Free online URL encoder and decoder. No signup required.';
 $canonical_url = 'https://textlypop.com/tools/url-encoder-decoder';
 $og_title    = 'Free URL Encoder / Decoder — TextlyPop';
@@ -36,10 +36,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is URL encoding?",
+      "name": "Why do I see %C3%A9 instead of é in my URL?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "URL encoding converts characters that are not allowed in URLs into a percent-encoded format. A space becomes %20, an ampersand becomes %26, and so on. This ensures URLs are valid and can be transmitted correctly over the internet."
+        "text": "Non-ASCII characters are encoded as their UTF-8 bytes, and é is a two-byte character: %C3%A9. Browsers usually display the decoded characters in the address bar while sending the encoded form over the wire, which is why a URL that looks clean on screen turns into percent sequences when copied. Decode mode reads it back in human form."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the difference between encodeURI and encodeURIComponent?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "encodeURI encodes a complete URL and preserves characters that have special meaning in URL structure like slashes, question marks, and hash signs. encodeURIComponent encodes a URL component like a query parameter value and encodes those structural characters too. Use encodeURIComponent when encoding individual parameter values."
+        "text": "They differ in what they leave alone. encodeURI (Full URL mode) preserves structural characters — slashes, question marks, ampersands — so a complete URL keeps working. encodeURIComponent (Component mode) encodes those too, because inside a parameter value they are data, not structure. When encoding a value to put after an equals sign, Component mode is almost always what you want."
       }
     },
     {
@@ -55,15 +55,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Why does a space become %20 in a URL?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Spaces are not valid characters in URLs. The percent encoding %20 represents the space character using its ASCII code (32) in hexadecimal (20). Some systems also use a plus sign + to represent spaces in query strings, which is why you sometimes see both formats."
+        "text": "Spaces are not legal in URLs, so the space is written as %20 — its ASCII code 32 in hexadecimal. The older + convention for spaces comes from HTML form submissions; both decode to a space and this tool handles both, but %20 is the safer choice when generating URLs yourself."
       }
     },
     {
       "@type": "Question",
-      "name": "When should I use URL encoding?",
+      "name": "What happens if I encode a URL twice?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Use URL encoding when building URLs that contain user input, special characters, or non-ASCII characters. Common cases include search query parameters, form submissions, API request parameters, and any URL that contains characters outside the safe set of letters, numbers, hyphens, underscores, periods, and tildes."
+        "text": "Each percent sign gets re-encoded as %25, so %20 becomes %2520 and the URL breaks. Double encoding is one of the most common URL bugs, caused by two code layers each encoding the same value. Seeing %25 sequences is the fingerprint — decode twice to recover the original, and fix the pipeline so encoding happens exactly once."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What characters do not need to be URL encoded?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The unreserved characters in URLs that never need encoding are letters A-Z and a-z, digits 0-9, and the four special characters hyphen, underscore, period, and tilde. All other characters should be percent-encoded when used in URL components."
+        "text": "RFC 3986's unreserved set: letters A–Z and a–z, digits 0–9, and exactly four symbols — hyphen, underscore, period and tilde. Everything else should be percent-encoded inside URL components, which is why URL slugs are built from lowercase letters and hyphens."
       }
     }
   ]
@@ -289,28 +289,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
-      <p class="faq-q">What is URL encoding?</p>
-      <p class="faq-a">URL encoding converts characters that are not allowed in URLs into a percent-encoded format. A space becomes %20, an ampersand becomes %26. This ensures URLs are valid and transmit correctly.</p>
+      <p class="faq-q">Why do I see %C3%A9 instead of é in my URL?</p>
+      <p class="faq-a">Non-ASCII characters are encoded as their UTF-8 bytes, and é happens to be a two-byte character: 0xC3 0xA9, which percent-encodes as %C3%A9. Emoji go further — 😀 becomes four bytes, %F0%9F%98%80. Browsers usually hide this by displaying the decoded characters in the address bar while sending the encoded form over the wire, which is why a URL that looks clean on screen turns into percent soup when copied. Paste any such URL into Decode mode to read it back in human form.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the difference between encodeURI and encodeURIComponent?</p>
-      <p class="faq-a">encodeURI encodes a complete URL and preserves structural characters like slashes and question marks. encodeURIComponent encodes a URL component and encodes those structural characters too. Use encodeURIComponent for individual parameter values.</p>
+      <p class="faq-a">They differ in what they leave alone. encodeURI (this tool's Full URL mode) treats the input as a complete URL and preserves structural characters — slashes, question marks, ampersands — so the URL keeps working as a URL. encodeURIComponent (Component mode) encodes those characters too, because inside a parameter value a slash or ampersand is data, not structure. The classic bug is using the wrong one: encode a redirect URL with encodeURI, and its own query string merges into the outer URL's parameters. When encoding a value to put after an equals sign, Component mode is almost always what you want.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Why does a space become %20 in a URL?</p>
-      <p class="faq-a">Spaces are not valid in URLs. %20 represents the space character using its ASCII code 32 in hexadecimal. Some query strings use + for spaces instead, which is why you see both formats.</p>
+      <p class="faq-a">Spaces are not legal in URLs — early internet standards reserved them as delimiters — so the space is written as %20, its ASCII code 32 in hexadecimal. You will also meet the older convention of + for spaces, which comes from HTML form submissions (the application/x-www-form-urlencoded format). Both decode to a space, and this tool's decoder handles both, but when generating URLs yourself %20 is the safer choice since a literal plus sign in data is ambiguous under the + convention.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">When should I use URL encoding?</p>
-      <p class="faq-a">When building URLs that contain user input, special characters, or non-ASCII characters. Common cases include search parameters, API requests, form submissions, and any URL with characters outside letters, numbers, hyphens, underscores, periods, and tildes.</p>
+      <p class="faq-q">What happens if I encode a URL twice?</p>
+      <p class="faq-a">Each percent sign gets re-encoded as %25, so %20 becomes %2520 and the URL breaks — the server decodes once, finds "%2520", and renders a literal "%20" in the middle of your data. Double encoding is one of the most common URL bugs, typically caused by two layers of code each "helpfully" encoding the same value. If you see %25 sequences in a URL, that is the fingerprint: paste it into Decode mode twice to recover the original, and fix the pipeline so encoding happens exactly once.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What characters do not need to be URL encoded?</p>
-      <p class="faq-a">The unreserved characters that never need encoding are letters A-Z and a-z, digits 0-9, and the four characters hyphen, underscore, period, and tilde. All others should be percent-encoded in URL components.</p>
+      <p class="faq-a">RFC 3986 defines the unreserved set that is always safe: the letters A–Z and a–z, digits 0–9, and exactly four symbols — hyphen, underscore, period and tilde. Everything else should be percent-encoded when it appears inside a URL component. This tiny safe set is why URL slugs are built from lowercase letters and hyphens, and why encoding tools exist at all: nearly every interesting character, from spaces to accents to emoji, falls outside it.</p>
     </div>
 
   </div>

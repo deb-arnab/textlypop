@@ -6,6 +6,9 @@ RewriteEngine On
 # Serve sitemap.php as sitemap.xml
 RewriteRule ^sitemap\.xml$ sitemap.php [L,QSA]
 
+# Serve llms.php as llms.txt (AI/LLM site guide — see llmstxt.org)
+RewriteRule ^llms\.txt$ llms.php [L,QSA]
+
 # Force HTTPS — uncomment on live server only
 # RewriteCond %{HTTPS} off
 # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]

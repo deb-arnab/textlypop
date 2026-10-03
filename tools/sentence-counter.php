@@ -36,10 +36,10 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How does the sentence counter work?",
+      "name": "How does the sentence counter detect sentences?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The sentence counter detects sentences by looking for ending punctuation — periods, exclamation marks, and question marks. It handles common abbreviations, decimal numbers, and ellipses to avoid false counts. Results update instantly as you type."
+        "text": "It scans for ending punctuation — periods, exclamation marks and question marks — while skipping the cases that fool naive counters. Abbreviations like Mr., Dr. and U.S.A. are not treated as sentence endings, decimal numbers are handled correctly, and an ellipsis counts as a single ending. The result is an accurate count even in complex professional text."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the ideal sentence length for readability?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Most readability guidelines recommend an average sentence length of 15 to 20 words for general web content. Shorter sentences of 10 to 15 words improve comprehension and are particularly important for mobile readers. Sentences over 30 words are generally considered too long for comfortable reading."
+        "text": "Aim for an average of 15 to 20 words for general web content — the range recommended by most readability guidelines, including the US government's plain-language standards. Hemingway averaged around 10 words; academic writing often runs 25 to 30. Anything past 30 words is hard to follow on first read, and varying sentence length matters as much as the average."
       }
     },
     {
@@ -55,23 +55,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How many sentences should a paragraph have?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "For web content, paragraphs of 2 to 4 sentences work best. Long paragraphs of 6 or more sentences are harder to read on screen, especially on mobile. Short paragraphs create white space that makes text feel less intimidating and easier to scan."
+        "text": "For screens, two to four sentences per paragraph works best. Paragraphs of six or more sentences form dense walls of text that are especially punishing on mobile. Short paragraphs create white space that makes a page approachable and scannable — print tolerates longer paragraphs, the web rewards shorter ones."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the difference between a sentence and a paragraph counter?",
+      "name": "What is the difference between a sentence counter and a paragraph counter?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A sentence counter counts individual sentences ending with periods, question marks, or exclamation marks. A paragraph counter counts blocks of text separated by blank lines. Both metrics together give a complete picture of your text structure."
+        "text": "A sentence counter counts units of thought ending in terminal punctuation; a paragraph counter counts blocks separated by blank lines. This tool reports both plus average sentences per paragraph — the structural metric that reveals whether long text is well-organised or just long."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I count sentences in multiple paragraphs?",
+      "name": "Can I count sentences in multiple paragraphs at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The sentence counter handles text of any length including multiple paragraphs. It counts all sentences across the entire text and also shows the per-paragraph breakdown in the stats."
+        "text": "Yes. Paste an entire essay, article or chapter and the counter processes all of it — total sentences, paragraph count and per-paragraph averages, so you can spot outliers like one paragraph carrying ten sentences while the rest carry three."
       }
     }
   ]
@@ -250,44 +250,57 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How the sentence counter works</h2>
-    <p>The sentence counter detects sentences by identifying ending punctuation — periods, exclamation marks, and question marks. It intelligently handles common exceptions to avoid false counts. Abbreviations like Mr., Dr., and U.S.A. are recognized and not counted as sentence endings. Decimal numbers like 3.14 and 99.9 are handled correctly. Ellipses are treated as single sentence endings rather than three separate periods. The result is an accurate sentence count even for complex professional text.</p>
+    <h2>About sentence length and readability</h2>
+    <p>Sentence length is one of the strongest predictors of how easy text is to read — it sits at the heart of every major readability formula, from Flesch–Kincaid to the Gunning Fog Index. English prose has also been getting steadily shorter: scholars who studied historical writing found average sentences of 40 to 60 words in Elizabethan times, around 30 in the Victorian era, and closer to 15 to 20 in modern journalism. Counting sentences, measuring their average length and seeing their distribution tells you more about how your writing <em>feels</em> to a reader than a word count alone ever can.</p>
+
+    <h2>How many words are in a sentence</h2>
+    <p>There is no rule, but there are well-established norms. Modern English prose averages 15 to 20 words per sentence, and that is the range plain-language guidance — including the US government's own standards — recommends for anything written for a general audience. Below about 10 the writing starts to feel clipped; above 25 the reader has to hold too much in mind before reaching the verb. Academic and legal writing routinely averages 25 to 30 words, which is a large part of why it reads as heavy going.</p>
+    <p>The average matters less than the spread, though. Text where every sentence is 18 words long is monotonous even at a perfect average, while prose that mixes a 30-word sentence with a 4-word one has rhythm. This is why the counter reports the distribution alongside the average words per sentence, plus your longest and shortest sentence — the average tells you whether you are in range, and the distribution tells you whether you are varying.</p>
+    <div class="table-scroll">
+      <table class="seo-table">
+        <thead>
+          <tr><th>Average words per sentence</th><th>Reads as</th><th>Typical of</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Under 10</td><td>Clipped, staccato</td><td>Children's books, advertising copy</td></tr>
+          <tr><td>11–15</td><td>Brisk and clear</td><td>Popular journalism, plain-language writing</td></tr>
+          <tr><td>16–20</td><td>Comfortable</td><td>Most web content, general non-fiction</td></tr>
+          <tr><td>21–25</td><td>Demanding</td><td>Broadsheet features, trade publications</td></tr>
+          <tr><td>Over 25</td><td>Heavy going</td><td>Academic papers, legal and technical writing</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2>Sentence length distribution</h2>
     <p>The distribution chart shows how your sentences break down by length category. Short sentences of 1 to 10 words are punchy and easy to read but too many can make text feel choppy. Medium sentences of 11 to 20 words carry most of the content in well-written prose and are the ideal target range. Long sentences of 21 to 30 words add complexity and nuance but should be used sparingly. Very long sentences of 31 or more words are difficult to follow and should almost always be broken into shorter ones.</p>
-    <p>Good writing varies sentence length to create rhythm. A mix of short, medium, and occasional long sentences reads more naturally than text where every sentence is the same length. If your distribution shows mostly very long sentences, the reading level checker will likely show a high difficulty score — break them up to improve both readability and comprehension.</p>
-
-    <h2>What is the ideal sentence length</h2>
-    <p>Most readability guidelines recommend an average sentence length of 15 to 20 words for general web content. The US government's plain language guidelines recommend no more than 20 words per sentence. Hemingway's famous style averaged around 10 words per sentence. Academic writing often averages 25 to 30 words per sentence. For blog posts and marketing copy targeting a general US audience, aim for 15 to 18 words average with significant variation between sentences.</p>
-
-    <h2>Paragraphs and sentence structure</h2>
-    <p>For web content, paragraphs of 2 to 4 sentences work best. Long paragraphs of 6 or more sentences are harder to read on screen, especially on mobile devices where the viewport is narrow. Short paragraphs create visual white space that makes text feel less intimidating and easier to scan. If the sentence counter shows you have paragraphs averaging 6 or more sentences, consider splitting them to improve the mobile reading experience.</p>
+    <p>Good writing varies sentence length to create rhythm. A mix of short, medium, and occasional long sentences reads more naturally than text where every sentence is the same length. If your distribution shows mostly very long sentences, the <a href="/tools/reading-level-checker">reading level checker</a> will likely show a high difficulty score — break them up to improve both readability and comprehension.</p>
+    <p>Sentence count is one of several length measures worth reading together. The <a href="/tools/word-counter">word counter</a> reports words, characters and reading time; <a href="/tools/words-to-pages">words to pages</a> turns the total into a page estimate for an assignment specified in pages; and the <a href="/tools/word-frequency-counter">word frequency counter</a> catches the words you repeat once the structure is sound.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
-      <p class="faq-q">How does the sentence counter work?</p>
-      <p class="faq-a">It detects sentences by looking for ending punctuation — periods, exclamation marks, and question marks — while handling abbreviations, decimal numbers, and ellipses to avoid false counts. Results update instantly as you type.</p>
+      <p class="faq-q">How does the sentence counter detect sentences?</p>
+      <p class="faq-a">It scans for ending punctuation — periods, exclamation marks and question marks — while intelligently skipping the cases that fool naive counters. Abbreviations like Mr., Dr. and U.S.A. are recognised and not treated as sentence endings, decimal numbers like 3.14 are handled correctly, and an ellipsis counts as a single ending rather than three periods. The result is an accurate count even in complex professional text, updated live as you type.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the ideal sentence length for readability?</p>
-      <p class="faq-a">Most readability guidelines recommend 15 to 20 words average for general web content. Sentences over 30 words are generally too long for comfortable reading.</p>
+      <p class="faq-a">Aim for an average of 15 to 20 words for general web content — the range recommended by most readability guidelines, including the US government's plain-language standards, which cap sentences at 20 words. For context, Hemingway's famously terse style averaged around 10 words, while academic writing often runs 25 to 30. Anything past 30 words is hard to follow on first read, and the average matters less than variation: mixing short, medium and occasional long sentences is what gives prose its rhythm.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How many sentences should a paragraph have?</p>
-      <p class="faq-a">For web content, 2 to 4 sentences per paragraph works best. Long paragraphs are harder to read on screen, especially on mobile.</p>
+      <p class="faq-a">For screens, two to four sentences per paragraph works best. Long paragraphs of six or more sentences form dense walls of text that are especially punishing on mobile, where a single paragraph can fill the entire viewport. Short paragraphs create white space that makes a page feel approachable and lets readers scan for the point they need. Print tolerates longer paragraphs; the web rewards shorter ones.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What is the difference between a sentence and a paragraph counter?</p>
-      <p class="faq-a">A sentence counter counts sentences ending with punctuation. A paragraph counter counts blocks of text separated by blank lines. Both together give a complete picture of your text structure.</p>
+      <p class="faq-q">What is the difference between a sentence counter and a paragraph counter?</p>
+      <p class="faq-a">A sentence counter counts units of thought ending in terminal punctuation; a paragraph counter counts blocks of text separated by blank lines. This tool reports both, plus the average sentences per paragraph — the structural metric editors care about most, because it reveals whether long text is actually well-organised or just long. Word and character counts round out the picture, but sentence-level structure is what distinguishes readable writing from dense writing.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Can I count sentences in multiple paragraphs?</p>
-      <p class="faq-a">Yes. The counter handles text of any length including multiple paragraphs and shows a complete breakdown of all sentence statistics across the entire text.</p>
+      <p class="faq-q">Can I count sentences in multiple paragraphs at once?</p>
+      <p class="faq-a">Yes. Paste an entire essay, article or chapter and the counter processes all of it — there is no length limit that matters in practice. You get the total sentence count across the whole text, the paragraph count, and the per-paragraph averages, so you can spot outliers like a single paragraph carrying ten sentences while the rest carry three.</p>
     </div>
 
   </div>

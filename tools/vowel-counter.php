@@ -2,8 +2,8 @@
 $tool_slug   = 'vowel-counter';
 $tool_name   = 'Vowel and Consonant Counter';
 
-$page_title  = 'Vowel and Consonant Counter — Count Vowels Online Free | TextlyPop';
-$meta_desc   = 'Count vowels, consonants, letters, numbers and special characters in your text instantly. Free online vowel counter. Results update as you type. No signup required.';
+$page_title  = 'Vowel Counter — Count Vowels & Consonants | TextlyPop';
+$meta_desc   = 'Count vowels, consonants, letters, digits and other characters in your text instantly. Choose whether Y counts as a vowel. Free, updates as you type.';
 $canonical_url = 'https://textlypop.com/tools/vowel-counter';
 $og_title    = 'Free Vowel and Consonant Counter — TextlyPop';
 $og_desc     = $meta_desc;
@@ -36,34 +36,34 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What are vowels in English?",
+      "name": "Is Y a vowel or a consonant?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The vowels in English are A, E, I, O, U and sometimes Y. TextlyPop counts A, E, I, O, U as standard vowels. The letter Y can act as either a vowel or consonant depending on its position in a word."
+        "text": "Both, depending on the word. Y works as a vowel when it makes a vowel sound — gym, myth, sky, happy — and as a consonant at the start of a syllable, as in yes and yellow. Because there is no single right answer, this tool provides a Count Y as a vowel toggle so the count matches whichever convention your exercise expects."
       }
     },
     {
       "@type": "Question",
-      "name": "What are consonants?",
+      "name": "Are there English words with no vowels at all?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Consonants are all letters of the alphabet that are not vowels. In English there are 21 consonants: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z. The letter Y is typically counted as a consonant in this tool."
+        "text": "If Y counts as a vowel, almost none — rhythm, myth, gym and hymn all lean on Y. Without Y, the list shrinks to rare borrowings such as cwm and crwth (both Welsh, both valid in Scrabble) plus interjections like shh and hmm."
       }
     },
     {
       "@type": "Question",
-      "name": "Why would I need to count vowels?",
+      "name": "Which English words have the most vowels?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Vowel counting is used in linguistics and language learning, poetry and creative writing to analyze sound patterns, Scrabble and word games where vowel distribution matters, and educational exercises for children learning phonics and letter recognition."
+        "text": "Queueing has five consecutive vowels. Facetious and abstemious contain all five standard vowels exactly once, in alphabetical order — add Y and facetiously manages all six. Euouae, a medieval musical term, is the longest English word made entirely of vowels."
       }
     },
     {
       "@type": "Question",
-      "name": "Does the counter include uppercase and lowercase vowels?",
+      "name": "Does the counter treat uppercase and lowercase letters the same?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The vowel and consonant counter treats uppercase and lowercase letters equally. Both A and a are counted as vowels, and both B and b are counted as consonants."
+        "text": "Yes. Counting is case-insensitive — A and a both register as vowels. Digits, punctuation, spaces and emojis are counted separately as non-letter characters, keeping the vowel and consonant percentages meaningful for mixed content."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What percentage of letters are typically vowels in English text?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "In typical English text approximately 38 to 40 percent of letters are vowels. The most common vowel is E followed by A, O, I, and U. If your text has a significantly different vowel percentage it may affect how natural it sounds when read aloud."
+        "text": "Around 38 to 40 percent of letters in ordinary English prose are vowels. E is the most common letter in the language, followed by T, A, O and I — a distribution so reliable that codebreakers have used it since the 9th century to crack substitution ciphers."
       }
     }
   ]
@@ -233,8 +233,12 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Vowels and consonants in English</h2>
     <p>English has 26 letters divided into vowels and consonants. The standard vowels are A, E, I, O, and U. All remaining 21 letters are consonants. The letter Y is a special case — it functions as a vowel in words like "gym", "myth", and "sky" where it makes a vowel sound, but as a consonant in words like "yes" and "yellow" where it makes the Y sound. This tool lets you choose whether to count Y as a vowel or consonant.</p>
 
+    <h2>Counting how many vowels a text contains</h2>
+    <p>Paste or type anything into the vowel counter above and the totals update on every keystroke: how many vowels, how many consonants, how many letters overall, plus digits and other characters counted separately so punctuation never inflates a letter count. Because Y is genuinely ambiguous in English, the Y toggle decides which column it lands in — a choice that changes the answer for words like "rhythm", "sky" and "every", and one worth setting deliberately before reading the result.</p>
+    <p>A useful rule of thumb for checking a result: English runs at roughly 38 to 40 percent vowels by letter, so a normal paragraph of a few hundred letters should land near two vowels for every three consonants. A figure far outside that usually means the text is not ordinary English prose — an acronym-heavy passage, a different language, or a deliberately constrained piece of writing.</p>
+
     <h2>Why vowel counting matters</h2>
-    <p>In typical English text approximately 38 to 40 percent of letters are vowels, with E being the most frequent letter overall. Analyzing vowel distribution is useful in several contexts. Linguists and language learners study vowel patterns to understand phonology. Poets and creative writers analyze sound patterns in their work — vowel-heavy text tends to flow more smoothly while consonant clusters create harder sounds. Word game players including Scrabble enthusiasts track vowel distribution when planning moves. Teachers use vowel counting exercises to help children learn phonics.</p>
+    <p>Analyzing vowel distribution is useful in several contexts. Linguists and language learners study vowel patterns to understand phonology. Poets and creative writers analyze sound patterns in their work — vowel-heavy text tends to flow more smoothly while consonant clusters create harder sounds, which is why assonance and alliteration are counted crafts. Word game players including Scrabble enthusiasts track vowel distribution when planning moves. Teachers use vowel counting exercises to help children learn phonics, and cryptography hobbyists compare letter frequencies against normal English when analyzing simple ciphers.</p>
 
     <h2>Letter frequency in English</h2>
     <p>The most common letters in English text in order are E, T, A, O, I, N, S, H, R, D, L, C, U, M, W, F, G, Y, P, B, V, K, J, X, Q, Z. The individual letter frequency table below your text shows how your writing compares to typical English distribution. Text with unusual letter frequencies can appear in encoded messages, constrained writing exercises, or specialized technical content.</p>
@@ -242,28 +246,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
-      <p class="faq-q">What are vowels in English?</p>
-      <p class="faq-a">The vowels in English are A, E, I, O, U and sometimes Y. This tool counts A, E, I, O, U as standard vowels. Enable "Count Y as a vowel" to include Y in the vowel count.</p>
+      <p class="faq-q">Is Y a vowel or a consonant?</p>
+      <p class="faq-a">Both, depending on the word — which is why teachers say "A, E, I, O, U and sometimes Y". Y works as a vowel when it makes a vowel sound: "gym", "myth", "sky" and "happy" all use Y as their only or final vowel sound. It works as a consonant at the start of a syllable, as in "yes", "yellow" and "beyond". Because there is no single right answer, this tool gives you a "Count Y as a vowel" toggle so the count matches whichever convention your exercise or puzzle expects.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What are consonants?</p>
-      <p class="faq-a">Consonants are all letters that are not vowels. In English there are 21 consonants: B, C, D, F, G, H, J, K, L, M, N, P, Q, R, S, T, V, W, X, Y, Z.</p>
+      <p class="faq-q">Are there English words with no vowels at all?</p>
+      <p class="faq-a">If Y counts as a vowel, almost none — words like "rhythm", "myth", "gym" and "hymn" all lean on Y for their vowel sound. Without Y, the list shrinks to rare borrowings such as "cwm" (a Welsh word for a mountain hollow, valid in Scrabble) and "crwth" (a Welsh stringed instrument), plus interjections like "shh" and "hmm". Try pasting them into the counter with the Y toggle on and off to see how the classification changes the result.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Why would I need to count vowels?</p>
-      <p class="faq-a">Vowel counting is used in linguistics, poetry analysis, word games, and educational phonics exercises. It helps analyze sound patterns and letter distribution in text.</p>
+      <p class="faq-q">Which English words have the most vowels?</p>
+      <p class="faq-a">"Queueing" is the classic answer, with five consecutive vowels. "Facetious" and "abstemious" contain all five standard vowels exactly once — in alphabetical order. Add Y and "facetiously" manages all six. At the extreme end, "euouae" (a medieval musical term) is the longest English word made entirely of vowels and holds the Guinness record for consecutive vowels. Words like these make good test inputs for exploring how the counter and the letter-frequency table behave.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Does the counter include uppercase and lowercase vowels?</p>
-      <p class="faq-a">Yes. Both uppercase and lowercase letters are counted equally. A and a are both counted as vowels, B and b are both counted as consonants.</p>
+      <p class="faq-q">Does the counter treat uppercase and lowercase letters the same?</p>
+      <p class="faq-a">Yes. Counting is case-insensitive: A and a both register as vowels, B and b both as consonants, so shouting text and normal text give identical results. Characters that are not letters at all — digits, punctuation, spaces and emojis — are counted separately as non-letter characters, which keeps the vowel and consonant percentages meaningful for mixed content like addresses or code snippets.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What percentage of letters are typically vowels in English text?</p>
-      <p class="faq-a">In typical English text approximately 38 to 40 percent of letters are vowels. The most common vowel is E followed by A, O, I, and U.</p>
+      <p class="faq-a">Around 38 to 40 percent of the letters in ordinary English prose are vowels. E is the single most common letter in the language, followed by T, A, O and I — a distribution so reliable that codebreakers have used it since the 9th century to crack substitution ciphers. If your text deviates far from that range it will sound noticeably different read aloud: vowel-rich text flows softly, while consonant-heavy text sounds clipped and dense.</p>
     </div>
 
   </div>

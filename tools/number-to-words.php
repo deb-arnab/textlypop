@@ -2,7 +2,7 @@
 $tool_slug   = 'number-to-words';
 $tool_name   = 'Number to Words Converter';
 
-$page_title  = 'Number to Words — Convert Numbers to Words Online Free | TextlyPop';
+$page_title  = 'Number to Words — Convert Numbers to Words | TextlyPop';
 $meta_desc   = 'Convert numbers to words instantly. Turn 1234 into one thousand two hundred thirty-four. Supports up to trillions. Free online number to words converter.';
 $canonical_url = 'https://textlypop.com/tools/number-to-words';
 $og_title    = 'Free Number to Words Converter — TextlyPop';
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I convert a number to words?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Type or paste any number into the input field and the word equivalent appears instantly. The converter supports integers and decimal numbers up to trillions."
+        "text": "Type or paste any number and the written form appears instantly — integers and decimals up to the trillions. Four modes cover the common conventions: standard words for prose, Currency for check amounts, Ordinal for rankings (21 → twenty-first), and Year for dates (1984 → nineteen eighty-four)."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do you write 1000 in words?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "1000 in words is one thousand. 1001 is one thousand one. 1100 is one thousand one hundred. 1234 is one thousand two hundred thirty-four."
+        "text": "One thousand. 1001 is one thousand one, 1100 is one thousand one hundred, 1234 is one thousand two hundred thirty-four. Formal American style omits 'and' inside whole numbers, reserving it for the decimal point in currency amounts; British usage traditionally includes it."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do you write 1000000 in words?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "1,000,000 in words is one million. 1,500,000 is one million five hundred thousand. 1,000,000,000 is one billion."
+        "text": "One million — six zeros. Each new name adds three zeros: one billion (9 zeros), one trillion (12). Combinations read naturally once grouped: 1,500,000 is one million five hundred thousand. The converter handles the grouping automatically, which is where manual spelling usually goes wrong."
       }
     },
     {
@@ -63,15 +63,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I convert decimal numbers to words?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Decimal numbers are converted with the decimal portion read as individual digits after the word 'point'. For example 3.14 becomes three point one four. For currency format enable the currency option to read decimals as cents."
+        "text": "Yes. In standard mode the decimal part is read digit by digit after 'point' — 3.14 becomes three point one four. For money, Currency mode turns 1234.56 into one thousand two hundred thirty-four dollars and fifty-six cents, the format expected on a check."
       }
     },
     {
       "@type": "Question",
-      "name": "Why would I need to write numbers in words?",
+      "name": "Is one billion the same everywhere in the world?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Numbers are written in words in legal documents and contracts where numeric figures could be altered, on checks and financial instruments, in formal writing that follows style guides requiring numbers under a certain value to be spelled out, and in educational contexts for teaching number literacy."
+        "text": "Today, almost — but historically no. English now uses the short scale, where a billion is a thousand million. Britain used the long scale until 1974, where a billion meant a million million and 10⁹ was a milliard — a word still used in French and German. This converter uses the modern short scale throughout."
       }
     }
   ]
@@ -204,6 +204,37 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>When to write numbers in words</h2>
     <p>Most writing style guides including AP Style, Chicago Manual of Style, and APA have rules about when to spell out numbers. AP Style spells out numbers one through nine and uses numerals for 10 and above. Chicago spells out numbers one through one hundred. In formal and legal writing numbers in contracts and checks are written in words to prevent alteration — a check for $1,234.56 also states "one thousand two hundred thirty-four dollars and fifty-six cents". Legal documents routinely spell out numbers to remove ambiguity.</p>
 
+    <h2>Numbers written out in words</h2>
+    <p>Paste any figure above to convert a number to words instantly, in standard, currency, ordinal or year form. The examples below show the pattern the converter follows, including the places where English spelling is less obvious than it looks — the hyphen in compound tens, the absence of "and" in US usage, and the way place values stack up at each comma.</p>
+    <div class="table-scroll">
+      <table class="seo-table">
+        <thead>
+          <tr><th>Number</th><th>In words</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>7</td><td>seven</td></tr>
+          <tr><td>13</td><td>thirteen</td></tr>
+          <tr><td>40</td><td>forty <em>(no u)</em></td></tr>
+          <tr><td>45</td><td>forty-five <em>(hyphenated)</em></td></tr>
+          <tr><td>100</td><td>one hundred</td></tr>
+          <tr><td>250</td><td>two hundred fifty</td></tr>
+          <tr><td>1,000</td><td>one thousand</td></tr>
+          <tr><td>1,234</td><td>one thousand two hundred thirty-four</td></tr>
+          <tr><td>10,000</td><td>ten thousand</td></tr>
+          <tr><td>29,125</td><td>twenty-nine thousand one hundred twenty-five</td></tr>
+          <tr><td>100,000</td><td>one hundred thousand</td></tr>
+          <tr><td>1,000,000</td><td>one million</td></tr>
+          <tr><td>1,500,000</td><td>one million five hundred thousand</td></tr>
+          <tr><td>1,000,000,000</td><td>one billion</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Two conventions differ by region and are worth knowing before you copy a figure into a formal document. British usage inserts "and" before the final part — "one thousand two hundred <em>and</em> thirty-four" — where American usage omits it. And the hyphen is not optional: every compound number from twenty-one to ninety-nine takes one, so "forty-five" is correct and "forty five" is not.</p>
+
+    <h2>Converting decimals and digits</h2>
+    <p>Decimal numbers are read digit by digit after the point rather than as a whole number, which is why 3.14 is "three point one four" and not "three point fourteen". The rule exists to remove ambiguity: read as a whole number, 3.14 and 3.140 would sound identical despite differing in precision. Currency is the standard exception — 1234.56 becomes "one thousand two hundred thirty-four dollars and fifty-six cents", because the decimal part is a count of cents rather than a string of digits.</p>
+    <p>Reading a figure strictly digit by digit is a separate convention used for phone numbers, reference codes, card numbers and years spoken aloud, where 2024 is "twenty twenty-four" rather than "two thousand twenty-four". Year mode handles that form.</p>
+
     <h2>Currency conversion</h2>
     <p>Enable currency mode to convert dollar amounts to their written form for checks, invoices, and legal documents. The amount 1234.56 becomes "one thousand two hundred thirty-four dollars and fifty-six cents". Amounts with no cents show as "and no cents" or simply omit the cent portion depending on convention. Currency mode handles values up to trillions making it suitable for both everyday checks and large commercial transactions.</p>
 
@@ -217,27 +248,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">How do I convert a number to words?</p>
-      <p class="faq-a">Type any number into the input field and the word equivalent appears instantly. Supports integers and decimals up to trillions.</p>
+      <p class="faq-a">Type or paste any number and the written form appears instantly — integers and decimals up to the trillions. Four modes cover the common conventions: standard words for prose, Currency for check and invoice amounts, Ordinal for rankings (21 → twenty-first), and Year for dates (1984 → nineteen eighty-four). Pick the mode that matches your destination, because the same digits are written differently in each context.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How do you write 1000 in words?</p>
-      <p class="faq-a">1000 is one thousand. 1001 is one thousand one. 1100 is one thousand one hundred. 1234 is one thousand two hundred thirty-four.</p>
+      <p class="faq-a">One thousand. The pattern extends naturally: 1001 is one thousand one, 1100 is one thousand one hundred, and 1234 is one thousand two hundred thirty-four. Note that formal American style omits "and" inside whole numbers — "one thousand two hundred", not "one thousand and two hundred" — reserving "and" for the decimal point in currency amounts. British usage traditionally includes the "and", which is why you will see both forms in the wild.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How do you write 1000000 in words?</p>
-      <p class="faq-a">1,000,000 is one million. 1,500,000 is one million five hundred thousand. 1,000,000,000 is one billion.</p>
+      <p class="faq-a">One million — six zeros. From there each new name adds three zeros: one billion (9 zeros), one trillion (12 zeros). Combinations read naturally once the groups are separated: 1,500,000 is one million five hundred thousand, and 2,048,730 is two million forty-eight thousand seven hundred thirty. The converter handles the grouping automatically, which is exactly where manual spelling of large numbers usually goes wrong.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I convert decimal numbers to words?</p>
-      <p class="faq-a">Yes. Decimals are read with the decimal portion after "point". For currency amounts enable Currency mode to read them as dollars and cents.</p>
+      <p class="faq-a">Yes. In standard mode the decimal part is read digit by digit after the word "point" — 3.14 becomes three point one four, matching how numbers are spoken aloud in technical and scientific contexts. For money, switch to Currency mode instead: 1234.56 becomes one thousand two hundred thirty-four dollars and fifty-six cents, the exact format expected on the written line of a check or in a contract.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Why would I need to write numbers in words?</p>
-      <p class="faq-a">Legal documents, contracts, checks, financial instruments, and formal writing all require numbers in word form. Style guides like AP and Chicago specify when numbers should be spelled out.</p>
+      <p class="faq-q">Is one billion the same everywhere in the world?</p>
+      <p class="faq-a">Today, almost — but historically no. English now uses the "short scale", where a billion is a thousand million (10⁹). Britain officially used the "long scale" until 1974, where a billion meant a million million (10¹²) and 10⁹ was called a milliard — a word still used in French, German and many other languages. This converter uses the modern short scale throughout, so one billion always means 1,000,000,000. Worth remembering when reading older British documents or translating financial text.</p>
     </div>
 
   </div>

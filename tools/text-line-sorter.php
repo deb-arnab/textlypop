@@ -2,7 +2,7 @@
 $tool_slug   = 'text-line-sorter';
 $tool_name   = 'Text Line Sorter';
 
-$page_title  = 'Text Line Sorter — Sort Lines Alphabetically Online Free | TextlyPop';
+$page_title  = 'Text Line Sorter — Sort Lines Alphabetically | TextlyPop';
 $meta_desc   = 'Sort lines of text alphabetically A-Z or Z-A, by length, numerically, or randomly. Reverse, trim and remove blanks. Free online line sorter. No signup required.';
 $canonical_url = 'https://textlypop.com/tools/text-line-sorter';
 $og_title    = 'Free Online Text Line Sorter — TextlyPop';
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I sort lines of text alphabetically?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your text into the input box and click the A-Z button. The lines will be sorted alphabetically from A to Z instantly. Use Z-A for reverse alphabetical order."
+        "text": "Paste your list — one item per line — and click A-Z; the sorted result appears instantly, with Z-A giving reverse order. Enable trim whitespace so items with stray leading spaces do not cluster at the top, and remove blank lines so gaps disappear from the output."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I sort lines by length?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. TextlyPop's line sorter includes shortest first and longest first sorting options. This is useful for formatting lists where you want the shortest items at the top or for finding the longest entries in a list."
+        "text": "Yes — shortest first or longest first. Menus look deliberate arranged in a visual taper, and sorting longest-first is the quickest way to find outliers in a list: over-long product titles, meta descriptions that will truncate, or the one absurdly long line breaking a layout."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does the sorter handle numbers correctly?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Numeric sort mode sorts lines that contain numbers by their numeric value rather than alphabetically. This means 2 sorts before 10, unlike alphabetical sorting where '10' would come before '2'."
+        "text": "Yes, in numeric mode. Plain alphabetical sorting compares characters one at a time, filing '10' before '2' and producing the notorious 1, 10, 11, 2, 20 sequence. Numeric sort parses each line's numeric value instead, yielding the natural 1, 2, 10, 11, 20 order — use it for prices, IDs, versions and quantities."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I randomize the order of lines?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The random shuffle option randomizes the order of all lines in your list. Each click produces a different random order."
+        "text": "Yes. Random shuffle rearranges all lines into a new random order on every click. Shuffling is the fair-play tool of list processing: randomizing student name lists, question order, or draw entrants without bias from the original order."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Is the sorting case sensitive?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "By default sorting is case insensitive so uppercase and lowercase letters are treated equally. Enable case sensitive mode to sort with uppercase letters coming before lowercase, following standard ASCII order."
+        "text": "By default, no — 'apple' and 'Apple' sort side by side, matching dictionary-style ordering. Case sensitive mode follows raw character codes instead, where all uppercase letters precede lowercase (ASCII order) — matching how Unix sort or a programming language would order the same lines."
       }
     }
   ]
@@ -345,12 +345,16 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to sort lines of text online</h2>
-    <p>Paste your list into the input box. Select a sort mode from the buttons at the top — alphabetical A to Z, reverse Z to A, shortest first, longest first, numeric, or random shuffle. The sorted result appears instantly in the output panel. Use the extra options to remove blank lines, trim whitespace before sorting, or reverse the final result.</p>
+    <h2>About sorting</h2>
+    <p>Putting things in order is one of humanity's oldest information technologies. Alphabetization was already in use at the Library of Alexandria over two thousand years ago, where the scholar Callimachus catalogued 120,000 scrolls in his <em>Pinakes</em>. Mechanical sorting arrived with Herman Hollerith's punched-card machines, built to tame the 1890 US census — the company he founded became IBM. And in computer science, sorting is the canonical problem: more algorithmic research has gone into sorting than almost any other task, precisely because ordered data is the foundation of fast searching. This tool applies all of that heritage to the humble everyday list.</p>
 
     <h2>Sort modes explained</h2>
     <p>Alphabetical A to Z sorts lines from the beginning of the alphabet to the end using standard dictionary ordering. Z to A is the reverse. Shortest first puts the briefest lines at the top of the list — useful for formatting menus, navigation items, or any list where you want a clean visual progression from short to long. Longest first does the opposite and is useful when you want the most detailed entries at the top.</p>
     <p>Numeric sort is essential when your list contains numbers. Standard alphabetical sorting would order "1, 10, 2, 20, 3" because it compares characters one at a time. Numeric sort correctly orders them as "1, 2, 3, 10, 20" by their actual numeric value. Random shuffle randomizes the order completely — useful for randomizing a list of names, options, or items when you need an unbiased order.</p>
+
+    <h2>Sorting lines alphabetically</h2>
+    <p>To alphabetize a list, paste it with one item per line and choose A to Z. Sorting compares the whole line from its first character, so leading spaces, bullet characters, quotation marks and numbering all affect where a line lands — a list where some entries start with a space will look scrambled rather than sorted. Trimming the lines first fixes it, and the trim option here does that in the same pass.</p>
+    <p>Two behaviours are worth knowing before you trust the output. Sorting is character-based, so "iPhone" and "iphone" may separate depending on the case setting, and names beginning with "Mc" or "de" sort by their literal characters rather than by the conventions a library catalogue would use. And anything that looks like a number needs numeric sort rather than alphabetical: compared character by character, 10 comes before 2, because 1 comes before 2.</p>
 
     <h2>Common uses for line sorting</h2>
     <p>Writers sort lists of items alphabetically before adding them to articles or reference sections. Developers sort import statements, CSS properties, or configuration keys to keep code organized. SEO professionals sort keyword lists by length or alphabetically before uploading to tools. Data analysts sort exported data before processing. Teachers randomize lists of student names for fair assignment of tasks.</p>
@@ -359,27 +363,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">How do I sort lines of text alphabetically?</p>
-      <p class="faq-a">Paste your text into the input box and click the A-Z button. The lines will be sorted alphabetically instantly. Use Z-A for reverse alphabetical order.</p>
+      <p class="faq-a">Paste your list — one item per line — and click A-Z; the sorted result appears instantly, with Z-A giving reverse order. Two options are worth enabling for messy real-world lists: trim whitespace, so items with stray leading spaces do not all cluster at the top, and remove blank lines, so gaps in the pasted list disappear from the output. This beats sorting in a spreadsheet when the list lives in a document or code file rather than a table.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I sort lines by length?</p>
-      <p class="faq-a">Yes. TextlyPop includes shortest first and longest first sorting. This is useful for formatting lists where you want the shortest items at the top or for finding the longest entries.</p>
+      <p class="faq-a">Yes — shortest first or longest first. Length sorting has surprisingly practical uses: menus and navigation labels look deliberate when arranged in a smooth visual taper, CSS and code style guides sometimes order properties by length, and sorting longest-first is the quickest way to find the outliers in a list — the over-long product titles, the meta descriptions that will truncate, the one absurdly long line breaking your layout.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Does the sorter handle numbers correctly?</p>
-      <p class="faq-a">Yes. Numeric sort mode sorts lines by their numeric value rather than alphabetically so 2 sorts before 10, unlike alphabetical sorting where "10" would come before "2".</p>
+      <p class="faq-a">Yes, in numeric mode. Plain alphabetical sorting compares characters one at a time — lexicographic order — which files "10" before "2" because the character 1 precedes 2, producing the notorious "1, 10, 11, 2, 20" sequence familiar from badly sorted file lists. Numeric sort parses each line's numeric value instead, yielding the natural 1, 2, 10, 11, 20 order. Use it whenever your lines start with or consist of numbers: prices, IDs, versions, quantities.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I randomize the order of lines?</p>
-      <p class="faq-a">Yes. The random shuffle option randomizes the order of all lines. Click Reshuffle to get a different random order without re-pasting your text.</p>
+      <p class="faq-a">Yes. Random shuffle rearranges all lines into a new random order on every click, so hitting Reshuffle repeatedly deals fresh arrangements without re-pasting. Shuffling is the fair-play tool of list processing: teachers randomize student name lists for presentations, researchers randomize question order, and anyone running a draw can shuffle entrants and take the top of the list as winners without any bias creeping in from the original order.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Is the sorting case sensitive?</p>
-      <p class="faq-a">By default sorting is case insensitive. Enable case sensitive mode to sort with uppercase letters before lowercase, following standard ASCII order.</p>
+      <p class="faq-a">By default, no — "apple" and "Apple" sort side by side, which matches what people expect from a dictionary-style ordering. Enable case sensitive mode and sorting follows raw character codes instead, where all uppercase letters precede all lowercase ones (ASCII order): "Zebra" then sorts before "apple". That mode matters when your list is code, where identifiers differing only by case are genuinely different, or when you need output to match how Unix sort or a programming language would order the same lines.</p>
     </div>
 
   </div>

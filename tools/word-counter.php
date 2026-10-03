@@ -42,7 +42,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How does the word counter work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The word counter splits your text by spaces and punctuation to count words. Results update instantly as you type — no button required. All processing happens in your browser."
+        "text": "The counter splits your text on spaces and line breaks, treating each group of characters as one word, and simultaneously tallies characters, sentences and paragraphs — updating live as you type. Contractions like don't count as one word and hyphenated compounds also count as one, matching how word processors such as Microsoft Word count."
       }
     },
     {
@@ -50,7 +50,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does the word counter count characters with or without spaces?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "TextlyPop's word counter shows both: characters with spaces and characters without spaces. You can see both counts in the stats bar below the text area."
+        "text": "Both, shown separately, because platforms measure differently. Twitter/X, Instagram captions and meta descriptions count spaces, so characters-with-spaces is the number that matters there. Characters-without-spaces is the traditional measure in some academic and translation contexts."
       }
     },
     {
@@ -58,7 +58,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How is reading time calculated?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Reading time is based on an average reading speed of 200 words per minute for a general audience, or 300 words per minute for a fast reader. You can toggle between the two."
+        "text": "Reading time divides your word count by an assumed reading speed. Research puts average adult silent-reading speed at roughly 200–240 words per minute, so Average mode uses 200 WPM and Fast mode 300 WPM. Speaking time uses 130 WPM, which makes the tool useful for timing speeches: a 5-minute talk needs roughly 650 words."
       }
     },
     {
@@ -66,15 +66,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the character limit for Twitter / X?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Twitter / X allows 280 characters per tweet. Select the Twitter preset in the platform limits section to see a live progress bar as you approach the limit."
+        "text": "Standard accounts get 280 characters per post — doubled from the original 140 in 2017 — while paid subscribers can post up to 25,000. Links count as 23 characters regardless of length, and emojis often count as two. Select the Twitter preset to watch a live progress bar as you type."
       }
     },
     {
       "@type": "Question",
-      "name": "Is my text saved or sent to a server?",
+      "name": "How many words should a blog post or essay be?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. All processing happens in your browser using JavaScript. Your text is never sent to any server. TextlyPop only saves your input locally in your browser so you can pick up where you left off."
+        "text": "It depends on the goal. Most blog posts perform well between 1,000 and 2,000 words, in-depth guides often run 2,500 words or more, and typical school essays range from 500 to 1,500 words. Paste your draft into the word counter to track your live word count, then use the reading time estimate to judge whether the length suits your audience."
       }
     }
   ]
@@ -303,44 +303,49 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to use the word counter</h2>
-    <p>Type or paste your text into the box above. The word counter updates instantly as you type — no button required. You will see your word count, character count, sentence count, paragraph count, and estimated reading time all update in real time.</p>
-    <p>To check against a specific platform limit, select a platform from the list below the stats. A progress bar will appear showing how close you are to the character limit, turning orange as you approach it and red when you exceed it.</p>
+    <h2>About word counting</h2>
+    <p>A word count is the standard measure of text length in writing, publishing and education. Counting words has a surprisingly long commercial history: telegraph companies billed by the word in the 1800s, newspapers paid freelancers per word, and typesetters estimated column space from manuscript word counts long before computers existed. Today word counts govern everything from the 50,000 words of National Novel Writing Month to university essay limits and the terse constraints of social media. A word, for counting purposes, is any run of characters separated by spaces or line breaks — hyphenated compounds like "well-known" count as one.</p>
 
-    <h2>Who uses a word counter?</h2>
-    <p>Writers use a word counter to hit target word counts for blog posts, essays, and articles. Students use it to stay within essay word limits. SEO professionals use it to optimise meta descriptions and page titles to the right character length. Social media managers use the platform presets to make sure posts don't exceed limits before publishing. Developers use it to validate text field lengths during testing.</p>
+    <h2>Where word counts matter</h2>
+    <p>Writers track word counts to hit targets for blog posts, articles and manuscripts. Students stay inside essay limits, where exceeding the allowance is often penalised. SEO professionals size meta descriptions and page titles. Social media managers check posts against platform limits before publishing. Translators and freelance writers quote and invoice by the word, which makes an accurate count a billing tool as much as a writing aid.</p>
 
-    <h2>How reading time is calculated</h2>
-    <p>Reading time is estimated based on average reading speed. The average adult reads approximately 200 to 238 words per minute for general content. TextlyPop shows two modes: average reader (200 WPM) and fast reader (300 WPM). Toggle between them using the buttons above the text area. Speaking time uses 130 words per minute, which is the average comfortable speaking pace for presentations and voiceovers.</p>
+    <h2>Staying inside a word limit</h2>
+    <p>Most word counting is really limit checking: an essay capped at 2,000 words, an application answer capped at 500, an abstract capped at 250. Paste the draft above and the count updates as you type, so you can watch the number fall as you cut rather than re-checking after every edit. Counting words in a paragraph rather than a whole document works the same way — paste just that paragraph.</p>
+    <p>Two details decide whether you are actually inside the limit. First, ask what the limit covers: titles, headings, footnotes, in-text citations, tables and bibliographies are included by some institutions and excluded by others, and the difference is easily several hundred words on a long essay. Second, expect small disagreements between tools. Counters differ on how they treat hyphenated compounds, numbers, em dashes and text inside brackets, so a document that reads 2,000 words here might read 1,996 or 2,004 elsewhere. Leaving a one-percent margin below a hard limit costs nothing and removes the risk entirely.</p>
+
+    <h2>Word counts in Microsoft Word and Google Docs</h2>
+    <p>Word processors keep their counts tucked away. In Microsoft Word the running total sits in the status bar at the bottom left, and clicking it opens a panel with characters, paragraphs and lines; if the bar is hidden, Review → Word Count opens the same panel, and selecting text first counts only the selection. Google Docs puts it under Tools → Word count, with a checkbox to display the count continuously while you type.</p>
+    <p>Pasting into this counter is often quicker than hunting for either, and it is the only option when the text lives somewhere without a counter at all — an email, a CMS field, a form, a chat message or a code comment. The counts here follow the same convention word processors use, treating each run of characters between spaces as one word, so the numbers line up.</p>
 
     <h2>Character count vs word count</h2>
     <p>Character count includes every letter, space, and punctuation mark. Word count counts groups of characters separated by spaces. TextlyPop shows both characters with spaces and characters without spaces so you can see exactly which metric applies to your platform. Twitter uses characters with spaces. SEO title tags are measured in pixels but roughly 60 characters is the safe limit.</p>
+    <p>Word count answers how long a text is, but it is rarely the only measure you want. To turn the count into pages for an assignment specified in pages, use the <a href="/tools/words-to-pages">words to pages calculator</a>. When a limit is expressed in characters rather than words, the <a href="/tools/character-counter">character counter</a> carries presets for the common platform limits. The <a href="/tools/sentence-counter">sentence counter</a> reports sentence count and average sentence length, the <a href="/tools/word-frequency-counter">word frequency counter</a> shows which words you lean on, and the <a href="/tools/reading-level-checker">reading level checker</a> turns those structural numbers into a readability grade.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
       <p class="faq-q">How does the word counter work?</p>
-      <p class="faq-a">The word counter splits your text by spaces and punctuation to count words. Results update instantly as you type — no button required. All processing happens in your browser so your text is never sent anywhere.</p>
+      <p class="faq-a">The counter splits your text on spaces and line breaks, treating each resulting group of characters as one word, and simultaneously tallies characters, sentences and paragraphs. Everything updates live as you type or paste — there is no count button — and to check a platform limit, pick a preset below the stats and a progress bar shows how close you are, turning orange near the limit and red past it. Contractions like "don't" count as one word and hyphenated compounds like "state-of-the-art" also count as one, matching how word processors such as Microsoft Word count.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Does the word counter count characters with or without spaces?</p>
-      <p class="faq-a">Both. TextlyPop shows characters with spaces and characters without spaces separately in the stats bar so you can see exactly which number applies to your use case.</p>
+      <p class="faq-a">Both, shown separately in the stats bar, because different platforms measure differently. Twitter/X, Instagram captions and meta descriptions all count spaces, so "characters with spaces" is the number that matters there. "Characters without spaces" is the traditional measure in some academic and translation contexts, particularly in languages like Japanese where spacing conventions differ. Knowing which metric your target uses prevents the frustrating experience of a "600-character" text being rejected by a 600-character field.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How is reading time calculated?</p>
-      <p class="faq-a">Reading time is based on 200 words per minute for average readers and 300 words per minute for fast readers. You can toggle between the two using the reading speed buttons above the text area.</p>
+      <p class="faq-a">Reading time divides your word count by an assumed reading speed. Research puts the average adult silent-reading speed for non-fiction at roughly 200–240 words per minute, so the Average mode uses 200 WPM; Fast mode uses 300 WPM for skimming-speed readers. Speaking time uses 130 WPM — the comfortable pace for presentations and voiceovers — which makes the tool useful for timing speeches and scripts: a 5-minute talk needs roughly 650 words.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the character limit for Twitter / X?</p>
-      <p class="faq-a">Twitter / X allows 280 characters per tweet. Select the Twitter preset in the platform limits section to see a live progress bar as you approach the limit.</p>
+      <p class="faq-a">Standard accounts get 280 characters per post — doubled from the original 140 in 2017 — while paid subscribers can post up to 25,000 characters. Links are counted as 23 characters regardless of their real length, and emojis often count as two. Select the Twitter preset under the stats to watch a live progress bar as you type; staying under the limit yourself beats letting the platform truncate your post mid-sentence.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Is my text saved or sent to a server?</p>
-      <p class="faq-a">No. All processing happens in your browser using JavaScript. Your text is never sent to any server. TextlyPop only saves your input locally in your browser so you can pick up where you left off if you close the tab.</p>
+      <p class="faq-q">How many words should a blog post or essay be?</p>
+      <p class="faq-a">It depends on the goal. Most blog posts perform well between 1,000 and 2,000 words, in-depth guides often run 2,500 words or more, and typical school essays range from 500 to 1,500 words. Social media posts are far shorter — usually 40 to 80 words. Paste your draft into the word counter to track your live word count as you write, then use the reading time estimate to judge whether the length suits your audience.</p>
     </div>
 
   </div>

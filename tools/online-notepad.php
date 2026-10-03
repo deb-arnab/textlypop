@@ -2,7 +2,7 @@
 $tool_slug   = 'online-notepad';
 $tool_name   = 'Online Notepad';
 
-$page_title  = 'Online Notepad — Free Browser Notepad That Saves Automatically | TextlyPop';
+$page_title  = 'Online Notepad — Free Notepad That Autosaves | TextlyPop';
 $meta_desc   = 'A clean distraction-free online notepad that saves your notes automatically to your browser. No signup, no account, no cloud. Your notes stay on your device.';
 $canonical_url = 'https://textlypop.com/tools/online-notepad';
 $og_title    = 'Free Online Notepad — Auto-Saves to Your Browser | TextlyPop';
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does the online notepad save automatically?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. TextlyPop's online notepad saves everything you type automatically to your browser's localStorage. Your notes are still there when you close the tab and come back later, with no account or signup required."
+        "text": "Yes. Every keystroke is written to your browser's localStorage as you type — there is no save button because you never need one. Close the tab, restart the computer, come back a week later and your notes are exactly where you left them. No account or internet connection is required after the page loads, so the notepad also works offline."
       }
     },
     {
@@ -47,31 +47,31 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Are my notes private?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Your notes are saved only in your browser's localStorage on your own device. They are never sent to any server, never stored in a cloud database, and never accessible to anyone else. Clearing your browser data will erase them."
+        "text": "Yes. Notes exist only in your browser's local storage on your own device — never transmitted to a server, synced to a cloud database, or visible to anyone else. The flip side is that notes do not follow you between devices or browsers; use the Download button when you need to move a note elsewhere."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I use multiple notepads?",
+      "name": "Can I keep several separate notes at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. TextlyPop's online notepad supports multiple named notes. Create a new note using the New note button, switch between notes using the tabs, and rename or delete notes as needed."
+        "text": "Yes. Click New note to create as many independent notes as you need — each appears as a tab, saves on its own, and can be renamed by double-clicking the tab. It works like lightweight documents rather than one long scroll of mixed text."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I download my notes?",
+      "name": "Can I download my notes as a file?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Click the Download button to save your current note as a plain text .txt file to your device. This gives you a permanent backup of your note outside the browser."
+        "text": "Yes. The Download button saves the current note as a plain .txt file — the most portable text format there is. Downloading is also how to back up notes permanently or move them into another app."
       }
     },
     {
       "@type": "Question",
-      "name": "What happens if I clear my browser data?",
+      "name": "What happens to my notes if I clear browser data?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Clearing your browser's localStorage or cookies will erase your saved notes. Download any important notes as text files before clearing browser data to avoid losing them."
+        "text": "Clearing site data or localStorage erases saved notes, because the browser is the only place they exist. The same applies to private browsing windows. If a note matters long-term, download it as a .txt file first — that copy is unaffected by anything the browser does."
       }
     }
   ]
@@ -196,8 +196,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Multiple notes with tabs</h2>
     <p>Create as many separate notes as you need using the New note button. Each note gets its own tab at the top. Double-click any tab to rename it — give your notes meaningful names like "Meeting notes", "Shopping list", or "Draft ideas". Switch between notes instantly by clicking their tabs. Each note saves independently so your content is always organized and accessible.</p>
 
-    <h2>Why use a browser-based notepad?</h2>
-    <p>A browser notepad is available on any device that has a browser, with no installation required. It is faster to open than a desktop application — just bookmark the page and it opens in one click. Unlike cloud note apps there is no subscription, no data collection, and no risk of your private notes being stored on someone else's server. For quick temporary notes, meeting transcriptions, draft ideas, or any text you need to capture fast, a browser notepad is the most frictionless option available.</p>
+    <h2>The case for a browser-based notepad</h2>
+    <p>Simple notepads have been part of computing since Windows Notepad shipped in 1983, and their appeal has never changed: open instantly, type, done. A browser notepad takes that idea further — it is available on any device with a browser, requires no installation, and opens in one click from a bookmark. Unlike cloud note apps there is no subscription, no data collection, and no risk of your private notes sitting on someone else's server. For quick temporary notes, meeting minutes, draft ideas, or any text you need to capture fast, it is the most frictionless option available.</p>
 
     <h2>Download your notes as text files</h2>
     <p>While your notes persist in localStorage, clearing your browser data would erase them. The Download button saves your current note as a plain .txt file to your device, giving you a permanent backup that exists independently of the browser. Download important notes regularly if you plan to keep them long-term.</p>
@@ -206,27 +206,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">Does the online notepad save automatically?</p>
-      <p class="faq-a">Yes. Everything you type saves automatically to your browser's localStorage. Your notes are still there when you close the tab and come back, with no account required.</p>
+      <p class="faq-a">Yes. Every keystroke is written to your browser's localStorage as you type — there is no save button because you never need one. Close the tab, restart the computer, come back a week later and your notes are exactly where you left them, on the same device and browser. No account, signup or internet connection is required after the page loads, which also means the notepad keeps working offline.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Are my notes private?</p>
-      <p class="faq-a">Yes. Notes are saved only in your browser on your own device. They are never sent to any server and never accessible to anyone else.</p>
+      <p class="faq-a">Yes. Notes exist only in your browser's local storage on your own device — they are never transmitted to a server, synced to a cloud database, or visible to anyone else, including us. That makes this notepad suitable for sensitive scratch work that you would not paste into a cloud app. The flip side of that privacy is that notes do not follow you between devices or browsers; use the Download button when you need to move a note elsewhere.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Can I use multiple notepads?</p>
-      <p class="faq-a">Yes. Create multiple named notes using the New note button and switch between them using the tabs at the top of the notepad.</p>
+      <p class="faq-q">Can I keep several separate notes at once?</p>
+      <p class="faq-a">Yes. Click New note to create as many independent notes as you need — each appears as a tab across the top of the notepad, and each saves on its own. Double-click a tab to give it a meaningful name like "Meeting notes" or "Shopping list", and switch between notes with a single click. This works like lightweight documents rather than one long scroll of mixed text.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Can I download my notes?</p>
-      <p class="faq-a">Yes. Click Download to save your current note as a plain text .txt file to your device as a permanent backup.</p>
+      <p class="faq-q">Can I download my notes as a file?</p>
+      <p class="faq-a">Yes. The Download button saves the current note to your device as a plain .txt file — the most portable text format there is, readable on every operating system. Downloading is also the way to back up notes permanently or move them into another app: the file is a normal document you can attach, print, or open in any editor.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What happens if I clear my browser data?</p>
-      <p class="faq-a">Clearing your browser's localStorage will erase saved notes. Download important notes as text files before clearing browser data.</p>
+      <p class="faq-q">What happens to my notes if I clear browser data?</p>
+      <p class="faq-a">Clearing site data or localStorage for this site erases saved notes, because the browser is the only place they exist. The same applies to private/incognito windows, where storage is discarded when the window closes. If a note matters long-term, download it as a .txt file first — that copy lives in your file system and is unaffected by anything the browser does.</p>
     </div>
 
   </div>

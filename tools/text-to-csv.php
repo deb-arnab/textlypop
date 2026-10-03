@@ -2,8 +2,8 @@
 $tool_slug   = 'text-to-csv';
 $tool_name   = 'Text to CSV Converter';
 
-$page_title  = 'Text to CSV Converter — Convert Text to CSV Online Free | TextlyPop';
-$meta_desc   = 'Convert tab-separated, space-separated, pipe-delimited or any text to properly formatted CSV. Handles quoting automatically. Free online text to CSV converter.';
+$page_title  = 'Text to CSV Converter — Convert a List to CSV | TextlyPop';
+$meta_desc   = 'Convert text, a list, or tab, space and pipe-delimited data into properly formatted CSV. Quoting handled automatically. Free, no signup.';
 $canonical_url = 'https://textlypop.com/tools/text-to-csv';
 $og_title    = 'Free Text to CSV Converter — TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I convert text to CSV?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your text into the input panel, choose the delimiter that currently separates your columns (tab, space, pipe, semicolon or custom), and the CSV output appears instantly. The tool handles quoting automatically — any field that contains a comma, double quote or newline is wrapped in double quotes per the CSV standard."
+        "text": "Paste your delimited text and pick the character that currently separates your columns — Tab, Pipe, Semicolon, Space or a custom character. The CSV output appears instantly with quoting applied wherever the data needs it, so fields containing commas survive intact. Copy the result or download it as a .csv file."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I convert tab-separated text to CSV?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Select Tab as the input delimiter and Comma as the output delimiter. Paste your tab-separated text and the CSV result appears immediately. This is the most common conversion — data pasted from Excel or Google Sheets is tab-separated by default."
+        "text": "Select Tab as the input delimiter and paste — copying any range of cells from Excel or Google Sheets puts tab-separated text on your clipboard. The invisible tabs become explicit, correctly quoted commas in one paste."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does the tool handle commas inside field values?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The tool follows RFC 4180 — the CSV standard. Any field that contains a comma, a double quote character, or a newline is automatically wrapped in double quotes. Double quote characters inside a field are escaped by doubling them."
+        "text": "Yes — this is the part naive converters get wrong. Following RFC 4180, any field containing the separator, a double quote or a newline is wrapped in double quotes, and quotes inside a field are escaped by doubling. A value like Portland, OR stays one column instead of splitting into two."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I convert pipe-delimited or semicolon-delimited text to CSV?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Select Pipe or Semicolon as the input delimiter. The tool splits each row on that character and reassembles it in CSV format. You can also type any custom delimiter character in the Custom field."
+        "text": "Yes. Select Pipe for database and ERP exports, or Semicolon for files produced by European spreadsheet locales — where Excel uses semicolons because the comma is the decimal separator. Any other character can be typed into the Custom field."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I download the CSV output?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Click the Download CSV button to save the result as a .csv file ready to open in Excel, Google Sheets, or any spreadsheet application."
+        "text": "Yes. Download CSV saves the result as a .csv file generated entirely in your browser — the data never touches a server. The file opens directly in Excel, Google Sheets or LibreOffice and imports cleanly into databases, since the output follows RFC 4180 conventions."
       }
     }
   ]
@@ -243,43 +243,42 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to convert text to CSV</h2>
-    <p>Paste your delimited text into the input panel and choose the character that separates your columns — Tab is the most common (Excel and Google Sheets copy data as tab-separated by default). The CSV output appears instantly in the right panel with fields properly quoted wherever needed. Click Copy or Download CSV to use the result in your spreadsheet, database, or wherever CSV is expected.</p>
+    <h2>The history of the CSV format</h2>
+    <p>Comma-separated values are older than almost everything else in computing still in daily use — IBM's Fortran compiler supported comma-delimited input in 1972, back when data arrived on punched cards. Remarkably, the format ran for over three decades on convention alone: RFC 4180, the document that finally standardized CSV's quoting rules, was not published until 2005. That informality is both CSV's weakness (every application had its own dialect) and its strength — it is plain text, readable by humans and every program ever written, which is why it remains the lingua franca of data exchange half a century on.</p>
 
-    <h2>Converting tab-separated text to CSV</h2>
-    <p>Tab-separated values (TSV) are what you get when you copy a range of cells from Excel or Google Sheets and paste into a text editor. The columns are separated by tab characters that are invisible but present. Select Tab as the input delimiter and Comma as the output separator to produce standard CSV. If any cell contained a comma the tool will automatically wrap it in double quotes so the column structure is preserved correctly.</p>
+    <h2>Converting a list or a TXT file to CSV</h2>
+    <p>Most of what people call converting a list to CSV is one of two jobs, and they need different handling. If every item belongs in its own row as a single column — a list of emails, SKUs or names, one per line — paste it as is and the output is a valid single-column CSV, with any value containing a comma quoted automatically so it does not split. If each line already holds several fields separated by tabs, spaces or pipes, set the input delimiter to match and each line becomes a proper multi-column row.</p>
+    <p>A TXT file converts the same way: open it, copy the contents, paste them in. The file extension carries no formatting of its own, so what matters is only how the values inside are separated. Two habits save trouble afterwards — keep the header row at the top so the columns are labelled when the file is opened in a spreadsheet, and check any line that looks short in the output, since a missing delimiter is the usual reason a row lands with fewer fields than its neighbours.</p>
+    <p>For the closely related jobs, <a href="/tools/comma-separator">comma separator</a> produces one delimited line rather than a table of rows, and <a href="/tools/list-to-comma">line break to comma</a> is the fastest route when you simply want a column joined into a single comma-separated string. Running <a href="/tools/duplicate-line-remover">duplicate line remover</a> first is worth the extra step when the list was assembled from several sources.</p>
 
-    <h2>Pipe and semicolon delimited data</h2>
-    <p>Many data exports from databases, ERP systems, and legacy applications use pipe (<code>|</code>) or semicolon (<code>;</code>) as the delimiter instead of a tab or comma — often because the data itself contains commas. Select Pipe or Semicolon as the input delimiter to split on that character. If none of the presets match your file you can type any custom delimiter character into the Custom field.</p>
-
-    <h2>How CSV quoting works</h2>
-    <p>The CSV standard (RFC 4180) requires that a field be wrapped in double quotes if it contains the output separator, a double quote character, or a newline. This tool applies those rules automatically. If a field contains double quotes they are escaped by doubling them — <code>"</code> becomes <code>""</code> inside a quoted field. Enable Quote all fields to wrap every field in double quotes regardless, which some legacy systems require.</p>
+    <h2>Why delimiters differ between systems</h2>
+    <p>Not all "CSV" actually uses commas. Spreadsheets copy cells to the clipboard as tab-separated text. Many database and ERP exports use the pipe character (<code>|</code>) precisely because real-world data is full of commas. And in much of Europe, Excel saves "CSV" with semicolons — because those locales use the comma as the decimal separator in numbers, so 3,14 would otherwise split into two fields. This converter accepts all of these as input (plus any custom character) and produces standard comma-separated output with correct quoting.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
       <p class="faq-q">How do I convert text to CSV?</p>
-      <p class="faq-a">Paste your delimited text, choose the input delimiter (Tab, Pipe, Semicolon, Space or Custom), and the CSV appears instantly. Copy or download the result.</p>
+      <p class="faq-a">Paste your delimited text into the input panel and pick the character that currently separates your columns — Tab, Pipe, Semicolon, Space or a custom character. The CSV output appears instantly with quoting applied wherever the data needs it, so fields containing commas survive intact. Copy the result to the clipboard or click Download CSV to save a file that opens directly in any spreadsheet application.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How do I convert tab-separated text to CSV?</p>
-      <p class="faq-a">Select Tab as the input delimiter. Data copied from Excel or Google Sheets is tab-separated by default — paste it in and the CSV is ready immediately.</p>
+      <p class="faq-a">Select Tab as the input delimiter and paste — that covers the single most common case, because copying any range of cells from Excel or Google Sheets puts tab-separated text on your clipboard. The tab characters are invisible, which is why pasted spreadsheet data looks vaguely aligned but breaks when fed to tools expecting commas. One paste here and the invisible tabs become explicit, correctly quoted commas.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Does the tool handle commas inside field values?</p>
-      <p class="faq-a">Yes. Fields containing the separator, double quotes, or newlines are automatically wrapped in double quotes per the RFC 4180 CSV standard. Double quotes inside a field are escaped as "".</p>
+      <p class="faq-a">Yes — this is the part naive converters get wrong. Following RFC 4180, any field containing the separator, a double quote or a newline is wrapped in double quotes, and quote characters inside a field are escaped by doubling them ("Widget ""Pro""" for a field containing quotes). A value like <code>Portland, OR</code> therefore stays one column instead of splitting into two. Enable Quote all fields if a legacy system on the receiving end insists on quotes around everything.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I convert pipe-delimited or semicolon-delimited text to CSV?</p>
-      <p class="faq-a">Yes. Select Pipe or Semicolon as the input delimiter, or type any character into the Custom field. The tool splits columns on that character and outputs standard CSV.</p>
+      <p class="faq-a">Yes. Select Pipe for the <code>|</code>-separated exports common from databases and ERP systems, or Semicolon for files produced by European spreadsheet locales, and the tool splits on that character and reassembles standard CSV. For anything unusual — a caret, a tilde, a fixed unusual character from a legacy feed — type it into the Custom field and the conversion works the same way.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I download the CSV output?</p>
-      <p class="faq-a">Yes. Click Download CSV to save a .csv file ready to open in Excel, Google Sheets, LibreOffice Calc or any other spreadsheet application.</p>
+      <p class="faq-a">Yes. Download CSV saves the result as a .csv file generated entirely in your browser — the data never touches a server. The file opens directly in Excel, Google Sheets, LibreOffice Calc or Numbers, and imports cleanly into databases and analytics tools, since the output follows the RFC 4180 conventions those programs expect. For quick pastes into an email or script, the Copy button grabs the same output without creating a file.</p>
     </div>
 
   </div>

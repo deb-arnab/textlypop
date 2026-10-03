@@ -36,26 +36,26 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is title case?",
+      "name": "Should headlines use title case or sentence case?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Title case capitalizes the first letter of every major word. Small words like 'a', 'an', 'the', 'and', 'but', 'or', 'in', 'on', 'at' are kept lowercase unless they appear at the start of the title."
+        "text": "It depends on your style guide. American publishing tradition — AP, Chicago, The New York Times — uses Title Case, while British publications and most modern tech companies, including Google and Apple, have moved to sentence case. Consistency matters more than the choice: pick one and enforce it across all your headings."
       }
     },
     {
       "@type": "Question",
-      "name": "What is sentence case?",
+      "name": "How do I fix text accidentally typed in ALL CAPS?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Sentence case capitalizes only the first letter of the first word in each sentence, and proper nouns. Everything else is lowercase. It is the standard format for most writing."
+        "text": "Paste it and click Sentence case — everything is lowercased, then the first letter of each sentence is re-capitalized, turning an accidental caps-lock paragraph back into normal prose in one click. Proper nouns come out lowercase, so give the result a quick scan afterwards."
       }
     },
     {
       "@type": "Question",
-      "name": "What is camelCase?",
+      "name": "Why do programmers use camelCase?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "camelCase joins words together with no spaces and capitalizes the first letter of each word except the first. For example: myVariableName. It is widely used in programming for variable names."
+        "text": "Code identifiers cannot contain spaces, and camelCase — myVariableName — keeps multi-word names readable by capitalizing each interior word. It became the house style of Java and JavaScript, while Python standardized on snake_case and class names use PascalCase. The converter translates between all these conventions instantly."
       }
     },
     {
@@ -63,15 +63,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the difference between snake_case and kebab-case?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "snake_case uses underscores between words and is commonly used in Python and database column names. kebab-case uses hyphens between words and is commonly used in URLs and CSS class names."
+        "text": "Only the separator: snake_case joins words with underscores (user_first_name), kebab-case with hyphens (user-first-name). snake_case rules Python code and database columns; kebab-case rules URLs and CSS class names — search engines treat hyphens as word separators, which is why URL slugs use them."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I convert multiple paragraphs at once?",
+      "name": "Can I convert multiple paragraphs or a whole list at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. TextlyPop's case converter processes your entire text at once regardless of length. Paste any amount of text and click a conversion button to transform it instantly."
+        "text": "Yes. The converter processes your entire input regardless of length. For lists, enable Bulk mode and each line is treated as an independent string — converting twenty product titles to Title Case handles each separately. Click Use as input to chain a second conversion onto a result."
       }
     }
   ]
@@ -342,9 +342,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to use the case converter</h2>
-    <p>Type or paste your text into the input box on the left. Then click any of the 12 conversion buttons at the top to instantly convert your text. The result appears in the output box on the right. Click Copy to copy the result, or click "Use as input" to run a second conversion on your already-converted text.</p>
-    <p>Enable Bulk mode to process each line of your text independently — useful when converting a list of items where each line should be treated as a separate string.</p>
+    <h2>Why we say "uppercase" and "lowercase"</h2>
+    <p>The names come from the printing workshop. Hand typesetters in the 1500s kept their metal letters in two wooden cases: capital letters in the case mounted higher on the desk — the upper case — and the small letters, needed far more often, within easy reach in the lower case. The terminology outlived the technology by centuries. Before printing, scribes called the two letterforms majuscule and minuscule, and some writing systems never developed the distinction at all: Arabic, Hebrew, Chinese and Georgian have no concept of letter case, which is why case conversion is a peculiarly Latin-alphabet problem.</p>
 
     <h2>Case conversion types explained</h2>
     <p>UPPER CASE converts every letter to uppercase. lower case converts every letter to lowercase. Title Case capitalizes the first letter of every major word while keeping small words like "a", "the", and "and" lowercase. Sentence case capitalizes only the first letter of each sentence.</p>
@@ -367,28 +366,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
-      <p class="faq-q">What is title case?</p>
-      <p class="faq-a">Title case capitalizes the first letter of every major word. Small words like "a", "an", "the", "and", "but", "or", "in", "on", "at" are kept lowercase unless they appear at the start of the title.</p>
+      <p class="faq-q">Should headlines use title case or sentence case?</p>
+      <p class="faq-a">It depends on the style guide you follow. American publishing tradition — AP, Chicago, The New York Times — uses Title Case, capitalizing every major word. British publications and most modern tech companies, including Google and Apple in their interface text, have moved to sentence case, which reads as friendlier and avoids endless judgment calls about which words count as "major". Whichever you choose, consistency matters more than the choice — pick one, and use the converter's Title Case and Sentence case buttons to enforce it across all your headings.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What is sentence case?</p>
-      <p class="faq-a">Sentence case capitalizes only the first letter of the first word in each sentence, and proper nouns. Everything else is lowercase. It is the standard format for most writing.</p>
+      <p class="faq-q">How do I fix text accidentally typed in ALL CAPS?</p>
+      <p class="faq-a">Paste it and click Sentence case — the tool lowercases everything, then re-capitalizes the first letter of each sentence, turning an accidental caps-lock paragraph back into normal prose in one click. This beats retyping, and it is the classic rescue for form data, subject lines and old documents typed in caps. One caveat applies to any automatic converter: proper nouns like names and places come out lowercase, so give the result a quick scan and fix the handful of words that need their capitals back.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What is camelCase?</p>
-      <p class="faq-a">camelCase joins words together with no spaces and capitalizes the first letter of each word except the first. For example: myVariableName. It is widely used in programming for variable and function names.</p>
+      <p class="faq-q">Why do programmers use camelCase?</p>
+      <p class="faq-a">Because code identifiers cannot contain spaces, programmers need a way to keep multi-word names readable, and camelCase — myVariableName — solves it by capitalizing each interior word. It became the house style of Java and JavaScript, while Python standardized on snake_case and most languages use PascalCase for class names. The convention is old: chemists were writing compound names this way long before computers, and camelCase notation was well established by the 1970s at Xerox PARC. The converter's camelCase, PascalCase, snake_case and kebab-case buttons translate between all these conventions instantly.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the difference between snake_case and kebab-case?</p>
-      <p class="faq-a">snake_case uses underscores between words and is commonly used in Python and database column names. kebab-case uses hyphens between words and is commonly used in URLs and CSS class names.</p>
+      <p class="faq-a">Only the separator: snake_case joins words with underscores (user_first_name) and kebab-case with hyphens (user-first-name). Where each belongs is settled convention — snake_case rules Python code and database columns, while kebab-case rules URLs and CSS class names. The URL preference has an SEO reason: search engines treat hyphens as word separators, so /text-tools is read as two words, historically more reliably than /text_tools. Pick the one your destination expects and convert with one click.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Can I convert multiple paragraphs at once?</p>
-      <p class="faq-a">Yes. TextlyPop's case converter processes your entire text at once regardless of length. Paste any amount of text and click a conversion button to transform it instantly.</p>
+      <p class="faq-q">Can I convert multiple paragraphs or a whole list at once?</p>
+      <p class="faq-a">Yes. The converter processes your entire input regardless of length — paste a full document and every paragraph transforms together. For lists, enable Bulk mode and each line is treated as an independent string, so converting twenty product titles to Title Case handles each title separately rather than treating the list as one long sentence. You can also chain conversions: click "Use as input" to feed a result back in and apply a second transformation.</p>
     </div>
 
   </div>

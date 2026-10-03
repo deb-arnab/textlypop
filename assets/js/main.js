@@ -49,6 +49,19 @@
     { slug: 'words-to-pages',            name: 'Words to pages',               desc: 'Convert word count to estimated page count.' },
     { slug: 'text-diff-checker',         name: 'Text diff checker',            desc: 'Compare two pieces of text and highlight exactly what changed.' },
     { slug: 'text-to-csv',              name: 'Text to CSV converter',        desc: 'Convert tab-separated, pipe-delimited or any text to properly formatted CSV.' },
+    { slug: 'qr-code-generator',        name: 'QR code generator',            desc: 'Create QR codes for URLs, text, email, phone, Wi-Fi and more. Download as PNG.' },
+    { slug: 'base64-encoder-decoder',   name: 'Base64 encoder / decoder',     desc: 'Encode text to Base64 or decode Base64 back to text instantly.' },
+    { slug: 'uuid-generator',           name: 'UUID generator',               desc: 'Generate random version 4 UUIDs (GUIDs) instantly. Bulk generation supported.' },
+    { slug: 'regex-tester',             name: 'Regex tester',                 desc: 'Test and debug regular expressions with live match highlighting and capture groups.' },
+    { slug: 'special-characters',       name: 'Special characters & symbols', desc: 'Copy and paste symbols — arrows, currency, math, stars, hearts, accents and more.' },
+    { slug: 'pomodoro-timer',           name: 'Pomodoro timer',               desc: 'A focus timer with custom work and break lengths, auto-cycling and alerts.' },
+    { slug: 'color-converter',          name: 'Color converter',              desc: 'Convert colors between HEX, RGB and HSL with a live picker and one-click copy.' },
+    { slug: 'pdf-text-extractor',       name: 'PDF text extractor',           desc: 'Extract text from PDF files in your browser — drag and drop, then copy or download.' },
+    { slug: 'timezone-converter',       name: 'Time zone converter',          desc: 'Convert times between time zones with automatic Daylight Saving and day differences.' },
+    { slug: 'date-age-calculator',      name: 'Date & age calculator',        desc: 'Find the difference between two dates and calculate exact age in years, months and days.' },
+    { slug: 'css-unit-converter',       name: 'CSS unit converter',           desc: 'Convert between px, rem, em, pt and percent with a configurable root font size.' },
+    { slug: 'flashcard-maker',          name: 'Flashcard maker',              desc: 'Create flashcards from a list or one at a time, study with flip cards, export or print.' },
+    { slug: 'serp-preview',             name: 'SERP preview tool',            desc: 'Preview your title tag and meta description in Google search results with pixel-width limits.' },
   ];
 
   /* Synonym map for smarter search */
@@ -64,6 +77,21 @@
     'cool text': 'fancy', 'unicode font': 'fancy', 'stylish': 'fancy', 'cursive': 'fancy', 'bold text': 'fancy',
     'diff': 'diff checker', 'compare': 'diff checker', 'difference': 'diff checker', 'changes': 'diff checker',
     'tsv': 'csv converter', 'tab separated': 'csv converter', 'pipe delimited': 'csv converter', 'spreadsheet': 'csv converter',
+    'qr': 'qr code', 'barcode': 'qr code', 'qrcode': 'qr code generator', 'scan code': 'qr code',
+    'guid': 'uuid', 'unique id': 'uuid', 'uuid v4': 'uuid',
+    'regexp': 'regex', 'regular expression': 'regex', 'pattern match': 'regex', 'pattern test': 'regex',
+    'symbol': 'special characters', 'symbols': 'special characters', 'glyph': 'special characters',
+    'arrows': 'special characters', 'accent': 'special characters', 'emoji': 'special characters',
+    'timer': 'pomodoro', 'focus timer': 'pomodoro', 'tomato timer': 'pomodoro', 'study timer': 'pomodoro', 'countdown': 'pomodoro',
+    'colour': 'color', 'colour picker': 'color', 'color code': 'color', 'hex code': 'color',
+    'pdf': 'pdf text', 'pdf reader': 'pdf text', 'extract pdf': 'pdf text', 'pdf converter': 'pdf text',
+    'timezone': 'time zone', 'utc': 'time zone', 'gmt': 'time zone', 'world clock': 'time zone', 'time difference': 'time zone',
+    'days between': 'date', 'date difference': 'date', 'how many days': 'date', 'time between dates': 'date', 'birthday': 'age', 'how old': 'age',
+    'px to rem': 'css unit', 'rem to px': 'css unit', 'px to em': 'css unit', 'pt to px': 'css unit', 'px to pt': 'css unit',
+    'flash card': 'flashcard', 'study cards': 'flashcard', 'revision cards': 'flashcard', 'cue cards': 'flashcard',
+    'index cards': 'flashcard', 'spaced repetition': 'flashcard', 'memorize': 'flashcard', 'memorise': 'flashcard', 'anki': 'flashcard',
+    'snippet': 'serp preview', 'google preview': 'serp preview', 'seo preview': 'serp preview', 'rich result': 'serp preview',
+    'title tag': 'serp preview', 'meta description': 'serp preview', 'meta tag': 'serp preview', 'meta title': 'serp preview',
   };
 
   /* ── Theme ───────────────────────────────────────────────── */
@@ -181,15 +209,39 @@
       });
     }
 
-    // Homepage hero search — filters the tool grid
-    const heroInput = document.getElementById('hero-search');
-    if (heroInput) {
-      heroInput.addEventListener('input', () => filterToolGrid(heroInput.value));
-
-      // Check for ?search= param on load
+    // Homepage: apply ?search= / ?q= param (search engines, shared links)
+    if (document.querySelector('[data-cat-section]')) {
       const params = new URLSearchParams(window.location.search);
-      const s = params.get('search');
-      if (s) { heroInput.value = s; filterToolGrid(s); }
+      const s = params.get('search') || params.get('q');
+      if (s) filterToolGrid(s);
+    }
+  }
+
+  /* Switch the homepage view: 'home' = Popular + New, or one category */
+  function showCategory(cat, scroll) {
+    const sections = document.querySelectorAll('[data-cat-section]');
+    if (!sections.length) return;
+
+    // Reset any search-based card hiding
+    document.querySelectorAll('[data-tool-slug]').forEach(card => {
+      card.style.display = '';
+    });
+    document.getElementById('no-results')?.classList.add('hidden');
+
+    sections.forEach(section => {
+      const sectionCat = section.dataset.catSection;
+      const visible = cat === 'home'
+        ? (sectionCat === 'popular' || sectionCat === 'new')
+        : sectionCat === cat;
+      section.style.display = visible ? 'block' : 'none';
+    });
+
+    document.querySelectorAll('.cat-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.cat === cat);
+    });
+
+    if (scroll) {
+      document.getElementById('tools')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }
 
@@ -197,7 +249,11 @@
     const cards = document.querySelectorAll('[data-tool-slug]');
     if (!cards.length) return;
 
-    let q = query.toLowerCase().trim();
+    let q = (query || '').toLowerCase().trim();
+
+    // Empty search — back to the default homepage view
+    if (!q) { showCategory('home', false); return; }
+
     for (const [k, v] of Object.entries(SYNONYMS)) {
       if (q.includes(k)) { q = q.replace(k, v); break; }
     }
@@ -206,9 +262,35 @@
       const name = (card.dataset.toolName || '').toLowerCase();
       const slug = (card.dataset.toolSlug || '').toLowerCase();
       const desc = (card.dataset.toolDesc || '').toLowerCase();
-      const match = !q || name.includes(q) || slug.includes(q.replace(/\s+/g, '-')) || desc.includes(q);
+      const match = name.includes(q) || slug.includes(q.replace(/\s+/g, '-')) || desc.includes(q);
       card.style.display = match ? '' : 'none';
     });
+
+    // Search spans every category — no pill is active
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+
+    updateSectionVisibility(query);
+  }
+
+  /* Reveal sections that contain matches, hide the rest; show empty state */
+  function updateSectionVisibility(query) {
+    const sections = document.querySelectorAll('[data-cat-section]');
+    if (!sections.length) return;
+
+    let anyVisible = false;
+    sections.forEach(section => {
+      const hasVisible = Array.from(section.querySelectorAll('[data-tool-slug]'))
+        .some(card => card.style.display !== 'none');
+      section.style.display = hasVisible ? 'block' : 'none';
+      if (hasVisible) anyVisible = true;
+    });
+
+    const empty = document.getElementById('no-results');
+    if (empty) {
+      empty.classList.toggle('hidden', anyVisible);
+      const qEl = document.getElementById('no-results-q');
+      if (qEl) qEl.textContent = (query || '').trim();
+    }
   }
 
   /* ── Mobile nav search ── */
@@ -248,22 +330,70 @@
     });
   }
 
-  /* ── Category filters ────────────────────────────────────── */
+  /* ── Category filters (hub cards + sticky pills) ─────────── */
   function initCategoryFilters() {
-    document.querySelectorAll('.cat-btn').forEach(btn => {
+    const pills = document.querySelectorAll('.cat-btn');
+    if (!pills.length) return;
+
+    pills.forEach(btn => {
       btn.addEventListener('click', () => {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
         const cat = btn.dataset.cat;
-        document.querySelectorAll('[data-tool-slug]').forEach(card => {
-          const cardCat = card.dataset.toolCat || 'all';
-          card.style.display = (cat === 'all' || cardCat === cat) ? '' : 'none';
-        });
+        showCategory(cat, cat !== 'home');
+      });
+    });
 
-        // Clear search
-        const heroInput = document.getElementById('hero-search');
-        if (heroInput) heroInput.value = '';
+    // Category hub cards reveal that category (href="#cat-x" is the no-JS fallback)
+    document.querySelectorAll('.hub-card[href^="#cat-"]').forEach(card => {
+      card.addEventListener('click', e => {
+        e.preventDefault();
+        showCategory(card.getAttribute('href').slice('#cat-'.length), true);
+      });
+    });
+
+    // "Clear search" button in the empty state
+    const clearBtn = document.getElementById('clear-search-btn');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        showCategory('home', false);
+        const headerInput = document.getElementById('header-search');
+        if (headerInput) headerInput.focus();
+      });
+    }
+  }
+
+  /* ── FAQ accordions (progressive enhancement) ────────────── */
+  function initFaqAccordions() {
+    document.querySelectorAll('.faq-item').forEach((item, i) => {
+      const q = item.querySelector('.faq-q');
+      const a = item.querySelector('.faq-a');
+      if (!q || !a || item.classList.contains('faq-enhanced')) return;
+
+      // Wrap the answer so its height can animate smoothly
+      const wrap = document.createElement('div');
+      wrap.className = 'faq-a-wrap';
+      const inner = document.createElement('div');
+      inner.className = 'faq-a-inner';
+      a.parentNode.insertBefore(wrap, a);
+      inner.appendChild(a);
+      wrap.appendChild(inner);
+
+      item.classList.add('faq-enhanced');
+      q.setAttribute('role', 'button');
+      q.setAttribute('tabindex', '0');
+
+      const setOpen = open => {
+        item.classList.toggle('open', open);
+        q.setAttribute('aria-expanded', String(open));
+      };
+
+      setOpen(i === 0); // first question open by default
+
+      q.addEventListener('click', () => setOpen(!item.classList.contains('open')));
+      q.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setOpen(!item.classList.contains('open'));
+        }
       });
     });
   }
@@ -469,6 +599,7 @@
     initNavAccordion();
     initSearch();
     initCategoryFilters();
+    initFaqAccordions();
     renderRecentChips();
     trackToolVisit();
     initCopyButtons();

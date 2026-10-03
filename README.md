@@ -57,6 +57,7 @@ TextlyPop is a collection of 35+ free text tools built with PHP and vanilla Java
 - Rhyme finder
 - Text reverser
 - Online notepad
+- QR code generator
 
 **Speech**
 - Text to speech

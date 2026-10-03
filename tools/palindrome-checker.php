@@ -2,7 +2,7 @@
 $tool_slug   = 'palindrome-checker';
 $tool_name   = 'Palindrome Checker';
 
-$page_title  = 'Palindrome Checker — Check if Text is a Palindrome Online Free | TextlyPop';
+$page_title  = 'Palindrome Checker — Check Any Word or Phrase | TextlyPop';
 $meta_desc   = 'Check if a word, phrase or sentence is a palindrome instantly. Ignores spaces, punctuation and case. Free online palindrome checker. No signup required.';
 $canonical_url = 'https://textlypop.com/tools/palindrome-checker';
 $og_title    = 'Free Online Palindrome Checker — TextlyPop';
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is a palindrome?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A palindrome is a word, phrase, number, or sequence that reads the same forwards and backwards. Examples include the words racecar, level, and kayak, and the phrases 'A man a plan a canal Panama' and 'Never odd or even'."
+        "text": "A palindrome is a word, phrase, number or any sequence that reads the same forwards and backwards. Racecar is one. Phrases qualify too, under the convention that spaces, punctuation and capitalization are ignored — 'A man, a plan, a canal: Panama!' collapses to 'amanaplanacanalpanama', which mirrors perfectly."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does the palindrome checker ignore spaces and punctuation?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. By default the checker ignores spaces, punctuation, and capitalization when determining if text is a palindrome. This means 'A man, a plan, a canal: Panama!' correctly checks as a palindrome. You can enable strict mode to check the exact characters as typed."
+        "text": "By default, yes — the checker strips spaces and punctuation and lowercases everything before comparing, the classical definition for phrase palindromes. Enable Strict mode to compare exact characters as typed: in strict mode 'Racecar' fails on the capital R. Strict mode suits symmetric character sequences in code or data."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What are some famous palindromes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Famous palindromes include words like racecar, level, madam, radar, and civic. Famous phrase palindromes include 'A man a plan a canal Panama', 'Never odd or even', 'Was it a car or a cat I saw', and 'Do geese see God'."
+        "text": "Single words: racecar, level, madam, radar, civic, kayak and noon. Among phrases, 'A man, a plan, a canal — Panama!' was coined by wordplay master Leigh Mercer in 1948; 'Able was I ere I saw Elba' imagines Napoleon lamenting his exile; 'Never odd or even' and 'Do geese see God' round out the classics."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can numbers be palindromes?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. A number is a palindrome if it reads the same forwards and backwards. Examples include 121, 1331, 12321, and 11. The palindrome checker works with numbers as well as text."
+        "text": "Yes — 121, 1331 and 12321 all read the same in both directions. Mathematicians study them seriously: reverse a number and add, repeat, and you usually reach a palindrome (89 takes 24 steps). Whether 196 ever gets there is a famous unsolved question. Palindromic dates like 02/02/2020 draw wide attention."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the longest palindrome word in English?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "One of the longest palindrome words in English is 'detartrated' at 11 letters. Other long palindrome words include 'rotavator' (9 letters), 'redivider' (9 letters), and 'racecar' (7 letters)."
+        "text": "Tattarrattat — James Joyce's invented word for a knock on the door in Ulysses — runs 12 letters. Among conventional words, detartrated (11 letters) and redivider or rotavator (9 each) lead the list. Finnish beats them all with saippuakivikauppias, a 19-letter word for a soapstone seller."
       }
     }
   ]
@@ -212,48 +212,56 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>What is a palindrome</h2>
-    <p>A palindrome is a word, phrase, number, or sequence that reads the same forwards and backwards when you ignore spaces, punctuation, and capitalization. The word "racecar" is a palindrome because r-a-c-e-c-a-r reads identically from both ends. The phrase "A man a plan a canal Panama" is a palindrome because removing spaces and ignoring case gives you the same sequence of letters in both directions.</p>
-    <p>Palindromes appear in mathematics, literature, music, and everyday language. They have been celebrated since ancient times — Greek and Latin writers composed palindromic poetry as demonstrations of linguistic skill. Today palindromes appear in word puzzles, brain teasers, programming exercises, and as a concept in DNA biology where certain DNA sequences read the same on both strands.</p>
+    <h2>The history of palindromes</h2>
+    <p>The word palindrome comes from the Greek <em>palin dromos</em> — "running back again" — and was coined in English by the playwright Ben Jonson in the 1600s, but the wordplay itself is far older. The most famous ancient example is the Sator Square, a five-word Latin palindrome (SATOR AREPO TENET OPERA ROTAS) found scratched into the ruins of Pompeii, meaning it predates 79 AD. Greek and Latin writers composed palindromic verse as displays of skill, and the fascination never faded: palindromes now appear in puzzles, programming interviews, calendar curiosities like 02/02/2020, and even molecular biology, where palindromic DNA sequences read the same on both strands and mark the sites where enzymes cut.</p>
 
-    <h2>How the palindrome checker works</h2>
-    <p>By default the checker strips all spaces and punctuation from your input and converts everything to lowercase before comparing the forward and reversed versions. This is the standard way to check palindromes because spaces and punctuation are not considered meaningful in classical palindrome definitions. "A man a plan a canal Panama" with spaces and punctuation removed becomes "amanaplanacanalpanama" which reads identically forwards and backwards.</p>
-    <p>Enable Strict mode to check the exact characters as typed, including spaces, punctuation, and capitalization. In strict mode "racecar" is still a palindrome but "Racecar" is not, and "A man a plan a canal Panama" is not because of its spaces and mixed case.</p>
-
-    <h2>Famous palindromes</h2>
-    <p>The most famous single-word palindromes in English include racecar, level, madam, radar, civic, kayak, rotator, and noon. Famous phrase palindromes include "A man a plan a canal Panama" attributed to Leigh Mercer, "Never odd or even", "Was it a car or a cat I saw", "Do geese see God", and "Able was I ere I saw Elba" which is famously associated with Napoleon Bonaparte. The longest single-word palindromes in English include detartrated at 11 letters and redivider at 9 letters.</p>
+    <h2>Palindrome examples</h2>
+    <p>Paste any of these into the checker above to see the test run. The longer ones make the point that the check ignores spaces, punctuation and capitalisation — read letter by letter, they run identically in both directions.</p>
+    <div class="table-scroll">
+      <table class="seo-table">
+        <thead>
+          <tr><th>Type</th><th>Examples</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Words</td><td>level, radar, civic, kayak, rotor, refer, madam, noon, racecar, deified</td></tr>
+          <tr><td>Names</td><td>Hannah, Anna, Bob, Otto, Elle, Ava</td></tr>
+          <tr><td>Phrases</td><td>Never odd or even · Step on no pets · Madam, I'm Adam</td></tr>
+          <tr><td>Classic sentences</td><td>A man, a plan, a canal: Panama · Was it a car or a cat I saw? · Able was I ere I saw Elba</td></tr>
+          <tr><td>Numbers</td><td>121, 1331, 12321, 909</td></tr>
+          <tr><td>Dates</td><td>02/02/2020, 12/02/2021</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Two things commonly trip people up when testing a palindrome by hand. Single letters and empty text are palindromes by definition, since there is nothing to contradict the symmetry. And a word that is a different valid word when reversed — "stressed" and "desserts", "drawer" and "reward" — is a semordnilap, not a palindrome; the test here is whether the text matches <em>itself</em> reversed, not whether the reversal happens to mean something. To see any text spelled backwards regardless, the <a href="/tools/text-reverser">text reverser</a> does that directly.</p>
 
     <h2>Palindromes in programming</h2>
-    <p>Checking whether a string is a palindrome is one of the most common introductory programming exercises. It tests understanding of string manipulation, indexing, and comparison. The naive approach compares the string to its reverse. A more efficient approach uses two pointers starting at each end and moving toward the center, stopping if a mismatch is found. Palindrome checking appears in technical job interviews at software companies as a basic algorithm question.</p>
-
-    <h2>Palindromic numbers</h2>
-    <p>A palindromic number reads the same in both directions. Single digit numbers are all palindromes. Two-digit palindromes are 11, 22, 33 through 99. Three-digit palindromes include 101, 111, 121, 131 through 999. The palindrome checker works with numbers as well as words — enter any number to instantly check if it is palindromic.</p>
+    <p>Checking whether a string is a palindrome is one of the most common introductory programming exercises. It tests understanding of string manipulation, indexing, and comparison. The naive approach compares the string to its reverse. A more efficient approach uses two pointers starting at each end and moving toward the center, stopping if a mismatch is found. Palindrome checking appears in technical job interviews at software companies as a basic algorithm question — this checker performs the same normalization step (strip punctuation, lowercase everything) that most interview solutions are expected to include.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
       <p class="faq-q">What is a palindrome?</p>
-      <p class="faq-a">A palindrome reads the same forwards and backwards. Examples include the words racecar, level, and kayak, and phrases like "A man a plan a canal Panama" and "Never odd or even".</p>
+      <p class="faq-a">A palindrome is a word, phrase, number or any sequence that reads the same forwards and backwards. "Racecar" is one: r-a-c-e-c-a-r is identical from either end. Phrases qualify too, under the convention that spaces, punctuation and capitalization are ignored — "A man, a plan, a canal: Panama!" collapses to "amanaplanacanalpanama", which mirrors perfectly. Type any word or sentence into the checker above and it applies exactly this test instantly.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Does the palindrome checker ignore spaces and punctuation?</p>
-      <p class="faq-a">Yes by default. Spaces, punctuation, and capitalization are ignored so "A man, a plan, a canal: Panama!" correctly checks as a palindrome. Enable Strict mode to check exact characters.</p>
+      <p class="faq-a">By default, yes — the checker strips spaces and punctuation and lowercases everything before comparing, which is the classical definition used for phrase palindromes. Enable Strict mode to compare the exact characters as typed instead: in strict mode "racecar" still passes, but "Racecar" fails on the capital R and "A man a plan a canal Panama" fails on its spaces. Strict mode is the right setting when you are checking symmetric character sequences in code or data rather than natural language.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What are some famous palindromes?</p>
-      <p class="faq-a">Famous palindromes include racecar, level, madam, radar, and civic as words, and "A man a plan a canal Panama", "Never odd or even", and "Do geese see God" as phrases.</p>
+      <p class="faq-a">Single words: racecar, level, madam, radar, civic, kayak and noon. Among phrases, "A man, a plan, a canal — Panama!" is the celebrity, coined by British wordplay master Leigh Mercer in 1948. "Able was I ere I saw Elba" imagines Napoleon lamenting his exile; "Never odd or even", "Do geese see God" and "Was it a car or a cat I saw" round out the classics. Paste any of them into the checker to watch the normalization at work.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can numbers be palindromes?</p>
-      <p class="faq-a">Yes. Numbers like 121, 1331, and 12321 are palindromes. The checker works with numbers as well as text.</p>
+      <p class="faq-a">Yes — 121, 1331 and 12321 all read the same in both directions, and every single-digit number is trivially palindromic. Mathematicians study them seriously: take almost any number, reverse it and add, repeat, and you usually reach a palindrome (89 takes 24 steps to reach 8813200023188). Whether the number 196 ever gets there is a famous unsolved question. Palindromic dates like 02/02/2020 — which read the same in every date format — draw wide attention when they occur.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the longest palindrome word in English?</p>
-      <p class="faq-a">One of the longest is "detartrated" at 11 letters. Other long examples include "rotavator" and "redivider" at 9 letters each.</p>
+      <p class="faq-a">"Tattarrattat" — James Joyce's invented word for a knock on the door in <em>Ulysses</em> — runs 12 letters and is cited by Oxford as the longest in literature. Among more conventional words, "detartrated" (11 letters, a chemistry term) and "redivider" or "rotavator" (9 letters each) lead the list. Other languages do better: Finnish offers "saippuakivikauppias", a 19-letter word for a soapstone seller, often cited as the world's longest everyday palindromic word.</p>
     </div>
 
   </div>

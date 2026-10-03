@@ -2,8 +2,8 @@
 $tool_slug   = 'json-formatter';
 $tool_name   = 'JSON Formatter';
 
-$page_title  = 'JSON Formatter & Validator — Format JSON Online Free | TextlyPop';
-$meta_desc   = 'Format, validate and minify JSON instantly. Prettify raw JSON with proper indentation or compress it for production. Free online JSON formatter. No signup required.';
+$page_title  = 'JSON Formatter & Validator — Format JSON | TextlyPop';
+$meta_desc   = 'Format, validate and minify JSON instantly. Prettify raw JSON with proper indentation, or compress it for production. Free online JSON formatter.';
 $canonical_url = 'https://textlypop.com/tools/json-formatter';
 $og_title    = 'Free JSON Formatter & Validator — TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I format JSON online?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your JSON into the input box and click Format. The tool parses your JSON and outputs it with proper indentation and line breaks making it human-readable. You can choose between 2 spaces, 4 spaces, or tab indentation."
+        "text": "Paste your raw or minified JSON and click Format / Prettify — the result appears with clean indentation and line breaks. Pick 2-space, 4-space or tab indentation to match your project. Parsing happens in your browser, so API responses containing sensitive data never leave your machine."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the difference between prettify and minify?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Prettify adds indentation and line breaks making JSON readable by humans. Minify removes all unnecessary whitespace producing the most compact version for production use where file size matters. Use prettify for development and debugging, minify for APIs and production deployments."
+        "text": "Opposite transformations of the same data. Prettify adds indentation and line breaks so humans can read the structure; minify strips every non-essential character — a 100KB prettified file can shrink to roughly 60KB. The standard workflow is prettify to work, minify to ship."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Why is my JSON invalid?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Common JSON errors include trailing commas after the last item in an array or object, single quotes instead of double quotes for strings, missing quotes around property names, unescaped backslashes or special characters in strings, and missing or extra curly braces or square brackets."
+        "text": "Read the error message first — it reports the position of the first character the parser choked on. Then check the usual suspects: a trailing comma after the last item, single quotes instead of double quotes, an unquoted property name, or an unescaped backslash. Fixing the first error often clears several downstream errors at once."
       }
     },
     {
@@ -63,15 +63,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I validate JSON without formatting it?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The tool validates your JSON automatically as you type and shows any errors in the status bar. The error message includes the exact position of the first syntax error to help you locate and fix the problem."
+        "text": "Yes — validation runs automatically as you type. The status bar shows green when the JSON parses cleanly and red with the parser's exact error message and position when it does not, making the tool useful as a pure validity checker."
       }
     },
     {
       "@type": "Question",
-      "name": "What is JSON?",
+      "name": "Why doesn't JSON allow comments?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "JSON stands for JavaScript Object Notation. It is a lightweight text format for storing and transmitting structured data. JSON is the standard data format for APIs and web services and is supported natively by all modern programming languages."
+        "text": "Deliberately — Douglas Crockford removed comments from the specification because people were abusing them to hold parsing directives that would have fractured interoperability. Workarounds include a data field like _comment, or JSONC for tools that accept it — but strict parsers correctly reject comments in plain JSON."
       }
     }
   ]
@@ -248,11 +248,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to format JSON online</h2>
-    <p>Paste your raw or minified JSON into the input panel and click Format / Prettify. The tool parses your JSON and outputs it with proper indentation, line breaks, and consistent spacing — making it immediately readable and easy to navigate. Choose between 2-space indentation (the most common standard), 4-space indentation (preferred in many style guides), or tab indentation depending on your project conventions.</p>
-
-    <h2>Live JSON validation</h2>
-    <p>The status bar validates your JSON automatically as you type, with no button press required. A green dot and checkmark indicates valid JSON. A red dot shows invalid JSON with the exact error message from the browser's JSON parser — including the position of the first syntax error. This lets you identify and fix problems before formatting. Common errors include trailing commas after the last item, single quotes instead of double quotes, unquoted property names, and unescaped backslashes in strings.</p>
+    <h2>The history of JSON</h2>
+    <p>JSON — JavaScript Object Notation — was popularized in the early 2000s by Douglas Crockford, who insists he "discovered" rather than invented it, since the syntax already existed inside JavaScript's object literals. He specified it on a famously terse one-page site, json.org, as a lightweight alternative to the XML that dominated data exchange at the time. The bet paid off completely: JSON's minimal grammar — objects, arrays, strings, numbers, booleans and null — proved expressive enough for almost everything, and it displaced XML as the default format of web APIs. It was formally standardized as ECMA-404 in 2013, with the spec proudly noting the grammar fits on a single page.</p>
 
     <h2>Minifying JSON for production</h2>
     <p>Click Minify to remove all whitespace from your JSON and produce the most compact possible output. The stats bar shows the size reduction. Minified JSON transmits faster over networks, uses less bandwidth for APIs, and reduces payload size for applications. For large JSON objects the size reduction from removing whitespace can be significant — a 100KB prettified file might minify to 60KB. Always keep a prettified version for development and use minified JSON for production API responses.</p>
@@ -267,27 +264,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">How do I format JSON online?</p>
-      <p class="faq-a">Paste your JSON into the input panel and click Format. Choose your indentation style and the formatted result appears instantly in the output panel.</p>
+      <p class="faq-a">Paste your raw or minified JSON into the input panel and click Format / Prettify — the parsed result appears in the output panel with clean indentation and line breaks. Pick 2-space indentation (the most common convention), 4-space (preferred by several style guides) or tabs to match your project. Because parsing happens in your browser, even API responses containing sensitive data never leave your machine.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the difference between prettify and minify?</p>
-      <p class="faq-a">Prettify adds indentation and line breaks for human readability. Minify removes all whitespace for the smallest possible file size. Use prettify for development, minify for production.</p>
+      <p class="faq-a">They are opposite transformations of the same data. Prettify adds indentation and line breaks so humans can read the structure — ideal for debugging and code review. Minify strips every non-essential character to make the payload as small as possible; a 100KB prettified file can shrink to roughly 60KB, which matters for API responses and bandwidth. The data is identical either way, so the standard workflow is prettify to work, minify to ship, with the stats bar showing the size difference.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Why is my JSON invalid?</p>
-      <p class="faq-a">Common causes: trailing commas, single quotes instead of double quotes, unquoted property names, unescaped backslashes, or missing/extra braces and brackets. The error message shows the exact position of the first problem.</p>
+      <p class="faq-a">Read the error message first — it reports the position of the first character the parser choked on, which is usually at or just after the actual mistake. Then check the usual suspects in order of likelihood: a trailing comma after the last item (legal in JavaScript, illegal in JSON), single quotes instead of double quotes, an unquoted property name, or an unescaped backslash in a string. Fixing the first error and re-validating often clears several downstream errors at once, since one broken character derails everything after it.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I validate JSON without formatting it?</p>
-      <p class="faq-a">Yes. The tool validates automatically as you type and shows errors in the status bar without you needing to click anything.</p>
+      <p class="faq-a">Yes — validation runs automatically as you type, before you click anything. The status bar shows a green indicator when the JSON parses cleanly and a red one with the parser's exact error message and position when it does not. This makes the tool useful as a pure validity checker: paste a config file or API payload, read the verdict, and leave the formatting untouched if all you needed was confirmation.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What is JSON?</p>
-      <p class="faq-a">JSON stands for JavaScript Object Notation. It is a lightweight text format for storing and transmitting structured data, and is the standard format for APIs and web services.</p>
+      <p class="faq-q">Why doesn't JSON allow comments?</p>
+      <p class="faq-a">Deliberately. Douglas Crockford removed comments from the specification early on, explaining that people were abusing them to hold parsing directives — instructions that would have fractured the format's interoperability. The absence still surprises developers daily, since config files beg for annotation. Standard workarounds include adding a data field like "_comment", or using JSONC (JSON with comments), which tools like VS Code accept for their own config files — but strict parsers, and this validator, will correctly reject // and /* */ comments in plain JSON.</p>
     </div>
 
   </div>

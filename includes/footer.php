@@ -19,20 +19,20 @@
       <div class="footer-col">
         <h3 class="footer-col-title">Popular tools</h3>
         <ul>
-          <li><a href="/tools/word-counter">Word counter</a></li>
-          <li><a href="/tools/character-counter">Character counter</a></li>
-          <li><a href="/tools/password-generator">Password generator</a></li>
-          <li><a href="/tools/text-to-speech">Text to speech</a></li>
-          <li><a href="/tools/json-formatter">JSON formatter</a></li>
+          <li><a href="/tools/text-to-csv">Text to CSV</a></li>
+          <li><a href="/tools/online-notepad">Online notepad</a></li>
+          <li><a href="/tools/qr-code-generator">QR code generator</a></li>
+          <li><a href="/tools/reading-level-checker">Reading level checker</a></li>
+          <li><a href="/tools/case-converter">Case converter</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h3 class="footer-col-title">More tools</h3>
         <ul>
-          <li><a href="/tools/lorem-ipsum-generator">Lorem ipsum</a></li>
-          <li><a href="/tools/reading-level-checker">Reading level</a></li>
-          <li><a href="/tools/roman-numeral-converter">Roman numerals</a></li>
-          <li><a href="/tools/online-notepad">Online notepad</a></li>
+          <li><a href="/tools/word-counter">Word counter</a></li>
+          <li><a href="/tools/password-generator">Password generator</a></li>
+          <li><a href="/tools/json-formatter">JSON formatter</a></li>
+          <li><a href="/tools/text-to-speech">Text to speech</a></li>
           <li><a href="/">All tools &rarr;</a></li>
         </ul>
       </div>

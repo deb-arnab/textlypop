@@ -2,7 +2,7 @@
 $tool_slug   = 'speech-to-text';
 $tool_name   = 'Speech to Text';
 
-$page_title  = 'Speech to Text — Convert Voice to Text Online Free | TextlyPop';
+$page_title  = 'Speech to Text — Free Voice to Text Online | TextlyPop';
 $meta_desc   = 'Convert speech to text using your microphone. Free browser-based voice transcription. No signup, no uploads, no data sent to servers. Works in Chrome and Edge.';
 $canonical_url = 'https://textlypop.com/tools/speech-to-text';
 $og_title    = 'Free Speech to Text — Voice Transcription Online | TextlyPop';
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How does the speech to text tool work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "TextlyPop uses the Web Speech Recognition API built into Chrome and Edge browsers. When you click Start and grant microphone permission, the browser listens to your speech and converts it to text in real time. No audio is recorded or sent to TextlyPop servers."
+        "text": "Click the microphone button, grant permission, and speak — transcription appears in real time. Recognition is performed by the Web Speech Recognition API built into your browser; TextlyPop never receives your audio, only displaying the text the browser hands back."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Which browsers support speech to text?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The Web Speech Recognition API is supported in Google Chrome and Microsoft Edge. It is not currently supported in Firefox or Safari. For best results use the latest version of Chrome or Edge."
+        "text": "Google Chrome and Microsoft Edge, on desktop and Android, have the most complete support. Safari has partial support in recent versions; Firefox does not ship the API. If the microphone button does nothing, switching to Chrome or Edge is the fix."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Is my speech recorded or stored?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "TextlyPop does not record or store your speech. The speech recognition is handled by your browser using Google's speech recognition service for Chrome. Audio is sent to Google's servers for processing and is subject to Google's privacy policy. No data is sent to TextlyPop."
+        "text": "TextlyPop never records, stores or receives your audio — the page only sees the finished text. The recognition itself is not fully local: Chrome sends audio to Google's speech servers for processing under Google's privacy policy, the same pipeline used by voice search on billions of devices."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What languages are supported for speech recognition?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The speech to text tool supports dozens of languages including English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, and many more. Select your language from the dropdown before starting."
+        "text": "Dozens — English variants, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, Russian and more. Select the language before speaking: the recogniser is tuned per language, and matching regional variants like UK English noticeably improves accuracy for those accents."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I use speech to text for continuous transcription?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Enable continuous mode to keep the microphone active and transcribe everything you say without clicking Start for each phrase. The transcription builds up in the text box as you speak."
+        "text": "Yes. Continuous mode keeps the microphone live across pauses, so you can dictate paragraphs or transcribe a lecture without touching Start between sentences. Pause briefly at sentence boundaries — it gives the engine time to finalise each phrase, improving accuracy."
       }
     }
   ]
@@ -262,8 +262,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How speech to text works in your browser</h2>
-    <p>TextlyPop uses the Web Speech Recognition API that is built into Chrome and Edge browsers. When you click the microphone button and grant permission, your browser begins listening through your microphone. As you speak, the browser sends the audio to Google's speech recognition servers, which return the transcribed text. The text appears in the output box in real time. TextlyPop itself never receives your audio — it only reads the transcribed text that the browser returns.</p>
+    <h2>The history of speech recognition</h2>
+    <p>Teaching machines to hear took far longer than teaching them to speak. Bell Labs' Audrey system could recognise spoken digits in 1952 — one speaker, ten words. IBM's Shoebox managed sixteen words a decade later, and it took until the 1990s for products like Dragon NaturallySpeaking to handle continuous natural dictation, after users had spent years pausing… between… every… word. The deep-learning revolution of the 2010s changed everything: accuracy jumped past 95%, voice assistants went mainstream, and browsers gained the Web Speech Recognition API that powers this tool — real-time transcription that once required thousand-dollar software, now a microphone permission away.</p>
 
     <h2>Continuous mode vs single phrase</h2>
     <p>In continuous mode the microphone stays active after each phrase you complete. You can speak naturally in full sentences and paragraphs, pausing between thoughts, and the recognition keeps running. This is the best mode for dictation, note-taking, and transcribing longer content. With continuous mode off the recognition stops after you complete a single phrase or after a brief silence. This mode is useful when you only need to transcribe one sentence at a time.</p>
@@ -278,27 +278,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">How does the speech to text tool work?</p>
-      <p class="faq-a">TextlyPop uses the Web Speech Recognition API built into Chrome and Edge. Your browser listens to your speech and converts it to text in real time. No audio is recorded or sent to TextlyPop servers.</p>
+      <p class="faq-a">Click the microphone button, grant your browser permission to use the mic, and speak — the transcription appears in the text box in real time, usually within a fraction of a second of each phrase. The recognition itself is performed by the Web Speech Recognition API built into your browser, and TextlyPop never receives your audio; the page only displays the text the browser hands back. From there you can edit, copy, or send the transcript to other tools like the word counter.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Which browsers support speech to text?</p>
-      <p class="faq-a">Google Chrome and Microsoft Edge. Firefox and Safari do not currently support the Web Speech Recognition API.</p>
+      <p class="faq-a">Google Chrome and Microsoft Edge, on desktop and Android, have the most complete Web Speech Recognition support and are the recommended choice. Safari has added partial support in recent versions but behaves inconsistently, and Firefox does not ship the API at all. If the microphone button does nothing in your browser, switching to Chrome or Edge is the fix — and check the browser's site permissions if you previously denied microphone access.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Is my speech recorded or stored?</p>
-      <p class="faq-a">TextlyPop does not record or store your speech. Audio is processed by Google's speech recognition service via Chrome. No data is sent to TextlyPop.</p>
+      <p class="faq-a">TextlyPop never records, stores or even receives your audio — the page only sees the finished text. Be aware, though, that the recognition itself is not fully local: Chrome sends the audio to Google's speech servers for processing, under Google's privacy policy, which is how browser speech recognition achieves its accuracy. For dictating genuinely sensitive material, that trade-off is worth knowing; for everyday notes and drafts it is the same pipeline used by voice search on billions of devices.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What languages are supported?</p>
-      <p class="faq-a">Dozens of languages including English, Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, Russian and more. Select your language before starting.</p>
+      <p class="faq-a">Dozens — English variants (US, UK, Indian, Australian), Spanish, French, German, Italian, Portuguese, Chinese, Japanese, Korean, Arabic, Hindi, Russian and many more. Select the language from the dropdown before you start speaking: the recogniser is tuned per language, so speaking Spanish at an English-mode session produces gibberish rather than a translation. Matching regional variants matters too — picking UK English improves results noticeably for British accents.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I use speech to text for continuous transcription?</p>
-      <p class="faq-a">Yes. Enable continuous mode to keep the microphone active and transcribe everything you say without clicking Start for each phrase.</p>
+      <p class="faq-a">Yes. Enable continuous mode and the microphone stays live across pauses, so you can dictate full paragraphs, take meeting notes, or transcribe a lecture without touching the Start button between sentences. The transcript accumulates in the text box as you go. For long sessions, pause briefly at sentence boundaries — it gives the engine time to finalise each phrase, which noticeably improves punctuation-free accuracy.</p>
     </div>
 
   </div>

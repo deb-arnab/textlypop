@@ -2,8 +2,8 @@
 $tool_slug   = 'text-to-slug';
 $tool_name   = 'Text to Slug';
 
-$page_title  = 'Text to Slug Generator — Convert Title to URL Slug Free | TextlyPop';
-$meta_desc   = 'Convert any title or text into a clean SEO-friendly URL slug instantly. Bulk mode for multiple titles. Custom separator, lowercase, remove stopwords. Free online slug generator.';
+$page_title  = 'Text to Slug — URL Slug Generator | TextlyPop';
+$meta_desc   = 'Turn any title or text into a clean, SEO-friendly URL slug instantly. Bulk mode, custom separator, lowercase and stopword removal. Free, no signup.';
 $canonical_url = 'https://textlypop.com/tools/text-to-slug';
 $og_title    = 'Free Online URL Slug Generator — TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is a URL slug?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A URL slug is the part of a web address that identifies a specific page in a human-readable format. For example in the URL example.com/blog/how-to-write-better the slug is 'how-to-write-better'. Slugs use lowercase letters, numbers, and hyphens — no spaces or special characters."
+        "text": "The slug is the human-readable part of a web address that identifies one specific page — in example.com/blog/how-to-write-better, the slug is 'how-to-write-better'. Slugs use only lowercase letters, numbers and hyphens, because spaces and special characters must otherwise be percent-encoded into unreadable sequences. A descriptive slug tells both visitors and search engines what the page is about before it loads."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I create an SEO-friendly URL slug?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A good SEO slug is lowercase, uses hyphens between words, contains the primary keyword, and avoids unnecessary words. TextlyPop's slug generator handles all the technical formatting automatically — just paste your title and copy the result."
+        "text": "Keep it lowercase, join words with hyphens, include your primary keyword, and cut everything that does not earn its place — three to five words is the sweet spot. Avoid dates that go stale and punctuation that gets encoded into noise. The generator applies all the formatting rules automatically."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Should I remove stop words from my URL slug?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "It depends. Removing stop words like 'the', 'a', 'and', 'of' makes slugs shorter and cleaner. For example 'how-to-write-better-content' instead of 'how-to-write-better-content-for-the-web'. However some stop words are part of your keyword phrase and should be kept. TextlyPop gives you the option to remove them or keep them."
+        "text": "Generally yes — dropping 'a', 'the', 'and' and 'of' makes slugs shorter and easier to share with nothing lost in ranking. The exception is when a stop word carries meaning in your keyword phrase: 'on-page-seo' ruined to 'page-seo' says something different. The stop-word option lets you choose either way."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I generate slugs for multiple titles at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Enable bulk mode and paste one title per line. Each line is converted to its own slug independently and the results appear one per line in the output, ready to copy."
+        "text": "Yes. Enable Bulk mode and paste one title per line — each converts independently and the output lists them in the same order, ready to copy as a block. A spreadsheet column of fifty article titles becomes fifty CMS-ready slugs in one paste."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I use underscores instead of hyphens in slugs?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. TextlyPop lets you choose between hyphens and underscores as the word separator. Hyphens are recommended by Google for URLs. Underscores are sometimes used in older systems or specific frameworks that require them."
+        "text": "You can — select the underscore separator — but hyphens are the right default for anything public-facing. Google treats hyphens as word separators, so 'slug-generator' reads as two words while 'slug_generator' has historically been treated as one token. Underscores remain the convention in some internal systems and legacy frameworks."
       }
     }
   ]
@@ -336,15 +336,11 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to convert a title to a URL slug</h2>
-    <p>Type or paste your title into the input field. The slug is generated instantly as you type and shown in the preview below with a sample URL. Click Copy slug to copy just the slug to your clipboard. For multiple titles at once enable Bulk mode, paste one title per line, and copy all the generated slugs together.</p>
+    <h2>Where the word "slug" comes from</h2>
+    <p>The term is newspaper jargon. In the hot-metal printing era, a "slug" was a line of type cast in lead by a Linotype machine, and editors used the word for the short working name that identified a story as it moved through production — "MAYOR-SCANDAL" rather than the full headline. Early web content systems borrowed the term for the short identifier in a page's URL, WordPress made it mainstream, and today "slug" is standard vocabulary in every CMS. The job is the same as in the newsroom: a compact, unambiguous label for one piece of content.</p>
 
     <h2>What makes a good URL slug</h2>
-    <p>A well-formed URL slug uses only lowercase letters, numbers, and hyphens. It contains no spaces, no special characters, no accented letters, and no punctuation. It is as short as possible while still being descriptive. It includes the primary keyword for the page. And it reads naturally when someone sees it in a browser address bar or shared link.</p>
-    <p>Google recommends using hyphens rather than underscores as word separators in URLs. Hyphens are treated as word separators by search engines while underscores join words together — "slug-generator" is read as two words, "slug_generator" is read as one word "slug_generator".</p>
-
-    <h2>Should you remove stop words from slugs?</h2>
-    <p>Stop words are common words like "a", "an", "the", "and", "of", "in", "for", "to", "with". Removing them makes slugs shorter and keeps the focus on the meaningful keywords. "how-to-write-better-blog-posts" becomes "write-better-blog-posts" with stop words removed. Shorter is generally better for URLs — they are easier to share, easier to remember, and look cleaner. However if removing a stop word makes the slug ambiguous or changes its meaning, keep it.</p>
+    <p>A well-formed URL slug uses only lowercase letters, numbers, and hyphens. It contains no spaces, no special characters, no accented letters, and no punctuation. It is as short as possible while still being descriptive. It includes the primary keyword for the page. And it reads naturally when someone sees it in a browser address bar or shared link — a URL a human can read and trust before clicking earns more clicks than a string of IDs and parameters.</p>
 
     <h2>Bulk slug generation</h2>
     <p>The bulk mode is built for content teams, SEO managers, and developers who need to generate multiple slugs at once. Paste a list of article titles, product names, or category names — one per line — and get a matching list of slugs instantly. Copy the entire output and paste it directly into your CMS, spreadsheet, or database.</p>
@@ -353,27 +349,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">What is a URL slug?</p>
-      <p class="faq-a">A URL slug is the part of a web address that identifies a specific page in a human-readable format. For example in the URL example.com/blog/how-to-write-better the slug is "how-to-write-better". Slugs use lowercase letters, numbers, and hyphens — no spaces or special characters.</p>
+      <p class="faq-a">The slug is the human-readable part of a web address that identifies one specific page — in <code>example.com/blog/how-to-write-better</code>, the slug is "how-to-write-better". By convention slugs use only lowercase letters, numbers and hyphens, because spaces and special characters must otherwise be percent-encoded into unreadable sequences like %20. A descriptive slug tells both visitors and search engines what the page is about before it even loads, which is why every serious CMS asks you to set one.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How do I create an SEO-friendly URL slug?</p>
-      <p class="faq-a">A good SEO slug is lowercase, uses hyphens between words, contains the primary keyword, and avoids unnecessary words. TextlyPop handles all the technical formatting automatically — just paste your title and copy the result.</p>
+      <p class="faq-a">Keep it lowercase, join words with hyphens, include your primary keyword, and cut everything that does not earn its place — three to five words is the sweet spot for most pages. Avoid dates and numbers that will go stale ("best-laptops-2023" ages badly), and never rely on punctuation or accented characters, which get encoded into noise. The generator applies all of the formatting rules automatically: paste your draft title, and the technical part of SEO slugging is done.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Should I remove stop words from my URL slug?</p>
-      <p class="faq-a">Generally yes. Removing stop words like "the", "a", "and", "of" makes slugs shorter and cleaner. However if a stop word is part of your target keyword phrase keep it. TextlyPop gives you the option either way.</p>
+      <p class="faq-a">Generally yes. Dropping "a", "the", "and", "of" and similar words turns "how-to-write-better-blog-posts" into the tighter "write-better-blog-posts" — shorter URLs are easier to share, easier to read in search results, and lose nothing in ranking. The exception is when a stop word carries meaning in your keyword phrase: "on-page-seo" ruined to "page-seo" says something different. The tool's stop-word option lets you strip them automatically and keep them when the phrase demands it.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I generate slugs for multiple titles at once?</p>
-      <p class="faq-a">Yes. Enable bulk mode and paste one title per line. Each line is converted to its own slug and the results appear one per line in the output, ready to copy all at once.</p>
+      <p class="faq-a">Yes. Enable Bulk mode and paste one title per line — each line converts to its own slug independently, and the output lists them one per line in the same order, ready to copy as a block. This is built for content migrations and batch work: a spreadsheet column of fifty article titles becomes fifty CMS-ready slugs in one paste, instead of fifty round trips through a single-line converter.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I use underscores instead of hyphens in slugs?</p>
-      <p class="faq-a">Yes. Select the underscore separator option. Hyphens are recommended by Google for URLs but underscores are sometimes required by specific systems or frameworks.</p>
+      <p class="faq-a">You can — select the underscore separator — but hyphens are the right default for anything public-facing. Google has long recommended hyphens because its systems treat them as word separators: "slug-generator" is read as two words, while "slug_generator" has historically been treated as a single token. Underscores remain the convention in some internal systems, database exports and legacy frameworks, which is why the option exists at all.</p>
     </div>
 
   </div>

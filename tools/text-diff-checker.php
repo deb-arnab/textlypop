@@ -2,10 +2,10 @@
 $tool_slug   = 'text-diff-checker';
 $tool_name   = 'Text Diff Checker';
 
-$page_title  = 'Text Diff Checker — Compare Two Texts Online Free | TextlyPop';
-$meta_desc   = 'Compare two pieces of text and see exactly what changed. Highlights added, removed and modified lines with word-level precision. Free, instant, no signup.';
+$page_title  = 'Compare Two Texts — Free Text Compare Tool | TextlyPop';
+$meta_desc   = 'Compare two texts online and see exactly what changed. Free text comparison tool that highlights added, removed and modified lines word by word. No signup.';
 $canonical_url = 'https://textlypop.com/tools/text-diff-checker';
-$og_title    = 'Free Online Text Diff Checker — TextlyPop';
+$og_title    = 'Compare Two Texts Online — Free Text Compare Tool';
 $og_desc     = $meta_desc;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/functions.php';
@@ -39,15 +39,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How does the text diff checker work?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your original text in the left panel and your revised text in the right panel. The diff checker uses a longest-common-subsequence algorithm to find what changed. Added lines are highlighted green, removed lines red, and modified lines show the exact words that changed within the line. The result updates automatically as you type."
+        "text": "Paste the original text in the left panel and the revised version in the right, and the comparison runs automatically. A longest-common-subsequence algorithm — the approach the classic Unix diff tool pioneered — computes the minimum set of insertions and deletions between the two texts, so the result pinpoints only the lines and words that actually differ."
       }
     },
     {
       "@type": "Question",
-      "name": "What does the diff checker highlight?",
+      "name": "What do the colours in the diff result mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Lines that were added appear with a green background and a + symbol. Lines that were removed appear with a red background and a - symbol. Lines that were modified show both the old and new version, with the specific changed words highlighted in a darker shade so you can see exactly what was edited."
+        "text": "Green lines with a + prefix were added; red lines with a - prefix were removed; unprefixed lines are unchanged. When a line was edited rather than replaced, the old and new versions appear as a red/green pair with the specific changed words highlighted, so a one-word correction stands out in a long paragraph."
       }
     },
     {
@@ -55,15 +55,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I compare documents, essays or config files?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The tool works on any plain text — essays, emails, code, config files, JSON, CSV, Markdown or any other text format. For best results paste plain text without formatting. The tool handles up to 3000 lines per side."
+        "text": "Yes — anything that is plain text: essays, emails, contracts, source code, config files, JSON, CSV or Markdown, up to 3,000 lines per side. Paste formatted documents as text; the formatting is dropped but the words compare cleanly."
       }
     },
     {
       "@type": "Question",
-      "name": "Is my text sent to a server?",
+      "name": "Can I use the diff checker to detect plagiarism?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. All comparison happens entirely in your browser using JavaScript. Your text is never uploaded to any server and never leaves your device. The tool works offline once the page is loaded."
+        "text": "A diff checker is not a plagiarism detector, but it is ideal for closely comparing two versions of the same document — a submitted essay against an earlier draft, or an edited article against the original. It highlights every insertion, deletion and change, which is often more precise than a similarity score when you need to see exactly what was modified."
       }
     },
     {
@@ -71,7 +71,39 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I copy or save the diff result?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Click the Copy diff button above the result panel. This copies the diff in unified format — each line prefixed with + for additions and - for removals — ready to paste into a document, email or issue tracker."
+        "text": "Click Copy diff to copy the comparison in unified diff format — added lines prefixed with +, removed lines with -. This is the same convention used by Git and code review tools, so the output pastes cleanly into an email, issue tracker or review comment, and anyone technical will read it without explanation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I compare two texts for differences online?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Paste the first version into the left panel and the second into the right — the comparison runs on its own, with no button to press and no file upload. Green marks text that appears only in the second version, red marks text that appears only in the first, and unmarked lines are identical in both. The whole comparison happens inside your browser, so no copy of your text is stored anywhere."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I compare two strings or two lines rather than whole documents?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, and short comparisons are where word-level highlighting is most useful. Paste one string into each panel and the tool marks the exact characters and words that differ instead of just reporting that the two lines are not equal. This is the quickest way to spot a transposed digit, a trailing space that breaks a lookup, or a smart quote that has replaced a straight one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the tool measure text similarity as a percentage?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No — it reports the differences themselves rather than a similarity score. A percentage tells you two documents are 94% alike but not which 6% changed, whereas the diff shows every insertion and deletion so you can judge whether the changes are trivial or substantive. If the two texts are identical the result comes back empty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the diff show changes when the texts look the same?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Almost always because of invisible characters: trailing spaces, a tab where the other version has spaces, non-breaking spaces pasted from a web page, curly quotation marks from Word, or Windows line endings meeting Unix line endings. These count as real differences even though they render identically. Removing extra spaces from both versions before comparing normalises most of them."
       }
     }
   ]
@@ -100,8 +132,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <?php render_breadcrumb(e($tool_name)); ?>
 
   <div class="tool-page-header">
-    <h1>Text diff checker</h1>
-    <p>Paste two versions of any text and see exactly what changed — line by line, word by word.</p>
+    <h1>Text compare and diff checker</h1>
+    <p>Compare two texts and see exactly what changed — line by line, word by word. Paste the original on the left and the revised version on the right.</p>
   </div>
 
   <!-- Two input panels -->
@@ -195,43 +227,88 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to compare two texts online</h2>
-    <p>Paste the first version of your text into the Original panel on the left and your revised version into the Modified panel on the right. The diff result appears immediately below — no button required. Added lines are highlighted green with a <code>+</code> prefix, removed lines are highlighted red with a <code>-</code> prefix, and modified lines show both the old and new version with the specific words that changed highlighted within each line.</p>
+    <h2>What a text comparison tool shows you</h2>
+    <p>A text comparison tool answers one question: what is different between these two versions? Paste the original into the left panel and the revised version into the right, and the comparison runs automatically. Every line that exists only in the second version is marked as an addition, every line that exists only in the first is marked as a removal, and lines that were edited rather than replaced are shown as a pair with the individual changed words highlighted inside them. Nothing is uploaded — the comparison runs in your browser, which is why it is instant and why confidential contracts, medical notes or unreleased copy are safe to compare here.</p>
+    <p>That makes it equally useful whether you want to compare two texts word for word, compare two paragraphs after an edit, or compare two strings of code. The tool handles up to 3,000 lines per side, so a full chapter, a long config file or an entire terms-of-service document all fit comfortably.</p>
+
+    <h2>How to find the difference between two texts</h2>
+    <p>Comparing by eye fails quickly. Two versions of a paragraph that differ by one word look identical during a read-through, and the difference you are hunting for is usually the one you skim past. A diff does the comparison mechanically: it finds the longest sequence of lines the two texts share, then reports everything outside that sequence as inserted or deleted. Because it looks for the <em>minimum</em> set of edits, a single new sentence in paragraph three is reported as one addition rather than flagging every paragraph after it as changed.</p>
+    <p>The practical workflow is the same regardless of what you are checking. Put the older or official version on the left, put the newer or received version on the right, and read the coloured result from the top. Use Swap if you loaded them the wrong way round — the changes invert, so an addition becomes a deletion. Copy diff gives you the result in unified diff format, the same <code>+</code>/<code>-</code> convention Git and code review tools use, which pastes cleanly into an email or an issue tracker.</p>
+
+    <h2>Text comparison terms explained</h2>
+    <p>Search results for text comparison use several names for overlapping ideas. They are worth separating, because they answer different questions:</p>
+    <div class="table-scroll">
+      <table class="seo-table">
+        <thead>
+          <tr><th>Term</th><th>What it means</th><th>What it answers</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Diff</td><td>The list of insertions and deletions that turns one text into the other</td><td>What exactly changed, and where</td></tr>
+          <tr><td>String compare</td><td>A character-by-character check of two short pieces of text</td><td>Are these two strings identical or not</td></tr>
+          <tr><td>Text match</td><td>A check for whether one text contains or equals another</td><td>Do these texts correspond</td></tr>
+          <tr><td>Text similarity</td><td>A score, usually a percentage, of how alike two texts are overall</td><td>How close are they, roughly</td></tr>
+          <tr><td>Paragraph comparison</td><td>A diff applied to prose rather than code, usually with word-level highlighting</td><td>Which sentences an editor touched</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>This tool is a diff, which is the most informative of the five: a similarity percentage tells you two documents are 94% alike, but a diff shows you the 6% and lets you decide whether it matters. If you only need to know whether two texts are byte-identical, the diff result will simply come back empty.</p>
+
+    <h2>The history of diff</h2>
+    <p>Comparing two versions of a text automatically is a 1970s invention. The original <code>diff</code> program was written by Douglas McIlroy at Bell Labs in 1974 for Unix, built on what became the Hunt–McIlroy algorithm for finding the longest common subsequence between two files. The idea proved foundational: every version control system since — from RCS through Subversion to Git — is essentially machinery built around diffs, storing and displaying changes rather than whole copies. The green-for-added, red-for-removed convention that this tool uses comes straight from that lineage and is now the universal visual language of change tracking, from GitHub pull requests to Wikipedia edit histories.</p>
 
     <h2>Line-level and word-level differences</h2>
     <p>The diff checker compares text at two levels of detail. At the line level it identifies which lines were added, removed, or modified. When a line is modified rather than completely replaced, the tool also runs a word-level comparison on that specific line pair, highlighting exactly which words changed inside it. This makes it easy to spot a single word correction in a long paragraph without reading the whole line twice.</p>
 
     <h2>Who uses a text diff checker</h2>
     <p>Writers use the diff checker to compare draft versions of an essay or article and see what they or an editor changed. Developers use it to compare config files, documentation, or any text that is not in version control. Students use it to compare their submission against a revised or corrected version. Translators use it to track changes in the source document between review cycles. Anyone who has two versions of a text and wants to know exactly what is different will find it useful.</p>
-
-    <h2>Reading the diff result</h2>
-    <p>Each line in the result is prefixed with a symbol and colour. A green line starting with <code>+</code> is a line that exists only in the Modified version — it was added. A red line starting with <code>-</code> is a line that exists only in the Original version — it was removed. Lines without a prefix are unchanged and appear in both versions. When a line is modified, the old version appears as a red <code>-</code> line and the new version appears as a green <code>+</code> line directly below it, with the changed words highlighted in a stronger colour inside each line.</p>
+    <p>Legal and contract review is a heavy user: comparing a returned contract against the version you sent catches the clause that was quietly reworded. Content teams compare a page before and after a rewrite to build a changelog. QA testers compare expected output against actual output. Academics compare a manuscript against the copy-edited proof before signing it off.</p>
+    <p>Comparison is often the second step rather than the first. If the two texts arrived with inconsistent formatting, running both through <a href="/tools/remove-extra-spaces">remove extra spaces</a> or <a href="/tools/remove-line-breaks">remove line breaks</a> first strips out cosmetic differences so the diff reports only real edits. If you want length rather than difference, the <a href="/tools/word-counter">word counter</a> gives word and character totals for each version, and the <a href="/tools/duplicate-line-remover">duplicate line remover</a> is the better choice when the question is which lines repeat within one list rather than how two lists differ.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
       <p class="faq-q">How does the text diff checker work?</p>
-      <p class="faq-a">The tool uses a longest-common-subsequence algorithm to find the minimum set of changes needed to turn the original text into the modified text. Added lines appear green, removed lines appear red, and modified lines show word-level highlights. The result updates automatically as you type.</p>
+      <p class="faq-a">Paste the original text in the left panel and the revised version in the right, and the comparison runs automatically — no button needed. Under the hood, a longest-common-subsequence algorithm computes the minimum set of insertions and deletions that turns one text into the other, the same approach the classic Unix diff tool pioneered. That minimality matters: instead of flagging everything after the first change, the result pinpoints only the lines and words that actually differ.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What does the diff checker highlight?</p>
-      <p class="faq-a">Added lines are highlighted green with a + prefix. Removed lines are highlighted red with a - prefix. Modified lines show both versions with the specific changed words highlighted in a darker shade so you can see exactly what was edited without reading the entire line.</p>
+      <p class="faq-q">What do the colours in the diff result mean?</p>
+      <p class="faq-a">Green lines with a <code>+</code> prefix exist only in the modified version — they were added. Red lines with a <code>-</code> prefix exist only in the original — they were removed. Unprefixed lines are unchanged. When a line was edited rather than replaced, the old and new versions appear as a red/green pair with the specific changed words highlighted in a stronger shade inside each line, so you can spot a one-word correction in a long paragraph without re-reading the whole thing.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I compare documents, essays or config files?</p>
-      <p class="faq-a">Yes. The tool works on any plain text — essays, emails, code, config files, JSON, CSV, Markdown or any other text format. Paste plain text for best results. The tool handles up to 3000 lines per side.</p>
+      <p class="faq-a">Yes — anything that is plain text: essays, emails, contracts, source code, config files, JSON, CSV or Markdown, up to 3,000 lines per side. Formatted documents like Word files should be pasted as text; the formatting is dropped but the words compare cleanly. Line-based comparison works best when the text has natural line breaks, so for one long paragraph the word-level highlighting inside the modified line does the heavy lifting.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Is my text sent to a server?</p>
-      <p class="faq-a">No. All comparison happens entirely in your browser. Your text is never uploaded and never leaves your device. The tool works offline once the page is loaded.</p>
+      <p class="faq-q">Can I use the diff checker to detect plagiarism?</p>
+      <p class="faq-a">A diff checker is not a plagiarism detector, but it is ideal for closely comparing two versions of the same document — a submitted essay against an earlier draft, a contract against the previous revision, or an edited article against the original. It highlights every insertion, deletion and change line by line, which is often more precise than a similarity score when you need to see exactly what was modified.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How do I copy or save the diff result?</p>
-      <p class="faq-a">Click Copy diff above the result panel. This copies the diff in unified format — each line prefixed with + for additions and - for removals — ready to paste into a document, email or issue tracker.</p>
+      <p class="faq-a">Click Copy diff above the result panel to copy the comparison in unified diff format — each added line prefixed with <code>+</code> and each removed line with <code>-</code>. This is the same plain-text convention used by Git and code review tools, so the output pastes cleanly into an email, a document, an issue tracker or a code review comment, and anyone technical will read it without explanation. For a permanent record, paste it into a text file and save it alongside the documents you compared.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How do I compare two texts for differences online?</p>
+      <p class="faq-a">Paste the first version into the left panel and the second into the right — the comparison runs on its own, with no button to press and no file upload. Read the result from the top: green marks text that appears only in the second version, red marks text that appears only in the first, and unmarked lines are identical in both. Because the whole comparison happens inside your browser, there is no size limit imposed by a server and no copy of your text stored anywhere; closing the tab is all it takes to discard it.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Can I compare two strings or two lines rather than whole documents?</p>
+      <p class="faq-a">Yes, and short comparisons are where word-level highlighting is most useful. Paste one string into each panel and the tool marks the exact characters and words that differ instead of just reporting that the two lines are not equal. This is the quickest way to spot a transposed digit in a reference number, a trailing space that breaks a lookup, or a smart quote that has replaced a straight one — differences that are effectively invisible when you read the two strings side by side.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Does the tool measure text similarity as a percentage?</p>
+      <p class="faq-a">No — it reports the differences themselves rather than a similarity score, which is usually the more useful answer. A percentage tells you two documents are 94% alike but not which 6% changed, whereas the diff shows you every insertion and deletion so you can judge whether the changes are trivial or substantive. If the two texts are identical the result comes back empty, which is the unambiguous version of a 100% match.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">Why does the diff show changes when the texts look the same?</p>
+      <p class="faq-a">Almost always because of invisible characters. Trailing spaces at the end of a line, a tab where the other version has spaces, non-breaking spaces pasted in from a web page, curly quotation marks pasted in from Word, or Windows line endings meeting Unix line endings all count as real differences even though they render identically. Running both versions through <a href="/tools/remove-extra-spaces">remove extra spaces</a> before comparing normalises most of these and leaves only the edits you actually care about.</p>
     </div>
 
   </div>

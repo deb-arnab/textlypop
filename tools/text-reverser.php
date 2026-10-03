@@ -39,15 +39,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I reverse text online?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your text into the input box and the reversed version appears instantly in the output panel. Choose between reversing all characters, reversing word order, or reversing each individual word."
+        "text": "Paste your text and the reversed version appears instantly. Pick the mode that matches your goal: Reverse all characters flips the entire text ('Hello World' → 'dlroW olleH'), Reverse word order keeps words intact but reverses their sequence ('World Hello'), and Reverse each word flips letters inside each word while keeping positions ('olleH dlroW')."
       }
     },
     {
       "@type": "Question",
-      "name": "What is the difference between reversing text and reversing word order?",
+      "name": "Is reversed text the same as upside-down text?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Reversing all characters flips every single character in the text so 'Hello World' becomes 'dlroW olleH'. Reversing word order keeps each word intact but puts them in reverse sequence so 'Hello World' becomes 'World Hello'. Reversing each word flips the characters within each word but keeps word order so 'Hello World' becomes 'olleH dlroW'."
+        "text": "No. Reversing changes the order of characters while each letter stays its normal self; upside-down text keeps the order readable but swaps each letter for a flipped-looking Unicode character. Reversal can be undone by reversing again; upside-down text is a font-like substitution — the fancy text generator handles that style."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I reverse text line by line?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Enable the Line by line option to process each line of your text independently. Each line is reversed according to your selected mode, and line breaks are preserved in the output."
+        "text": "Yes. Enable Line by line and each line is reversed independently with line breaks preserved — a ten-line list stays a ten-line list, just with each line flipped. Without it, the whole text is one sequence and your last line becomes your first."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Why would someone need to reverse text?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Text reversal has many uses. Developers use it to test string manipulation functions. Puzzle makers create word puzzles and riddles. Students study palindromes. Designers create mirror text effects. Social media users create reversed text for stylistic posts. Cryptography enthusiasts use simple reversal as a basic cipher."
+        "text": "Reversing a string is one of the most common programming interview exercises, and developers paste expected outputs from here when writing tests. Puzzle designers hide clues in reversed text, palindrome hunters verify candidate phrases, and designers produce mirror-text for prints that must read correctly through glass or on apparel transfers."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does this tool work with numbers and special characters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The text reverser works with all characters including numbers, punctuation, symbols, and special characters. Every character in your input is treated equally during reversal."
+        "text": "Yes — digits, punctuation and symbols all participate in the flip: 'abc-123!' reverses to '!321-cba'. One quirk: some emoji and accented characters are stored as multiple combined Unicode units, and character-level reversal can occasionally split them into odd-looking pieces."
       }
     }
   ]
@@ -239,16 +239,29 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to reverse text online</h2>
-    <p>Paste your text into the input box on the left. The reversed version appears instantly in the output panel on the right as you type — no button required. Choose your reversal mode from the three options at the top. Use the Line by line option to process each line of your text independently, preserving line breaks in the output.</p>
+    <h2>Mirror writing and reversed text in history</h2>
+    <p>Reversed text has a surprisingly distinguished past. Leonardo da Vinci filled thousands of notebook pages with mirror writing, flowing right to left with every letter flipped — whether for secrecy or simply because it was comfortable for a left-hander remains debated. Ancient Greek inscriptions sometimes used boustrophedon, "as the ox plows", alternating direction with every line. And reversed text has one thoroughly practical modern use: the word AMBULANCE is printed mirror-reversed on emergency vehicles precisely so it reads correctly in a rear-view mirror. This tool performs all of these flips digitally, in three distinct modes.</p>
 
     <h2>Three reversal modes explained</h2>
     <p>Reverse all characters flips every single character in your entire text from last to first. The word "Hello" becomes "olleH" and a full sentence reads completely backwards. This is the most common form of text reversal and what most people mean when they say they want to reverse text.</p>
     <p>Reverse word order keeps each individual word intact but reverses the sequence in which they appear. "The quick brown fox" becomes "fox brown quick The". Each word is still readable but the sentence reads from right to left. This is useful for creating mirror sentence effects or for certain programming exercises.</p>
     <p>Reverse each word flips the characters within each word individually but keeps the words in their original positions. "Hello World" becomes "olleH dlroW". The word order stays the same but each word itself is reversed. This mode is commonly used in coding challenges and puzzles.</p>
 
-    <h2>Common uses for text reversal</h2>
-    <p>Developers use text reversal to test string manipulation functions and algorithms — reversing a string is one of the most common programming exercises and interview questions. Puzzle makers create word puzzles, riddles, and brain teasers using reversed text. Students studying palindromes — words and phrases that read the same forwards and backwards — use reversal to verify their examples. Designers create mirror text effects for logos, artwork, and creative typography. Social media users create reversed text for stylistic or cryptic posts.</p>
+    <h2>Choosing the right mode</h2>
+    <p>The three modes answer three different questions, and picking the wrong one is the usual reason the output looks unexpected.</p>
+    <div class="table-scroll">
+      <table class="seo-table">
+        <thead>
+          <tr><th>Mode</th><th>"The quick brown fox" becomes</th><th>Reach for it when</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Reverse all characters</td><td>xof nworb kciuq ehT</td><td>You want backwards text — the whole string mirrored</td></tr>
+          <tr><td>Reverse word order</td><td>fox brown quick The</td><td>You want a sentence reverser that keeps words readable</td></tr>
+          <tr><td>Reverse each word</td><td>ehT kciuq nworb xof</td><td>You want a word reverser that leaves the order alone</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Word processors have no built-in command for any of this, which is why "how do you reverse text in Word" is such a common question — the usual workarounds involve WordArt or a reversed font and only change how the text looks, not what it says. Reversing here produces real reversed characters you can copy and paste anywhere, including back into the document.</p>
 
     <h2>Palindrome testing</h2>
     <p>A palindrome reads the same forwards and backwards — words like "racecar", "level", and "kayak", or phrases like "A man a plan a canal Panama". To check if a word or phrase is a palindrome using the text reverser, paste it into the input and compare the output to the original. If they match (ignoring spaces and punctuation) it is a palindrome. For dedicated palindrome detection visit our Palindrome checker tool.</p>
@@ -257,27 +270,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">How do I reverse text online?</p>
-      <p class="faq-a">Paste your text into the input box and the reversed version appears instantly. Choose between reversing all characters, reversing word order, or reversing each individual word.</p>
+      <p class="faq-a">Paste your text and the reversed version appears instantly — no button press. Pick the mode that matches what you actually want: Reverse all characters flips the entire text ("Hello World" → "dlroW olleH"), Reverse word order keeps words intact but reverses their sequence ("World Hello"), and Reverse each word flips letters inside each word while keeping positions ("olleH dlroW"). Most people searching for "reverse text" want the first mode; coding-challenge solvers usually want the third.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What is the difference between reversing text and reversing word order?</p>
-      <p class="faq-a">Reversing all characters flips every character so "Hello World" becomes "dlroW olleH". Reversing word order keeps each word intact but reverses their sequence so "Hello World" becomes "World Hello".</p>
+      <p class="faq-q">Is reversed text the same as upside-down text?</p>
+      <p class="faq-a">No — they are different tricks. Reversing changes the <em>order</em> of characters while each letter stays its normal self. Upside-down text keeps the order readable but swaps each letter for a flipped-looking Unicode character (ɥǝllo). Reversal is a true transformation you can undo by reversing again; upside-down text is a font-like substitution. For upside-down and other Unicode styles, use the fancy text generator — for mirror and order effects, you are in the right place.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I reverse text line by line?</p>
-      <p class="faq-a">Yes. Enable the Line by line option to process each line independently. Each line is reversed according to your selected mode and line breaks are preserved.</p>
+      <p class="faq-a">Yes. Enable Line by line and each line of your input is reversed independently under your chosen mode, with the line breaks preserved — so a ten-line list stays a ten-line list, just with each line flipped. Without this option, a multi-line reversal treats the whole text as one sequence, and your last line becomes your first. Line mode is the right choice for lists, lyrics and any text where the line structure carries meaning.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Why would someone need to reverse text?</p>
-      <p class="faq-a">Common uses include testing string functions in programming, creating puzzles and riddles, studying palindromes, making mirror text effects for design, and creating stylistic social media posts.</p>
+      <p class="faq-a">More reasons than you might guess. Reversing a string is one of the most common programming interview exercises, and developers paste expected outputs from here when writing tests. Puzzle and escape-room designers hide clues in reversed text. Palindrome hunters flip candidate phrases to verify them. Designers produce mirror-text effects for logos and artwork destined for glass or apparel transfers, where the print must be reversed to read correctly on the other side.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Does this tool work with numbers and special characters?</p>
-      <p class="faq-a">Yes. The text reverser works with all characters including numbers, punctuation, symbols, and special characters.</p>
+      <p class="faq-a">Yes — every character is treated equally, so digits, punctuation and symbols all participate in the flip: "abc-123!" reverses to "!321-cba". One quirk worth knowing: some emoji and accented characters are stored as multiple combined Unicode units, and character-level reversal can occasionally split them into odd-looking pieces. Plain text, numbers and standard punctuation always reverse perfectly.</p>
     </div>
 
   </div>

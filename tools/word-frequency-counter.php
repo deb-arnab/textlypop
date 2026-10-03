@@ -2,8 +2,8 @@
 $tool_slug   = 'word-frequency-counter';
 $tool_name   = 'Word Frequency Counter';
 
-$page_title  = 'Word Frequency Counter — Find Most Used Words Online Free | TextlyPop';
-$meta_desc   = 'Count how often each word appears in your text. Find overused words, check keyword density, and analyze writing patterns. Free online word frequency counter.';
+$page_title  = 'Word & Keyword Frequency Counter | TextlyPop';
+$meta_desc   = 'Count how often each word appears in your text. Find your most used words, measure keyword frequency and density, and spot repetition. Free, instant, no signup.';
 $canonical_url = 'https://textlypop.com/tools/word-frequency-counter';
 $og_title    = 'Free Word Frequency Counter — TextlyPop';
 $og_desc     = $meta_desc;
@@ -36,26 +36,26 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "What is a word frequency counter?",
+      "name": "How do I find the most repeated words in my text?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A word frequency counter analyzes text and counts how many times each unique word appears. It shows you which words you use most often, helping you identify overused words, check keyword density, and understand your writing patterns."
+        "text": "Paste your text and the frequency table appears instantly, sorted with the most-used words at the top — each row shows the word, its count, and its percentage of the total. Click column headers to re-sort, use the filter box to jump to a specific word, and enable Ignore stop words so 'the' and 'and' don't dominate the list."
       }
     },
     {
       "@type": "Question",
-      "name": "How do I check keyword density with this tool?",
+      "name": "Does keyword density still matter for SEO?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your content into the tool. The results table shows each word alongside its count and percentage of total words. The percentage column is your keyword density. For SEO, a keyword density of 1 to 2 percent is generally considered optimal."
+        "text": "As a ranking formula, no — modern search engines evaluate relevance with language models. But density still matters as a diagnostic: a primary keyword far above 2–3% of total words reads as stuffed, while a target term that barely appears may not signal the topic clearly. Use the percentage column to catch both extremes."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I exclude common words like 'the' and 'and'?",
+      "name": "What is Zipf's law in simple terms?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Enable the Ignore stop words option to filter out common English words like 'the', 'a', 'and', 'is', 'in', and so on. This leaves only the meaningful content words in your results."
+        "text": "Zipf's law says the most common word in a text appears about twice as often as the runner-up, three times as often as the third-place word, and so on. It holds across languages, authors and eras. Paste any long text with stop words included and the pattern emerges in the percentage column."
       }
     },
     {
@@ -63,15 +63,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How many words can this tool analyze?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "TextlyPop's word frequency counter runs entirely in your browser and can handle any amount of text. There is no character or word limit. Longer texts may take a fraction of a second longer to process but the tool handles full articles, essays, and documents without issue."
+        "text": "There is no fixed limit. Analysis runs entirely in your browser, so full articles, theses and book-length manuscripts process in well under a second on a typical laptop — and the text never leaves your machine."
       }
     },
     {
       "@type": "Question",
-      "name": "Is word frequency analysis useful for SEO?",
+      "name": "Are 'Word' and 'word' counted as the same word?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Word frequency analysis helps you check that your target keywords appear at a natural density, identify words you are overusing, and ensure your content uses varied vocabulary. It is a quick way to spot keyword stuffing before publishing."
+        "text": "By default, yes — counting is case-insensitive. Enable the Case sensitive option when capitalization matters, such as distinguishing the name Bill from the noun bill. Different word forms are always counted separately: run, runs and running are three entries, since the tool counts exact words rather than stems."
       }
     }
   ]
@@ -238,8 +238,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to use the word frequency counter</h2>
-    <p>Paste your text into the box above. The tool instantly analyzes every word and displays a frequency table sorted by most used. Each row shows the word, how many times it appears, and what percentage of your total word count it represents. Click any column header to re-sort by word alphabetically, by count, or by percentage. Use the filter box to search for a specific word in your results.</p>
+    <h2>About word frequency analysis</h2>
+    <p>Counting how often each word appears in a text is one of the oldest forms of textual analysis — medieval scholars spent lifetimes compiling concordances of the Bible by hand, indexing every occurrence of every word. The field's most famous discovery is Zipf's law, named after linguist George Kingsley Zipf, who observed in the 1930s that a text's most common word appears roughly twice as often as the second most common, three times as often as the third, and so on. English follows the pattern faithfully: "the" alone accounts for about 7% of all words in typical prose. A frequency counter turns this analysis from a lifetime's work into an instant table.</p>
 
     <h2>Why word frequency analysis matters for writers</h2>
     <p>Overusing the same word repeatedly makes writing feel repetitive and flat. Word frequency analysis reveals patterns in your writing that are difficult to spot by reading alone. You might discover you use the word "very" fourteen times in a five hundred word article, or that "however" appears in every other paragraph. Seeing the frequency data makes these patterns obvious and actionable — you can use the find and replace tool to substitute varied alternatives.</p>
@@ -248,34 +248,39 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <p>Search engines analyze the words on a page to understand what it is about. Keyword density — the percentage of times a target keyword appears relative to total word count — is one signal search engines use to determine relevance. The percentage column in TextlyPop's word frequency counter is your keyword density for each word. Most SEO professionals recommend keeping primary keyword density between one and two percent. Higher than three percent risks appearing as keyword stuffing which search engines penalize.</p>
     <p>Disable the Ignore stop words option to see the full picture including all common words, which gives you the most accurate percentage calculations for SEO purposes. Enable it when you want to focus only on meaningful content words.</p>
 
+    <h2>Keyword frequency and word repetition</h2>
+    <p>Keyword frequency is the raw count of how many times a term appears; keyword density is that count expressed as a percentage of total words. This tool reports both at once, so a page of 1,200 words in which a phrase appears 14 times shows as 14 and 1.2%. Sorting by count puts your most used words at the top, which is the quickest way to see what a piece is genuinely about rather than what you intended it to be about.</p>
+    <p>Writers use the same view for the opposite purpose. Unintentional repetition is almost invisible while drafting and obvious to a reader: the same adjective three times in a paragraph, a verbal tic like "actually" or "however" running through a whole chapter, or a name repeated where a pronoun would read better. A frequency list surfaces every one of these in a single pass, and the count next to each word tells you how hard the fix needs to be.</p>
+    <p>One limit is worth knowing. This is a word frequency counter, not a phrase frequency counter: it counts single words, so a two-word term is reported as its two parts rather than as one unit. When you need the count for an exact phrase, the <a href="/tools/find-and-replace">find and replace</a> tool reports how many matches it finds for whatever string you search for.</p>
+
     <h2>What are stop words</h2>
     <p>Stop words are common English words that appear in almost every piece of writing — "the", "a", "an", "and", "or", "but", "in", "on", "at", "to", "for", "of", "with", "is", "was", "are", "were". Because they appear so frequently they are usually not meaningful for analysis purposes. Filtering them out reveals the words that actually define the topic and tone of your writing. TextlyPop filters over 40 common stop words when the option is enabled.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
-      <p class="faq-q">What is a word frequency counter?</p>
-      <p class="faq-a">A word frequency counter analyzes text and counts how many times each unique word appears. It shows you which words you use most often, helping you identify overused words, check keyword density, and understand writing patterns.</p>
+      <p class="faq-q">How do I find the most repeated words in my text?</p>
+      <p class="faq-a">Paste your text and the frequency table appears instantly, sorted with the most-used words at the top. Each row shows the word, its raw count, and the percentage of your total word count it represents. Click any column header to re-sort alphabetically or by count, and type into the filter box to jump straight to a specific word. For a writer's overused-word check, enable Ignore stop words first — otherwise "the" and "and" will dominate the top of every list.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">How do I check keyword density with this tool?</p>
-      <p class="faq-a">Paste your content into the tool. The results table shows each word alongside its count and percentage of total words. The percentage column is your keyword density. For SEO, a keyword density of 1 to 2 percent is generally considered optimal.</p>
+      <p class="faq-q">Does keyword density still matter for SEO?</p>
+      <p class="faq-a">As a ranking formula, no — modern search engines evaluate topical relevance with language models, not by counting keyword repetitions. But density still matters as a diagnostic: if your primary keyword sits far above 2–3% of total words, the page likely reads as stuffed and unnatural, which both readers and Google's spam systems dislike. Conversely, if the term you want to rank for barely appears, the page may not signal its topic clearly. Use the percentage column to catch both extremes, then write for the reader.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Can I exclude common words like "the" and "and"?</p>
-      <p class="faq-a">Yes. Enable the Ignore stop words option to filter out common English words. This leaves only meaningful content words in your results.</p>
+      <p class="faq-q">What is Zipf's law in simple terms?</p>
+      <p class="faq-a">Zipf's law says word frequency follows a predictable curve: the most common word appears about twice as often as the runner-up, three times as often as the third-place word, and so on down the ranks. It holds across languages, authors and eras — from Shakespeare to tweets — and nobody fully agrees on why. Paste any long text into the counter with stop words included and you can watch the pattern emerge in the percentage column yourself.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How many words can this tool analyze?</p>
-      <p class="faq-a">There is no limit. The tool runs entirely in your browser and handles full articles, essays, and long documents without issue.</p>
+      <p class="faq-a">There is no fixed limit. Analysis runs entirely in your browser, so capacity depends on your device rather than a server quota — full articles, essays, theses and even book-length manuscripts process in well under a second on a typical laptop. Because nothing is uploaded, analyzing a 100,000-word document is no different from analyzing a paragraph, and the text never leaves your machine.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Is word frequency analysis useful for SEO?</p>
-      <p class="faq-a">Yes. It helps you check that your target keywords appear at a natural density, identify words you are overusing, and ensure varied vocabulary. It is a quick way to spot keyword stuffing before publishing.</p>
+      <p class="faq-q">Are "Word" and "word" counted as the same word?</p>
+      <p class="faq-a">By default, yes — counting is case-insensitive, so "The", "the" and "THE" merge into one row, which is what you want for almost all writing and SEO analysis. Enable the Case sensitive option when capitalization itself matters, such as distinguishing the name "Bill" from the noun "bill" or auditing brand-name capitalization. Note that different word forms are always counted separately: "run", "runs" and "running" are three entries, since the tool counts exact words rather than word stems.</p>
     </div>
 
   </div>

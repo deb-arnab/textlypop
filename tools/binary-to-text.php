@@ -2,8 +2,8 @@
 $tool_slug   = 'binary-to-text';
 $tool_name   = 'Binary to Text Converter';
 
-$page_title  = 'Binary to Text Converter — Convert Binary Code Online Free | TextlyPop';
-$meta_desc   = 'Convert binary code to text and text to binary instantly. Supports 8-bit ASCII binary. Free online binary translator. No signup required.';
+$page_title  = 'Binary to Text — Convert Binary to Letters | TextlyPop';
+$meta_desc   = 'Convert binary code to text and text to binary instantly. Free binary translator for 8-bit ASCII, with a binary-to-letters reference table. No signup required.';
 $canonical_url = 'https://textlypop.com/tools/binary-to-text';
 $og_title    = 'Free Binary to Text Converter — TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,15 +39,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I convert binary to text?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your binary code into the input box and select Binary to Text mode. Each group of 8 binary digits (bits) represents one character. The tool converts each 8-bit group to its ASCII character instantly."
+        "text": "Select Binary to Text mode and paste your binary. The tool reads groups of 8 bits, converts each to its decimal value and looks it up in the ASCII table — instantly as you type. Groups that decode outside the printable range are flagged rather than silently garbled, making single-digit typos easy to spot."
       }
     },
     {
       "@type": "Question",
-      "name": "How does binary represent text?",
+      "name": "Why do computers use binary instead of decimal?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Each character in ASCII text has a unique number. For example the letter A is 65. In binary, 65 is written as 01000001. So every 8 binary digits (one byte) represents one character. The letter H is 01001000, e is 01100101, and so on."
+        "text": "Because hardware is built from switches with two reliable states: on and off. Two states are cheap to distinguish and immune to electrical noise, while a ten-state component would misread constantly. Every higher representation — text, images, audio — is layered on those two states. Leibniz worked out binary arithmetic in 1703; engineering caught up 250 years later."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What format should my binary input be in?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Binary input should be groups of 8 digits (0s and 1s) separated by spaces. For example: 01001000 01100101 01101100 01101100 01101111 represents the word Hello. The tool also accepts binary without spaces and will group them automatically."
+        "text": "Groups of 8 digits separated by spaces — 01001000 01100101 — is the convention, but unspaced input works too: continuous binary is grouped into 8-bit chunks automatically. The total digit count must be a multiple of eight; a missing digit shifts every following character, the most common cause of a garbled result."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I convert text to binary?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Switch to Text to Binary mode and paste your text. Each character is converted to its 8-bit binary representation separated by spaces."
+        "text": "Yes. Switch to Text to Binary mode and each character is written out as a full 8-bit byte, padded with leading zeros — A becomes 01000001. The output round-trips perfectly: paste it back in Binary to Text mode and you get your original text."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the binary code for Hello?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Hello in binary is: 01001000 01100101 01101100 01101100 01101111. Each 8-bit group represents H, e, l, l, and o respectively using ASCII encoding."
+        "text": "Hello in binary is 01001000 01100101 01101100 01101100 01101111 — the ASCII codes 72, 101, 108, 108, 111. Note the capital H differs from lowercase h (01101000) by a single bit: case lives in bit six of every ASCII letter."
       }
     }
   ]
@@ -253,44 +253,59 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <div class="tool-content mt-32">
 
     <h2>How binary code represents text</h2>
-    <p>Computers store everything as binary — sequences of 0s and 1s called bits. To represent text, computers use a standard called ASCII (American Standard Code for Information Interchange) which assigns a unique number to each character. The letter A is 65, B is 66, and so on. In binary, 65 is written as 01000001 — eight digits representing one character, called a byte. Every letter, number, and symbol has its own 8-bit binary code.</p>
-    <p>For example the word "Hello" in binary is: 01001000 01100101 01101100 01101100 01101111. Each 8-digit group represents one letter — H, e, l, l, o. This tool converts between these representations instantly.</p>
+    <p>Computers store everything as binary — sequences of 0s and 1s called bits. To represent text, computers use a standard called ASCII (American Standard Code for Information Interchange) which assigns a unique number to each character. The letter A is 65, B is 66, and so on. In binary, 65 is written as 01000001 — eight digits representing one character, called a byte. Every letter, number, and symbol has its own 8-bit binary code, and this tool translates between the two representations instantly, in both directions.</p>
 
-    <h2>Binary to text conversion explained</h2>
-    <p>When converting binary to text, the tool reads your input in groups of 8 bits. Each group is treated as a binary number and converted to its decimal equivalent. That decimal number is then looked up in the ASCII table to find the corresponding character. Groups that produce values outside the printable ASCII range (32-126) are flagged as errors.</p>
-    <p>Binary input should be groups of 8 digits separated by spaces — for example 01001000 01100101. The tool also handles binary without spaces by automatically grouping digits into 8-bit chunks from left to right.</p>
+    <h2>A short history of binary text encoding</h2>
+    <p>Binary arithmetic was described by the philosopher Gottfried Leibniz in 1703, more than two centuries before any machine could use it. The link to text came with telegraph codes and then, decisively, with ASCII — standardized in 1963 to end the chaos of every computer maker inventing its own character numbering. ASCII's 128 characters covered English, and its layout was clever enough that Unicode's UTF-8 encoding, designed in 1992 and now used by essentially the entire web, kept ASCII intact as its first 128 characters. The bytes this tool produces for plain English text are therefore identical in ASCII and UTF-8 — a 60-year-old encoding decision still visible in every modern file.</p>
 
-    <h2>Text to binary conversion explained</h2>
-    <p>When converting text to binary, each character in your input is looked up in the ASCII table to find its decimal value. That decimal value is then converted to an 8-bit binary number. If the binary representation is shorter than 8 bits it is padded with leading zeros to make a full byte. The output groups are separated by spaces for readability.</p>
+    <h2>Binary to letters reference table</h2>
+    <p>Every letter has one fixed 8-bit code, so binary can be decoded by hand with the table below. Uppercase and lowercase are different characters with different codes — they differ by exactly one bit, the third from the left, which is why <code>01000001</code> is A and <code>01100001</code> is a.</p>
+    <div class="table-scroll">
+      <table class="seo-table">
+        <thead>
+          <tr><th>Letter</th><th>Binary</th><th>Decimal</th><th>Letter</th><th>Binary</th><th>Decimal</th></tr>
+        </thead>
+        <tbody>
+          <?php for ($i = 0; $i < 26; $i++): $u = 65 + $i; $l = 97 + $i; ?>
+          <tr>
+            <td><?= chr($u) ?></td><td><code><?= sprintf('%08b', $u) ?></code></td><td><?= $u ?></td>
+            <td><?= chr($l) ?></td><td><code><?= sprintf('%08b', $l) ?></code></td><td><?= $l ?></td>
+          </tr>
+          <?php endfor; ?>
+        </tbody>
+      </table>
+    </div>
+    <p>The space character is <code>00100000</code> (32), and the digits 0 to 9 run from <code>00110000</code> (48) to <code>00111001</code> (57). To decode binary code to text by hand, split the string into groups of eight, convert each group to its decimal value, then look the value up. To go the other way, look up each letter and concatenate the codes. Reading a long message that way is slow, which is what the converter above is for — but doing one word manually is the quickest way to make the encoding click.</p>
 
     <h2>Common uses for binary conversion</h2>
     <p>Computer science students use binary converters to understand how computers represent data at the hardware level. Developers use binary when working with bitwise operations, network protocols, file formats, and low-level programming. Security researchers analyze binary data in network packets and executable files. Puzzle enthusiasts and escape room designers use binary encoding as a cipher for clues and messages.</p>
+    <p>A binary translator is one of several ways the same text can be re-expressed. The <a href="/tools/base-converter">base converter</a> moves numbers between binary, octal, decimal and hexadecimal when the input is a number rather than a message. <a href="/tools/morse-code-translator">Morse code</a> is the other classic character encoding and is the usual companion in puzzle and escape-room work. For encodings that carry data rather than conceal it, <a href="/tools/base64-encoder-decoder">Base64</a> packs binary into text-safe characters, and <a href="/tools/url-encoder-decoder">URL encoding</a> and <a href="/tools/html-encoder-decoder">HTML entity encoding</a> escape characters that would otherwise break a link or a page.</p>
 
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
       <p class="faq-q">How do I convert binary to text?</p>
-      <p class="faq-a">Paste your binary code into the input box with Binary to Text mode selected. Each group of 8 binary digits represents one ASCII character and the conversion happens instantly.</p>
+      <p class="faq-a">Select Binary to Text mode and paste your binary. The tool reads the input in groups of 8 bits, converts each group to its decimal value, and looks that value up in the ASCII table to produce the character — all instantly as you type. Groups that decode to values outside the printable range (32–126) are flagged rather than silently turned into garbage, which makes it easy to spot a typo of a single 0 or 1 in a long string.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">How does binary represent text?</p>
-      <p class="faq-a">Each character has a unique ASCII number. The letter A is 65, which in binary is 01000001. Every 8 binary digits represent one character.</p>
+      <p class="faq-q">Why do computers use binary instead of decimal?</p>
+      <p class="faq-a">Because hardware is built from switches, and a switch has two reliable states: on and off, high voltage and low. Distinguishing two states is cheap and immune to electrical noise, while a ten-state "decimal transistor" would misread constantly as components heat up and age. Every higher representation — decimal numbers, text, images, audio — is layered on top of those two states. Leibniz worked out binary arithmetic in 1703; engineering simply caught up with the mathematics 250 years later.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What format should my binary input be in?</p>
-      <p class="faq-a">Groups of 8 digits separated by spaces — for example 01001000 01100101. The tool also accepts binary without spaces and groups them automatically.</p>
+      <p class="faq-a">The conventional format is groups of 8 digits separated by spaces — <code>01001000 01100101</code> — which is how binary text is usually written and shared. Unspaced input works too: the tool groups a continuous run of 0s and 1s into 8-bit chunks from left to right automatically. What matters is that the total digit count is a multiple of eight; a missing digit shifts every following character, which is the most common cause of a garbled result.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I convert text to binary?</p>
-      <p class="faq-a">Yes. Switch to Text to Binary mode and paste your text. Each character is converted to its 8-bit binary representation separated by spaces.</p>
+      <p class="faq-a">Yes. Switch to Text to Binary mode and each character of your input is looked up in the ASCII table and written out as a full 8-bit byte, padded with leading zeros where needed — the letter A becomes 01000001, not 1000001. Groups are space-separated for readability, and the output round-trips perfectly: paste it back in Binary to Text mode and you get your original text.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the binary code for Hello?</p>
-      <p class="faq-a">Hello in binary is: 01001000 01100101 01101100 01101100 01101111. Each 8-bit group represents H, e, l, l, o using ASCII encoding.</p>
+      <p class="faq-a">Hello in binary is <code>01001000 01100101 01101100 01101100 01101111</code>. Reading the groups in order: 01001000 is 72, the ASCII code for H; 01100101 is 101 for e; the two identical groups 01101100 are 108 for the double l; and 01101111 is 111 for o. Note the capital H differs from lowercase h (01101000) by a single bit — case lives in bit six of every ASCII letter.</p>
     </div>
 
   </div>

@@ -2,8 +2,8 @@
 $tool_slug   = 'random-number-generator';
 $tool_name   = 'Random Number Generator';
 
-$page_title  = 'Random Number Generator — Generate Random Numbers Online Free | TextlyPop';
-$meta_desc   = 'Generate random numbers between any range instantly. Single numbers, multiple numbers, no repeats, dice rolls and more. Free online random number generator.';
+$page_title  = 'Random Number Generator — Pick a Random Number | TextlyPop';
+$meta_desc   = 'Pick a random number from any range instantly. Generate one or many, with no repeats, plus dice rolls and lottery picks. Free number randomizer.';
 $canonical_url = 'https://textlypop.com/tools/random-number-generator';
 $og_title    = 'Free Random Number Generator — TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I generate a random number between 1 and 10?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Set the minimum to 1 and the maximum to 10, then click Generate. The tool will produce a random number within that range. Click Generate again for a new random number."
+        "text": "Click the 1 – 10 preset button and then Generate, or set the minimum to 1 and the maximum to 10. Both ends of the range are inclusive, and every click produces a fresh, independent draw — previous results have no influence on the next one, exactly like rolling a fair ten-sided die."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I generate multiple random numbers at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Set the Count field to any number up to 1000 and click Generate. You can also enable the No repeats option to ensure each number in the set appears only once."
+        "text": "Yes. Set the Count field to anything up to 1,000 and one click produces the whole batch. Combine it with Sort results for ascending order or Show sum to total them — useful for raffles, sampling spreadsheet rows, seeding test data or splitting a class into random groups."
       }
     },
     {
@@ -55,15 +55,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Is this random number generator truly random?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "TextlyPop uses the Web Crypto API (crypto.getRandomValues) when available, which provides cryptographically secure random numbers. This is significantly more random than standard Math.random() used by most online tools."
+        "text": "It is as close as software gets. The tool uses the Web Crypto API's crypto.getRandomValues(), which draws on the operating system's entropy pool rather than a mathematical formula. Unlike Math.random(), the output cannot be predicted from earlier results, making it fair enough for giveaways, draws and statistical sampling."
       }
     },
     {
       "@type": "Question",
-      "name": "Can I use this to simulate a dice roll?",
+      "name": "Can I use this to simulate dice rolls?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Use the quick preset buttons for common dice — d6 sets the range to 1-6, d20 sets it to 1-20. Click Generate to roll. Set Count to match the number of dice you want to roll simultaneously."
+        "text": "Yes. Preset buttons cover the standard dice set — d4, d6, d8, d10, d12, d20 and d100. To roll several dice at once, set Count to the number of dice: Count 3 with the d6 preset rolls 3d6, and Show sum gives the total exactly as most game rules expect."
       }
     },
     {
@@ -71,7 +71,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I generate random numbers without repetition?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Enable the No repeats option and set Count to how many numbers you need. The generator ensures each number appears only once in the results, like drawing from a hat without replacement."
+        "text": "Yes. Enable No repeats and each number in your range can appear only once — like drawing numbered balls from a bag without replacement. This suits lottery-style draws and shuffled sequences. Count cannot exceed the range size in this mode: you cannot draw 20 unique numbers from a range of 10."
       }
     }
   ]
@@ -235,11 +235,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to generate random numbers online</h2>
-    <p>Set your minimum and maximum values, choose how many numbers you want, and click Generate. Use the quick presets to jump straight to common ranges — 1 to 10, 1 to 100, standard dice from d6 to d100, and coin flip. The No repeats option ensures every number in your result set is unique. Sort results arranges them in ascending order. Show sum adds up all generated numbers and displays the total — useful for dice games and probability exercises.</p>
+    <h2>A short history of random numbers</h2>
+    <p>Generating fair random numbers is an old problem. Dice carved from bone were used for games and divination over 4,000 years ago, and lotteries funded public works from the Han dynasty's Great Wall to the early American colonies. The modern era began in 1955 when the RAND Corporation published <em>A Million Random Digits</em> — an entire book of random numbers that scientists used for statistical sampling before computers made generation instant. Today's computers produce randomness either with fast mathematical formulas (pseudo-random) or by drawing on unpredictable physical sources (cryptographically secure), which is what this tool uses.</p>
 
     <h2>Cryptographically secure randomness</h2>
     <p>TextlyPop uses the Web Crypto API's <code>crypto.getRandomValues()</code> function when available in your browser. This provides cryptographically secure random numbers — significantly more unpredictable than the standard <code>Math.random()</code> used by most online tools. Cryptographic randomness means the numbers cannot be predicted even if you know the previous results. This matters for any use case where true fairness is important, such as lotteries, giveaways, or statistical sampling.</p>
+
+    <h2>Picking a random number from a range</h2>
+    <p>Set a minimum and a maximum, press Generate, and you have your number. Both ends are inclusive, so a range of 1 to 10 can return 1 or 10 as readily as anything between them. Negative minimums are allowed, and so is a range of one number, which will simply return that number every time.</p>
+    <p>Two settings do most of the work beyond that. <strong>Count</strong> asks for several numbers at once rather than one, which is what you want when drawing multiple raffle winners or generating a set of test values. <strong>No repeats</strong> makes those numbers unique, turning the generator into a randomizer that draws without replacement — the right mode for picking 6 lottery numbers from 49, or 5 winners from 200 entries, where the same result appearing twice would be a bug rather than luck. With repeats allowed, each draw is independent and duplicates are entirely normal: in a set of ten numbers from 1 to 10, a repeat is more likely than not.</p>
+
+    <h2>Common random number ranges</h2>
+    <div class="table-scroll">
+      <table class="seo-table">
+        <thead>
+          <tr><th>Range</th><th>Used for</th><th>Settings</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1 to 2</td><td>A coin flip, or choosing between two options</td><td>Count 1</td></tr>
+          <tr><td>1 to 6</td><td>A standard die</td><td>d6 preset, Count = number of dice</td></tr>
+          <tr><td>1 to 10</td><td>Quick decisions, classroom picks</td><td>Count 1</td></tr>
+          <tr><td>1 to 20</td><td>Tabletop RPG rolls</td><td>d20 preset</td></tr>
+          <tr><td>1 to 100</td><td>Percentages, giveaways, sampling</td><td>Count 1</td></tr>
+          <tr><td>1 to 49</td><td>Lottery-style draws</td><td>Count 6, No repeats on</td></tr>
+          <tr><td>Any two years</td><td>Picking a random date or year</td><td>Min and Max set to the two years</td></tr>
+        </tbody>
+      </table>
+    </div>
 
     <h2>Common uses for random number generation</h2>
     <p>Teachers use random number generators to call on students fairly, assign seats, or create randomized quizzes. Developers use them to test applications with random data inputs. Game players roll virtual dice for board games, tabletop RPGs, and decision making. Researchers and statisticians use random sampling to select participants from a population. Contest organizers pick winners fairly from a numbered list of entries. Anyone who needs to make a fair unbiased decision between numbered options benefits from a random number generator.</p>
@@ -247,31 +269,35 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Dice rolling with this tool</h2>
     <p>Each standard dice type has a quick preset button. Click d6 and Generate for a standard six-sided die. Click d20 for a twenty-sided die used in tabletop RPGs. Set Count to match the number of dice you want to roll simultaneously — set Count to 3 and click d6 to roll 3d6. Enable Show sum to see the total roll value, which is how most dice games work. Enable No repeats when you need each die value to be different.</p>
 
+    <h2>RNG, randomizer and generator</h2>
+    <p>RNG is simply the abbreviation of random number generator, borrowed from gaming and programming, and a number randomizer is the same device described by what it does to a set rather than how it produces a value. The distinction that actually matters is not the name but the source of the randomness. A pseudo-random generator runs a formula from a starting seed: give it the same seed and it replays the identical sequence, which is useful for reproducible simulations and useless for anything that needs to be unguessable. A cryptographically secure generator draws on unpredictable system entropy instead, so knowing every previous result tells you nothing about the next one. This tool uses the second kind wherever the browser provides it.</p>
+    <p>For randomness in other shapes, the <a href="/tools/password-generator">password generator</a> applies the same secure source to characters rather than digits, the <a href="/tools/uuid-generator">UUID generator</a> produces random version 4 identifiers, and the <a href="/tools/text-line-sorter">text line sorter</a> has a shuffle mode for putting a list of names or items into random order.</p>
+
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
       <p class="faq-q">How do I generate a random number between 1 and 10?</p>
-      <p class="faq-a">Click the "1 – 10" preset button, then click Generate. Or set minimum to 1, maximum to 10, and click Generate.</p>
+      <p class="faq-a">Click the "1 – 10" preset button and then Generate, or type 1 into the minimum field and 10 into the maximum field yourself. Both ends of the range are inclusive, so 1 and 10 are just as likely as any number between them. Every click of Generate produces a fresh, independent draw — previous results have no influence on the next one, exactly like rolling a fair ten-sided die.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I generate multiple random numbers at once?</p>
-      <p class="faq-a">Yes. Set the Count field to any number up to 1000 and click Generate. Enable No repeats to ensure each number appears only once.</p>
+      <p class="faq-a">Yes. Set the Count field to anything up to 1,000 and one click produces the whole batch. Combine it with Sort results to get them in ascending order, or Show sum to total them automatically. Batch generation is useful for assigning raffle entries, sampling rows from a spreadsheet, seeding test data, or splitting a class into random groups in one step.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Is this random number generator truly random?</p>
-      <p class="faq-a">TextlyPop uses the Web Crypto API which provides cryptographically secure random numbers — significantly more random than standard Math.random() used by most online tools.</p>
+      <p class="faq-a">It is as close as software gets. The tool uses the Web Crypto API's <code>crypto.getRandomValues()</code>, which draws on your operating system's entropy pool — unpredictable physical signals like timing jitter — rather than a mathematical formula. Unlike the <code>Math.random()</code> function most online generators rely on, the output cannot be predicted from earlier results, which makes it fair enough for giveaways, draws and statistical sampling.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Can I use this to simulate a dice roll?</p>
-      <p class="faq-a">Yes. Use the quick preset buttons — d6 sets the range to 1-6, d20 sets it to 1-20. Set Count to match how many dice to roll simultaneously.</p>
+      <p class="faq-q">Can I use this to simulate dice rolls?</p>
+      <p class="faq-a">Yes. The preset buttons cover the standard dice set used in board games and tabletop RPGs — d6 for a regular die, d20 for the classic Dungeons &amp; Dragons roll, plus d4, d8, d10, d12 and d100. To roll several dice at once, set Count to the number of dice: Count 3 with the d6 preset rolls 3d6, and enabling Show sum gives the total exactly as most game rules expect.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I generate random numbers without repetition?</p>
-      <p class="faq-a">Yes. Enable No repeats and set Count to how many numbers you need. Each number will appear only once in the results.</p>
+      <p class="faq-a">Yes. Enable the No repeats option and each number in your range can appear only once — like drawing numbered balls from a bag without putting them back. This is what you want for lottery-style draws, assigning unique door-prize numbers, or building a shuffled sequence. Note that Count cannot exceed the size of the range in this mode: you cannot draw 20 unique numbers from a range of 10.</p>
     </div>
 
   </div>

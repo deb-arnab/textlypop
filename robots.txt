@@ -3,3 +3,6 @@ Allow: /
 Disallow: /includes/
 
 Sitemap: https://textlypop.com/sitemap.xml
+
+# LLM-friendly site guide
+# https://textlypop.com/llms.txt

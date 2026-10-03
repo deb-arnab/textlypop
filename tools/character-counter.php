@@ -2,7 +2,7 @@
 $tool_slug   = 'character-counter';
 $tool_name   = 'Character Counter';
 
-$page_title  = 'Character Counter — Count Characters Online Free | TextlyPop';
+$page_title  = 'Character Counter — Count Characters Online | TextlyPop';
 $meta_desc   = 'Count characters instantly with platform limits for Twitter, Instagram, meta descriptions, YouTube and more. Free online character counter. No signup required.';
 $canonical_url = 'https://textlypop.com/tools/character-counter';
 $og_title    = 'Free Online Character Counter — TextlyPop';
@@ -39,7 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Does the character counter include spaces?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The default character count includes spaces. TextlyPop also shows characters without spaces separately so you can see both counts at the same time."
+        "text": "Yes, by default — matching how Twitter/X, Instagram, LinkedIn and Google measure text. The counter also shows characters without spaces separately, which some academic submission systems and translation billing standards use instead. A toggle switches which mode drives the main display."
       }
     },
     {
@@ -47,7 +47,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How many characters does Twitter allow?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Twitter / X allows 280 characters per tweet. Select the Twitter preset to see a live progress bar tracking your character count against the limit."
+        "text": "280 characters per post for standard accounts, up to 25,000 for paid subscribers. Every link counts as exactly 23 characters regardless of its real length, and many emojis count as two characters because of how they are stored in Unicode — so aim a few characters under the cap."
       }
     },
     {
@@ -55,7 +55,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What is the ideal length for a Google meta description?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Google typically displays meta descriptions up to 155 to 160 characters. Keeping your meta description under 155 characters prevents it from being cut off in search results."
+        "text": "Keep it under about 155 characters. Google truncates longer descriptions with an ellipsis — the cutoff is technically measured in pixels, but 155 is the reliable practical ceiling. Front-load the key message in the first 120 characters so a complete thought survives even aggressive truncation."
       }
     },
     {
@@ -63,15 +63,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How many characters can an Instagram bio have?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Instagram allows up to 150 characters in a bio. Select the Instagram bio preset to track your count against this limit in real time."
+        "text": "150 characters, including spaces, emojis and line breaks — one of the tightest bios of any major platform. Effective bios use short fragments rather than sentences, put the most important keyword in the first line, and spend characters on one clear call to action."
       }
     },
     {
       "@type": "Question",
-      "name": "Is my text stored or sent to a server?",
+      "name": "Does the character counter count emojis and special characters?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "No. All character counting happens in your browser using JavaScript. Your text is never sent to any server and is not stored anywhere except locally in your browser."
+        "text": "Yes. Every character is counted, including emojis, punctuation, symbols and accented letters. Note that platforms count characters differently — an emoji can count as two or more characters on Twitter/X because it is stored as multiple Unicode units — so leave a small buffer when writing close to a platform limit."
       }
     }
   ]
@@ -331,9 +331,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to use the character counter</h2>
-    <p>Type or paste your text into the box above. The character count updates instantly as you type. To check against a platform limit, click any platform button at the top — a live progress bar will track your count against that limit, turning orange when you reach 85% and red if you go over.</p>
-    <p>Use the "With spaces" and "Without spaces" toggle to switch between counting modes. Some platforms count spaces, others do not.</p>
+    <h2>About character limits</h2>
+    <p>Character limits shape how the world writes online, and they have a curious origin. In 1985, German engineer Friedhelm Hillebrand typed dozens of everyday sentences on a typewriter and found nearly all of them fit within 160 characters — that became the SMS limit still in use today. Twitter's original 140-character cap was simply SMS minus 20 characters reserved for a username, and even after the 2017 expansion to 280, brevity remains the platform's identity. Meta descriptions, app store listings, ad headlines and bios all impose their own caps, which is why writers keep a character counter within reach.</p>
 
     <h2>Platform character limits reference</h2>
     <p>Different platforms enforce different character limits. Here are the most common ones:</p>
@@ -362,27 +361,27 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
 
     <div class="faq-item">
       <p class="faq-q">Does the character counter include spaces?</p>
-      <p class="faq-a">Yes by default. TextlyPop also shows characters without spaces separately. Use the toggle above the text area to switch the main counter between with spaces and without spaces modes.</p>
+      <p class="faq-a">Yes, by default — and that matches how Twitter/X, Instagram, LinkedIn and Google all measure text, since a space occupies a character position like any letter. The counter also shows characters without spaces separately, which some academic submission systems and translation billing standards use instead. Use the toggle above the text area to switch which mode drives the main display, and check both numbers when you are unsure which one your platform enforces.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How many characters does Twitter allow?</p>
-      <p class="faq-a">Twitter / X allows 280 characters per tweet. Select the Twitter preset to see a live progress bar tracking your character count against the limit in real time.</p>
+      <p class="faq-a">280 characters per post for standard accounts, with paid subscribers able to write up to 25,000. Two quirks matter when you are near the limit: every link is counted as exactly 23 characters no matter how long the real URL is, and many emojis count as two characters because of how they are stored in Unicode. Select the Twitter preset to see a live progress bar, and aim a few characters under the cap to be safe.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What is the ideal length for a Google meta description?</p>
-      <p class="faq-a">Google typically displays meta descriptions up to 155 to 160 characters. Keeping your meta description under 155 characters prevents it from being cut off in search results.</p>
+      <p class="faq-a">Keep it under about 155 characters. Google truncates longer descriptions with an ellipsis in search results — technically the cutoff is measured in pixels rather than characters, but 155 is the reliable practical ceiling for desktop and mobile alike. A description that gets cut off mid-sentence looks sloppy and hurts click-through rate, so write a complete thought that front-loads the key message in the first 120 characters, then verify it with the meta description preset.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">How many characters can an Instagram bio have?</p>
-      <p class="faq-a">Instagram allows up to 150 characters in a bio. Select the Instagram bio preset to track your count against this limit in real time.</p>
+      <p class="faq-a">150 characters, including spaces, emojis and line breaks — one of the tightest bios of any major platform (TikTok is even tighter at 80). That forces real editing: most effective bios use short fragments rather than sentences, put the most important keyword or offer in the first line, and spend characters on one clear call to action rather than several vague ones. Select the Instagram bio preset to watch the progress bar while you trim.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Is my text stored or sent to a server?</p>
-      <p class="faq-a">No. All character counting happens in your browser using JavaScript. Your text is never sent to any server and is not stored anywhere except locally in your own browser.</p>
+      <p class="faq-q">Does the character counter count emojis and special characters?</p>
+      <p class="faq-a">Yes. Every character is counted, including emojis, punctuation, symbols and accented letters. Keep in mind that platforms count characters differently — an emoji can count as two or more characters on Twitter/X because it is stored as multiple Unicode units, and URLs are often shortened to a fixed length. If you are writing close to a platform limit, leave a small buffer to be safe.</p>
     </div>
 
   </div>

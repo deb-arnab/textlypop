@@ -2,8 +2,8 @@
 $tool_slug   = 'html-to-markdown';
 $tool_name   = 'HTML to Markdown';
 
-$page_title  = 'HTML to Markdown Converter — Convert HTML to Markdown Online Free | TextlyPop';
-$meta_desc   = 'Convert HTML to clean Markdown instantly. Paste any HTML and get readable Markdown. Supports headings, lists, tables, links, images and code blocks. Free online tool.';
+$page_title  = 'HTML to Markdown Converter — Free Online | TextlyPop';
+$meta_desc   = 'Convert HTML to clean Markdown instantly. Handles headings, lists, tables, links, images and code blocks. Free online converter, no signup required.';
 $canonical_url = 'https://textlypop.com/tools/html-to-markdown';
 $og_title    = 'Free HTML to Markdown Converter — TextlyPop';
 $og_desc     = $meta_desc;
@@ -39,31 +39,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "How do I convert HTML to Markdown?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Paste your HTML into the input panel and the Markdown output appears instantly on the right. The converter strips HTML tags and replaces them with equivalent Markdown syntax."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Why would I convert HTML to Markdown?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Common reasons include migrating content to Markdown-based documentation systems, converting blog posts for static site generators like Jekyll or Hugo, cleaning up HTML copied from the web, and preparing content for GitHub README files."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What HTML elements are supported?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The converter supports h1 through h6 headings, paragraphs, strong, b, em, i, del, inline code, pre and code blocks, unordered and ordered lists, blockquotes, links, images, horizontal rules, and tables."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What happens to HTML that has no Markdown equivalent?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Elements like div, span, section, header and footer are stripped while preserving their text content. Class names, IDs, and style attributes are removed to produce clean Markdown output."
+        "text": "Paste your HTML into the input panel and clean Markdown appears instantly — headings become hashes, bold becomes asterisks, links become bracket syntax. Tags with no Markdown equivalent are stripped while their text survives, and classes, IDs and inline styles are discarded, leaving content-focused Markdown ready for a README or documentation system."
       }
     },
     {
@@ -71,7 +47,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I use this to clean up copied web content?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Paste HTML from any webpage and the converter produces clean Markdown by removing all surrounding markup. Useful for extracting article content you want to reuse in a clean format."
+        "text": "Yes — that is the most common use. HTML copied from web pages and rich-text editors arrives wrapped in layers of divs, spans and styling attributes. The converter strips all that scaffolding, leaving just the readable structure. Writers rescue articles from old platforms this way; developers migrate legacy content into Markdown-based systems."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert a whole webpage to Markdown?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can paste an entire page's source, but pasting just the fragment you want gives better results — a complete page includes navigation, sidebars and cookie banners that convert to noise. Use the browser inspector to copy the article element's HTML for a much cleaner conversion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will tables and images survive the conversion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. HTML tables convert to GitHub Flavored Markdown pipe tables — though merged cells lose their spans, which Markdown does not support. Images convert with alt text and source URL preserved, and images wrapped in links keep both."
       }
     }
   ]
@@ -243,15 +235,19 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Frequently asked questions</h2>
     <div class="faq-item">
       <p class="faq-q">How do I convert HTML to Markdown?</p>
-      <p class="faq-a">Paste your HTML into the input panel and clean Markdown appears instantly. HTML tags are converted to Markdown syntax and unsupported tags are stripped while preserving text.</p>
-    </div>
-    <div class="faq-item">
-      <p class="faq-q">What HTML elements are supported?</p>
-      <p class="faq-a">h1-h6, p, strong, b, em, i, del, code, pre, ul, ol, li, a, img, blockquote, hr, and table elements are all converted to their Markdown equivalents.</p>
+      <p class="faq-a">Paste your HTML into the input panel and clean Markdown appears instantly on the right — headings become hashes, bold becomes asterisks, links become bracket syntax. Tags with no Markdown equivalent are stripped while their text survives, and presentation clutter like classes, IDs and inline styles is discarded entirely. The result is content-focused Markdown ready for a README, wiki, static site generator or documentation system.</p>
     </div>
     <div class="faq-item">
       <p class="faq-q">Can I use this to clean up copied web content?</p>
-      <p class="faq-a">Yes. Paste HTML from any webpage and the converter produces clean Markdown by removing all surrounding markup.</p>
+      <p class="faq-a">Yes — that is the most common use. HTML copied from web pages, CMS exports and rich-text editors arrives wrapped in layers of divs, spans and styling attributes that make it painful to reuse. Run it through the converter and all of that scaffolding disappears, leaving just the readable structure: headings, paragraphs, lists, links. Writers use this to rescue their own articles from old platforms, and developers use it to migrate legacy content into Markdown-based systems.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Can I convert a whole webpage to Markdown?</p>
+      <p class="faq-a">You can paste an entire page's HTML source, but you will get better results pasting just the fragment you want — the article body rather than the full document. A complete page includes navigation menus, sidebars, footers and cookie banners, all of which convert to noise text you would then delete by hand. Right-click the content area and use "Inspect" to copy the specific element's HTML, or copy the rendered text selection, for a much cleaner conversion.</p>
+    </div>
+    <div class="faq-item">
+      <p class="faq-q">Will tables and images survive the conversion?</p>
+      <p class="faq-a">Yes. HTML tables convert to GitHub Flavored Markdown pipe tables, which render correctly on GitHub and most modern platforms — though very complex tables with merged cells lose that structure, since Markdown tables do not support spans. Images convert to Markdown image syntax with their alt text and source URL preserved, and images wrapped in links keep both the link and the image intact.</p>
     </div>
   </div>
 

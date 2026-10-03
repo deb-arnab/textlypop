@@ -2,7 +2,7 @@
 $tool_slug   = 'password-generator';
 $tool_name   = 'Password Generator';
 
-$page_title  = 'Password Generator — Generate Strong Random Passwords Free | TextlyPop';
+$page_title  = 'Password Generator — Strong Random Passwords | TextlyPop';
 $meta_desc   = 'Generate strong, secure random passwords instantly. Custom length, uppercase, lowercase, numbers, symbols. Free online password generator. No signup required.';
 $canonical_url = 'https://textlypop.com/tools/password-generator';
 $og_title    = 'Free Strong Password Generator — TextlyPop';
@@ -36,26 +36,26 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "How do I generate a strong password?",
+      "name": "How do I generate a strong random password?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Set the password length to at least 16 characters and enable uppercase letters, lowercase letters, numbers, and symbols. Click Generate. A strong password uses all character types and is at least 12 characters long."
+        "text": "Set the length to at least 16 characters, enable all four character types — uppercase letters, lowercase letters, numbers and symbols — and click Generate. That combination gives roughly 105 bits of entropy, far beyond what brute-force attacks can crack. Avoid trimming symbols unless a website rejects them, and store the result in a password manager rather than reusing it anywhere else."
       }
     },
     {
       "@type": "Question",
-      "name": "Is this password generator secure?",
+      "name": "Is an online password generator safe to use?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. TextlyPop uses the Web Crypto API's crypto.getRandomValues() for cryptographically secure random password generation. Passwords are generated entirely in your browser and are never sent to any server or stored anywhere."
+        "text": "This one is, because nothing is transmitted. Passwords are generated on your own device with the Web Crypto API's crypto.getRandomValues() — the same cryptographically secure randomness used by encryption software — and never sent to a server, logged or stored. Be more cautious with generators that run server-side, since the password exists on someone else's machine before you ever see it."
       }
     },
     {
       "@type": "Question",
-      "name": "What makes a password strong?",
+      "name": "What makes a password strong or weak?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A strong password is at least 12 characters long, uses a mix of uppercase letters, lowercase letters, numbers, and symbols, does not contain dictionary words or personal information, and is unique — not reused across multiple accounts."
+        "text": "Strength comes from length, randomness and uniqueness. A strong password is at least 12–16 characters, mixes uppercase, lowercase, numbers and symbols, and contains no dictionary words, names, dates or keyboard patterns. Uniqueness matters just as much: a perfect password reused on ten sites falls to a single data breach."
       }
     },
     {
@@ -63,7 +63,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "Can I generate multiple passwords at once?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. Set the Count field to generate up to 20 passwords at once with the same settings. Each password is independently generated using cryptographically secure randomness."
+        "text": "Yes. Set the Count field to generate up to 20 passwords in one click with the same length and character settings. Each one is generated independently with cryptographically secure randomness, which is handy when provisioning accounts for a team or setting up several devices."
       }
     },
     {
@@ -71,7 +71,15 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
       "name": "What do the password strength indicators mean?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "TextlyPop calculates password entropy in bits based on your character set size and password length. Weak is under 40 bits, Fair is 40-60 bits, Strong is 60-80 bits, and Very strong is over 80 bits. Higher entropy means more combinations an attacker would need to try."
+        "text": "The meter reflects entropy — the bits of unpredictability in your settings. Weak is under 40 bits, Fair is 40–60, Strong is 60–80 and Very strong is over 80. Each additional bit doubles the combinations an attacker must try, and length raises entropy fastest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I change my passwords?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Modern security guidance, including NIST's, no longer recommends changing passwords on a schedule — forced rotation pushes people toward weaker variations. Change a password immediately when there is a reason: a reported breach, an appearance in a leak-checking service, or use on an untrusted device. A long random password that has never been exposed can safely stay in place for years."
       }
     }
   ]
@@ -271,8 +279,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
   <!-- SEO + GEO content -->
   <div class="tool-content mt-32">
 
-    <h2>How to create a strong password</h2>
-    <p>A strong password has four properties. It is long — at least 16 characters. It uses multiple character types — uppercase letters, lowercase letters, numbers, and symbols combined. It does not contain dictionary words, names, or personal information. And it is unique — never reused across different accounts. TextlyPop's password generator handles the first two automatically. Use a password manager to store the result and ensure uniqueness across all your accounts.</p>
+    <h2>A brief history of the password</h2>
+    <p>The computer password was introduced in 1961 by Fernando Corbató at MIT, whose Compatible Time-Sharing System needed a way to keep each researcher's files private on a shared machine. Passwords have been under attack ever since — the first documented password theft happened on that same system a year later. For decades, security advice focused on complexity rules and forced expiry, but modern guidance, including NIST's current recommendations, has shifted to what actually resists attacks: length, true randomness and uniqueness per account. That is exactly what a random password generator provides, paired with a password manager to remember the results.</p>
 
     <h2>Cryptographically secure generation</h2>
     <p>TextlyPop uses the Web Crypto API's <code>crypto.getRandomValues()</code> function to generate passwords. This is cryptographically secure randomness — the same standard used in encryption software and security applications. It is significantly more unpredictable than standard <code>Math.random()</code> which most online password generators use. Your passwords are generated entirely in your browser, never transmitted to any server, and never stored anywhere.</p>
@@ -286,28 +294,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/includes/header.php';
     <h2>Frequently asked questions</h2>
 
     <div class="faq-item">
-      <p class="faq-q">How do I generate a strong password?</p>
-      <p class="faq-a">Set length to at least 16 characters, enable all four character types — uppercase, lowercase, numbers, and symbols — then click Generate. The strength meter will show Very strong.</p>
+      <p class="faq-q">How do I generate a strong random password?</p>
+      <p class="faq-a">Set the length to at least 16 characters, enable all four character types — uppercase letters, lowercase letters, numbers and symbols — and click Generate. That combination gives roughly 105 bits of entropy, far beyond what brute-force attacks can crack, and the strength meter will read Very strong. Avoid trimming symbols unless a website rejects them: every character type you remove shrinks the pool an attacker has to search. Store the result in a password manager rather than reusing it anywhere else.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">Is this password generator secure?</p>
-      <p class="faq-a">Yes. TextlyPop uses the Web Crypto API for cryptographically secure generation. Passwords are generated in your browser and never sent to any server.</p>
+      <p class="faq-q">Is an online password generator safe to use?</p>
+      <p class="faq-a">This one is, because nothing is transmitted. Passwords are generated on your own device with the Web Crypto API's <code>crypto.getRandomValues()</code> — the same cryptographically secure randomness used by encryption software — and never sent to a server, logged or stored. Be more cautious with generators that run server-side, since the password exists on someone else's machine before you ever see it. You can verify this tool works offline: load the page, disconnect from the internet, and it still generates.</p>
     </div>
 
     <div class="faq-item">
-      <p class="faq-q">What makes a password strong?</p>
-      <p class="faq-a">At least 12 characters long, a mix of uppercase, lowercase, numbers and symbols, no dictionary words or personal information, and unique across all your accounts.</p>
+      <p class="faq-q">What makes a password strong or weak?</p>
+      <p class="faq-a">Strength comes from length, randomness and uniqueness. A strong password is at least 12–16 characters, mixes uppercase, lowercase, numbers and symbols, and contains no dictionary words, names, dates or keyboard patterns like qwerty123. Uniqueness matters just as much: a perfect password reused on ten sites falls to a single data breach. Attackers crack weak passwords with dictionary lists and known-breach databases first, so a random string beats any memorable phrase pattern of the same length.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">Can I generate multiple passwords at once?</p>
-      <p class="faq-a">Yes. Set the Count field to up to 20 and click Generate. Each password is independently generated with cryptographically secure randomness.</p>
+      <p class="faq-a">Yes. Set the Count field to generate up to 20 passwords in one click with the same length and character settings. Each one is generated independently with cryptographically secure randomness, so there is no relationship between them. Batch generation is handy when provisioning accounts for a team, setting up devices, or picking the one result that avoids characters you find hard to type.</p>
     </div>
 
     <div class="faq-item">
       <p class="faq-q">What do the password strength indicators mean?</p>
-      <p class="faq-a">Strength is calculated from password entropy in bits. Weak is under 40 bits, Fair is 40-60 bits, Strong is 60-80 bits, and Very strong is over 80 bits. Higher entropy means more combinations an attacker would need to try.</p>
+      <p class="faq-a">The meter reflects entropy — the number of bits of unpredictability in your settings. Weak is under 40 bits, Fair is 40–60, Strong is 60–80 and Very strong is over 80. Each additional bit doubles the number of combinations an attacker must try, so the difference between 40 and 80 bits is not double the security but a trillion times more. Length raises entropy fastest: adding four characters helps more than adding one extra character type.</p>
+    </div>
+
+    <div class="faq-item">
+      <p class="faq-q">How often should I change my passwords?</p>
+      <p class="faq-a">Modern security guidance, including NIST's, no longer recommends changing passwords on a schedule — forced rotation pushes people toward weaker, predictable variations. Instead, change a password immediately when there is a reason: the service reports a breach, the password appears in a leak-checking service, you shared it with someone, or you typed it on a device you do not trust. A long random password that has never been exposed can safely stay in place for years.</p>
     </div>
 
   </div>

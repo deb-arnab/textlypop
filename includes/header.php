@@ -7,11 +7,23 @@ $canonical_url = $canonical_url ?? 'https://textlypop.com' . strtok($_SERVER['RE
 $og_title      = $og_title      ?? $page_title;
 $og_desc       = $og_desc       ?? $meta_desc;
 
-header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" . csp_nonce() . "'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://api.datamuse.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests");
+header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" . csp_nonce() . "' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; font-src 'self'; connect-src 'self' https://api.datamuse.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests");
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   
+<!-- Google tag (gtag.js) -->
+<script nonce="<?= csp_nonce() ?>" async src="https://www.googletagmanager.com/gtag/js?id=G-TR74001F15"></script>
+<script nonce="<?= csp_nonce() ?>">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-TR74001F15');
+</script>
+<meta name="google-site-verification" content="0Gg-V5JBdVpQBoOASisC-eNGkfHMh6lXmSIDZbgSqTQ" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><?= e($page_title) ?></title>
@@ -45,21 +57,10 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" 
 <?= get_organization_schema() ?>
 </script>
 
-<!-- Schema.org -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "TextlyPop",
-  "url": "https://textlypop.com",
-  "description": "Free online text tools. Word counter, case converter, remove line breaks and more.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://textlypop.com/?search={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-}
-</script>
+<?php
+/* The WebSite entity (with its SearchAction) is emitted once, by index.php.
+   Repeating it here would declare a second WebSite node on the homepage. */
+?>
 </head>
 <body>
 
@@ -81,7 +82,7 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" 
           <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
           <line x1="9.5" y1="9.5" x2="13.5" y2="13.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
         </svg>
-        <input type="text" id="header-search" placeholder="Search 35+ tools..." autocomplete="off" aria-label="Search tools" aria-controls="search-results">
+        <input type="text" id="header-search" placeholder="Search 35+ free tools..." autocomplete="off" aria-label="Search tools" aria-controls="search-results">
         <div class="search-results" id="search-results" role="listbox" aria-live="polite"></div>
       </div>
     </div>
@@ -120,13 +121,14 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" 
     <div class="mobile-nav-section expanded">
       <button class="mobile-nav-heading" aria-expanded="true">Popular tools<svg class="nav-chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
       <ul>
-        <li><a href="/tools/word-counter">Word counter</a></li>
-        <li><a href="/tools/character-counter">Character counter</a></li>
-        <li><a href="/tools/case-converter">Case converter</a></li>
-        <li><a href="/tools/password-generator">Password generator</a></li>
-        <li><a href="/tools/lorem-ipsum-generator">Lorem ipsum generator</a></li>
-        <li><a href="/tools/json-formatter">JSON formatter</a></li>
+        <li><a href="/tools/text-to-csv">Text to CSV converter</a></li>
         <li><a href="/tools/online-notepad">Online notepad</a></li>
+        <li><a href="/tools/qr-code-generator">QR code generator</a></li>
+        <li><a href="/tools/reading-level-checker">Reading level checker</a></li>
+        <li><a href="/tools/case-converter">Case converter</a></li>
+        <li><a href="/tools/morse-code-translator">Morse code translator</a></li>
+        <li><a href="/tools/html-to-markdown">HTML to Markdown</a></li>
+        <li><a href="/tools/comma-separator">Comma separator</a></li>
       </ul>
     </div>
 
@@ -151,6 +153,9 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" 
         <li><a href="/tools/words-to-pages">Words to pages</a></li>
         <li><a href="/tools/palindrome-checker">Palindrome checker</a></li>
         <li><a href="/tools/text-diff-checker">Text diff checker</a></li>
+        <li><a href="/tools/regex-tester">Regex tester</a></li>
+        <li><a href="/tools/date-age-calculator">Date &amp; age calculator</a></li>
+        <li><a href="/tools/serp-preview">SERP preview tool</a></li>
       </ul>
     </div>
 
@@ -170,6 +175,11 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" 
         <li><a href="/tools/html-to-markdown">HTML to Markdown</a></li>
         <li><a href="/tools/html-encoder-decoder">HTML encoder / decoder</a></li>
         <li><a href="/tools/url-encoder-decoder">URL encoder / decoder</a></li>
+        <li><a href="/tools/base64-encoder-decoder">Base64 encoder / decoder</a></li>
+        <li><a href="/tools/color-converter">Color converter</a></li>
+        <li><a href="/tools/css-unit-converter">CSS unit converter</a></li>
+        <li><a href="/tools/pdf-text-extractor">PDF text extractor</a></li>
+        <li><a href="/tools/timezone-converter">Time zone converter</a></li>
         <li><a href="/tools/text-to-csv">Text to CSV converter</a></li>
       </ul>
     </div>
@@ -181,6 +191,12 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" 
         <li><a href="/tools/rhyme-finder">Rhyme finder</a></li>
         <li><a href="/tools/text-reverser">Text reverser</a></li>
         <li><a href="/tools/fancy-text-generator">Fancy text generator</a></li>
+        <li><a href="/tools/qr-code-generator">QR code generator</a></li>
+        <li><a href="/tools/uuid-generator">UUID generator</a></li>
+        <li><a href="/tools/special-characters">Special characters &amp; symbols</a></li>
+        <li><a href="/tools/schema-markup-generator">Schema markup generator</a></li>
+        <li><a href="/tools/pomodoro-timer">Pomodoro timer</a></li>
+        <li><a href="/tools/flashcard-maker">Flashcard maker</a></li>
       </ul>
     </div>
 

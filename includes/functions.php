@@ -284,7 +284,175 @@ function get_all_tools(): array {
             'category' => 'convert',
             'keywords' => ['text to csv','convert to csv','tab to csv','tsv to csv','pipe delimited to csv','csv converter'],
         ],
+        [
+            'slug'     => 'qr-code-generator',
+            'name'     => 'QR code generator',
+            'desc'     => 'Create QR codes for URLs, text, email, phone, Wi-Fi and more. Download as PNG instantly.',
+            'category' => 'generate',
+            'keywords' => ['qr code generator','qr code','create qr code','generate qr code','qr generator','free qr code'],
+        ],
+        [
+            'slug'     => 'base64-encoder-decoder',
+            'name'     => 'Base64 encoder / decoder',
+            'desc'     => 'Encode text to Base64 or decode Base64 back to text instantly. Supports UTF-8 and URL-safe Base64.',
+            'category' => 'convert',
+            'keywords' => ['base64 encoder','base64 decoder','base64 encode decode','base64 converter','text to base64','base64 to text','decode base64'],
+        ],
+        [
+            'slug'     => 'uuid-generator',
+            'name'     => 'UUID generator',
+            'desc'     => 'Generate random version 4 UUIDs (GUIDs) instantly. Bulk generation, uppercase and no-hyphen options.',
+            'category' => 'generate',
+            'keywords' => ['uuid generator','guid generator','generate uuid','random uuid','uuid v4','unique id generator','uuid online'],
+        ],
+        [
+            'slug'     => 'regex-tester',
+            'name'     => 'Regex tester',
+            'desc'     => 'Test and debug regular expressions with live match highlighting, capture groups and flags.',
+            'category' => 'analyse',
+            'keywords' => ['regex tester','regular expression tester','regex online','test regex','regexp tester','regex debugger','regex match'],
+        ],
+        [
+            'slug'     => 'special-characters',
+            'name'     => 'Special characters & symbols',
+            'desc'     => 'Copy and paste special characters and symbols — arrows, currency, math, stars, hearts, accents and more. Click to copy.',
+            'category' => 'generate',
+            'keywords' => ['special characters','copy paste symbols','symbols copy paste','special characters copy paste','copy and paste symbols','cool symbols','text symbols','fancy symbols'],
+        ],
+        [
+            'slug'     => 'pomodoro-timer',
+            'name'     => 'Pomodoro timer',
+            'desc'     => 'A focus timer with custom work and break lengths, auto-cycling, sound alerts and desktop notifications.',
+            'category' => 'generate',
+            'keywords' => ['pomodoro timer','pomodoro','focus timer','25 minute timer','productivity timer','study timer','tomato timer'],
+        ],
+        [
+            'slug'     => 'color-converter',
+            'name'     => 'Color converter',
+            'desc'     => 'Convert colors between HEX, RGB and HSL with a live picker, alpha, shades and one-click copy.',
+            'category' => 'convert',
+            'keywords' => ['color converter','hex to rgb','rgb to hex','hex to hsl','hsl to rgb','rgb to hsl','color picker','color code'],
+        ],
+        [
+            'slug'     => 'pdf-text-extractor',
+            'name'     => 'PDF text extractor',
+            'desc'     => 'Extract text from PDF files right in your browser — drag and drop, then copy or download. Private, no upload.',
+            'category' => 'convert',
+            'keywords' => ['pdf text extractor','pdf to text','extract text from pdf','pdf to text converter','copy text from pdf','read pdf text','pdf text'],
+        ],
+        [
+            'slug'     => 'timezone-converter',
+            'name'     => 'Time zone converter',
+            'desc'     => 'Convert times between any time zones with automatic Daylight Saving, UTC offsets and day differences.',
+            'category' => 'convert',
+            'keywords' => ['time zone converter','timezone converter','convert time zones','utc converter','world clock','time difference','est to pst'],
+        ],
+        [
+            'slug'     => 'date-age-calculator',
+            'name'     => 'Date & age calculator',
+            'desc'     => 'Find the exact difference between two dates and calculate age in years, months, days, weeks and hours.',
+            'category' => 'analyse',
+            'keywords' => ['date difference calculator','age calculator','days between dates','date calculator','how many days','time between dates','age in days'],
+        ],
+        [
+            'slug'     => 'css-unit-converter',
+            'name'     => 'CSS unit converter',
+            'desc'     => 'Convert between px, rem, em, pt and percent with a configurable root font size. Instant two-way conversion.',
+            'category' => 'convert',
+            'keywords' => ['css unit converter','px to rem','rem to px','px to em','pt to px','px to pt','em to px','css units'],
+        ],
+        [
+            'slug'     => 'flashcard-maker',
+            'name'     => 'Flashcard maker',
+            'desc'     => 'Create flashcards from a list or one at a time, study with flip cards and progress tracking, then export or print.',
+            'category' => 'generate',
+            'keywords' => ['flashcard maker','flashcards','online flashcards','create flashcards','study cards','flash card generator','revision cards','cue cards'],
+        ],
+        [
+            'slug'     => 'serp-preview',
+            'name'     => 'SERP preview tool',
+            'desc'     => 'Preview how your title tag and meta description look in Google search results, with live pixel-width limits.',
+            'category' => 'analyse',
+            'keywords' => ['serp preview','google serp preview','serp simulator','snippet preview','title tag preview','meta description preview','seo preview tool','search result preview'],
+        ],
+        [
+            'slug'     => 'schema-markup-generator',
+            'name'     => 'Schema markup generator',
+            'desc'     => 'Generate valid JSON-LD structured data for Article, FAQ, Product, LocalBusiness, Event, Recipe and more.',
+            'category' => 'generate',
+            'keywords' => ['schema markup generator','json-ld generator','structured data generator','schema generator','rich snippet generator','schema.org generator','faq schema generator','product schema','local business schema','article schema','breadcrumb schema','event schema generator'],
+        ],
     ];
+}
+
+/**
+ * Category metadata, in homepage display order.
+ * Keys match the 'category' field on each tool.
+ */
+function get_categories(): array {
+    return [
+        'clean'    => [
+            'label' => 'Text cleaning',
+            'title' => 'Text cleaning tools',
+            'blurb' => 'Fix messy text — remove line breaks, extra spaces and duplicate lines.',
+        ],
+        'analyse'  => [
+            'label' => 'Analysis',
+            'title' => 'Text analysis & counting tools',
+            'blurb' => 'Count words and characters, check readability and compare texts.',
+        ],
+        'convert'  => [
+            'label' => 'Conversion',
+            'title' => 'Text conversion tools',
+            'blurb' => 'Convert case, slugs, Markdown, CSV, Morse code, binary and more.',
+        ],
+        'format'   => [
+            'label' => 'Formatting',
+            'title' => 'Text formatting tools',
+            'blurb' => 'Sort, prettify and structure your text and data.',
+        ],
+        'generate' => [
+            'label' => 'Generators',
+            'title' => 'Password, QR code & text generators',
+            'blurb' => 'Create strong passwords, QR codes, placeholder text and more.',
+        ],
+    ];
+}
+
+/**
+ * Tools grouped by category, in get_categories() order.
+ */
+function get_tools_by_category(): array {
+    $grouped = [];
+    foreach (get_categories() as $key => $meta) {
+        $grouped[$key] = [];
+    }
+    foreach (get_all_tools() as $tool) {
+        $grouped[$tool['category']][] = $tool;
+    }
+    return array_filter($grouped);
+}
+
+/**
+ * Curated most-popular tools for the homepage top row.
+ */
+function get_popular_tools(): array {
+    $slugs = [
+        'text-to-csv',
+        'online-notepad',
+        'qr-code-generator',
+        'reading-level-checker',
+        'case-converter',
+        'morse-code-translator',
+        'html-to-markdown',
+        'comma-separator',
+    ];
+    $tools = [];
+    foreach ($slugs as $slug) {
+        $tool = get_tool($slug);
+        if ($tool) $tools[] = $tool;
+    }
+    return $tools;
 }
 
 function get_tool(string $slug): ?array {
@@ -294,14 +462,98 @@ function get_tool(string $slug): ?array {
     return null;
 }
 
+/**
+ * Curated related tools per slug, ordered by relevance to the user's intent.
+ * Tools missing from this map fall back to same-category suggestions,
+ * so new tools get sensible related links before they are curated.
+ */
+function get_related_map(): array {
+    return [
+        'word-counter'            => ['character-counter', 'sentence-counter', 'words-to-pages', 'reading-level-checker', 'word-frequency-counter'],
+        'character-counter'       => ['word-counter', 'serp-preview', 'sentence-counter', 'text-to-hashtags', 'case-converter'],
+        'case-converter'          => ['text-to-slug', 'fancy-text-generator', 'find-and-replace', 'remove-extra-spaces', 'text-reverser'],
+        'remove-line-breaks'      => ['remove-extra-spaces', 'duplicate-line-remover', 'list-to-comma', 'find-and-replace', 'text-line-sorter'],
+        'remove-extra-spaces'     => ['remove-line-breaks', 'duplicate-line-remover', 'find-and-replace', 'case-converter', 'word-counter'],
+        'duplicate-line-remover'  => ['text-line-sorter', 'remove-line-breaks', 'remove-extra-spaces', 'comma-separator', 'word-frequency-counter'],
+        'text-line-sorter'        => ['duplicate-line-remover', 'comma-separator', 'list-to-comma', 'find-and-replace', 'remove-line-breaks'],
+        'find-and-replace'        => ['regex-tester', 'remove-extra-spaces', 'remove-line-breaks', 'case-converter', 'text-diff-checker'],
+        'text-to-slug'            => ['case-converter', 'serp-preview', 'url-encoder-decoder', 'text-to-hashtags', 'remove-extra-spaces'],
+        'word-frequency-counter'  => ['word-counter', 'reading-level-checker', 'character-counter', 'sentence-counter', 'duplicate-line-remover'],
+        'lorem-ipsum-generator'   => ['word-counter', 'words-to-pages', 'random-number-generator', 'online-notepad', 'password-generator'],
+        'text-reverser'           => ['palindrome-checker', 'fancy-text-generator', 'case-converter', 'morse-code-translator', 'binary-to-text'],
+        'fancy-text-generator'    => ['special-characters', 'text-reverser', 'case-converter', 'text-to-hashtags', 'lorem-ipsum-generator'],
+        'online-notepad'          => ['pomodoro-timer', 'flashcard-maker', 'word-counter', 'character-counter', 'find-and-replace'],
+        'random-number-generator' => ['password-generator', 'lorem-ipsum-generator', 'base-converter', 'number-to-words', 'roman-numeral-converter'],
+        'password-generator'      => ['random-number-generator', 'qr-code-generator', 'online-notepad', 'url-encoder-decoder', 'lorem-ipsum-generator'],
+        'binary-to-text'          => ['base-converter', 'base64-encoder-decoder', 'morse-code-translator', 'html-encoder-decoder', 'url-encoder-decoder'],
+        'morse-code-translator'   => ['binary-to-text', 'text-reverser', 'base-converter', 'fancy-text-generator', 'text-to-speech'],
+        'html-encoder-decoder'    => ['url-encoder-decoder', 'base64-encoder-decoder', 'html-to-markdown', 'markdown-to-html', 'json-formatter'],
+        'url-encoder-decoder'     => ['html-encoder-decoder', 'base64-encoder-decoder', 'text-to-slug', 'json-formatter', 'base-converter'],
+        'palindrome-checker'      => ['text-reverser', 'vowel-counter', 'rhyme-finder', 'word-counter', 'character-counter'],
+        'reading-level-checker'   => ['word-counter', 'sentence-counter', 'word-frequency-counter', 'words-to-pages', 'character-counter'],
+        'sentence-counter'        => ['word-counter', 'reading-level-checker', 'character-counter', 'words-to-pages', 'word-frequency-counter'],
+        'vowel-counter'           => ['character-counter', 'word-counter', 'palindrome-checker', 'sentence-counter', 'rhyme-finder'],
+        'text-to-speech'          => ['speech-to-text', 'reading-level-checker', 'word-counter', 'morse-code-translator', 'online-notepad'],
+        'speech-to-text'          => ['text-to-speech', 'online-notepad', 'word-counter', 'find-and-replace', 'remove-extra-spaces'],
+        'comma-separator'         => ['list-to-comma', 'text-to-csv', 'duplicate-line-remover', 'text-line-sorter', 'remove-line-breaks'],
+        'number-to-words'         => ['roman-numeral-converter', 'random-number-generator', 'base-converter', 'words-to-pages', 'word-counter'],
+        'text-to-hashtags'        => ['character-counter', 'text-to-slug', 'case-converter', 'word-frequency-counter', 'fancy-text-generator'],
+        'json-formatter'          => ['schema-markup-generator', 'text-to-csv', 'html-encoder-decoder', 'url-encoder-decoder', 'markdown-to-html'],
+        'markdown-to-html'        => ['html-to-markdown', 'html-encoder-decoder', 'json-formatter', 'text-to-slug', 'word-counter'],
+        'html-to-markdown'        => ['markdown-to-html', 'html-encoder-decoder', 'find-and-replace', 'remove-extra-spaces', 'pdf-text-extractor'],
+        'list-to-comma'           => ['comma-separator', 'text-to-csv', 'text-line-sorter', 'duplicate-line-remover', 'remove-line-breaks'],
+        'rhyme-finder'            => ['palindrome-checker', 'vowel-counter', 'word-counter', 'text-to-speech', 'fancy-text-generator'],
+        'roman-numeral-converter' => ['number-to-words', 'base-converter', 'random-number-generator', 'binary-to-text', 'word-counter'],
+        'base-converter'          => ['color-converter', 'binary-to-text', 'roman-numeral-converter', 'number-to-words', 'timezone-converter'],
+        'words-to-pages'          => ['word-counter', 'sentence-counter', 'reading-level-checker', 'character-counter', 'lorem-ipsum-generator'],
+        'text-diff-checker'       => ['find-and-replace', 'duplicate-line-remover', 'json-formatter', 'word-counter', 'remove-extra-spaces'],
+        'text-to-csv'             => ['comma-separator', 'list-to-comma', 'json-formatter', 'text-line-sorter', 'duplicate-line-remover'],
+        'qr-code-generator'       => ['password-generator', 'url-encoder-decoder', 'text-to-slug', 'text-to-hashtags', 'random-number-generator'],
+        'base64-encoder-decoder'  => ['url-encoder-decoder', 'html-encoder-decoder', 'binary-to-text', 'json-formatter', 'text-to-csv'],
+        'uuid-generator'          => ['password-generator', 'random-number-generator', 'base64-encoder-decoder', 'text-to-slug', 'qr-code-generator'],
+        'regex-tester'            => ['find-and-replace', 'text-diff-checker', 'json-formatter', 'word-frequency-counter', 'character-counter'],
+        'special-characters'      => ['fancy-text-generator', 'html-encoder-decoder', 'text-to-hashtags', 'case-converter', 'lorem-ipsum-generator'],
+        'pomodoro-timer'          => ['online-notepad', 'flashcard-maker', 'word-counter', 'words-to-pages', 'reading-level-checker'],
+        'color-converter'         => ['css-unit-converter', 'base-converter', 'json-formatter', 'html-encoder-decoder', 'url-encoder-decoder'],
+        'pdf-text-extractor'      => ['html-to-markdown', 'word-counter', 'text-to-csv', 'character-counter', 'find-and-replace'],
+        'timezone-converter'      => ['base-converter', 'color-converter', 'pomodoro-timer', 'number-to-words', 'date-age-calculator'],
+        'date-age-calculator'     => ['timezone-converter', 'pomodoro-timer', 'number-to-words', 'base-converter', 'roman-numeral-converter'],
+        'css-unit-converter'      => ['color-converter', 'base-converter', 'json-formatter', 'html-encoder-decoder', 'url-encoder-decoder'],
+        'flashcard-maker'         => ['online-notepad', 'pomodoro-timer', 'text-to-csv', 'comma-separator', 'word-counter'],
+        'serp-preview'            => ['schema-markup-generator', 'character-counter', 'text-to-slug', 'word-counter', 'reading-level-checker'],
+        'schema-markup-generator' => ['serp-preview', 'json-formatter', 'text-to-slug', 'html-encoder-decoder', 'url-encoder-decoder'],
+    ];
+}
+
 function get_related_tools(string $current_slug, int $limit = 5): array {
-    $related = [];
-    foreach (get_all_tools() as $tool) {
-        if ($tool['slug'] === $current_slug) continue;
-        $related[] = $tool;
-        if (count($related) >= $limit) break;
+    $current = get_tool($current_slug);
+    $picked  = [];
+
+    // 1. Curated relationships first
+    foreach (get_related_map()[$current_slug] ?? [] as $slug) {
+        if (count($picked) >= $limit) break;
+        if ($slug === $current_slug || isset($picked[$slug])) continue;
+        $tool = get_tool($slug);
+        if ($tool) $picked[$slug] = $tool;
     }
-    return $related;
+
+    // 2. Fill from the same category
+    if ($current) {
+        foreach (get_all_tools() as $tool) {
+            if (count($picked) >= $limit) break;
+            if ($tool['slug'] === $current_slug || isset($picked[$tool['slug']])) continue;
+            if ($tool['category'] === $current['category']) $picked[$tool['slug']] = $tool;
+        }
+    }
+
+    // 3. Top up with anything left
+    foreach (get_all_tools() as $tool) {
+        if (count($picked) >= $limit) break;
+        if ($tool['slug'] === $current_slug || isset($picked[$tool['slug']])) continue;
+        $picked[$tool['slug']] = $tool;
+    }
+
+    return array_values($picked);
 }
 
 function e(string $str): string {
