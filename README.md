@@ -76,6 +76,7 @@ Grouped by the `category` field in the tool registry, which is what drives the h
 - Lorem ipsum generator
 - Rhyme finder
 - Special characters & symbols
+- Word cloud generator
 - Schema markup generator
 - Online notepad
 - Pomodoro timer

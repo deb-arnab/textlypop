@@ -376,6 +376,13 @@ function get_all_tools(): array {
             'keywords' => ['serp preview','google serp preview','serp simulator','snippet preview','title tag preview','meta description preview','seo preview tool','search result preview'],
         ],
         [
+            'slug'     => 'word-cloud-generator',
+            'name'     => 'Word cloud generator',
+            'desc'     => 'Turn any text into a word cloud sized by word frequency, then download it as a PNG or SVG.',
+            'category' => 'generate',
+            'keywords' => ['word cloud generator','word cloud','word cloud maker','wordcloud generator','tag cloud generator','create word cloud','make a word cloud','word cloud from text','free word cloud','text cloud generator'],
+        ],
+        [
             'slug'     => 'schema-markup-generator',
             'name'     => 'Schema markup generator',
             'desc'     => 'Generate valid JSON-LD structured data for Article, FAQ, Product, LocalBusiness, Event, Recipe and more.',
@@ -478,7 +485,7 @@ function get_related_map(): array {
         'text-line-sorter'        => ['duplicate-line-remover', 'comma-separator', 'list-to-comma', 'find-and-replace', 'remove-line-breaks'],
         'find-and-replace'        => ['regex-tester', 'remove-extra-spaces', 'remove-line-breaks', 'case-converter', 'text-diff-checker'],
         'text-to-slug'            => ['case-converter', 'serp-preview', 'url-encoder-decoder', 'text-to-hashtags', 'remove-extra-spaces'],
-        'word-frequency-counter'  => ['word-counter', 'reading-level-checker', 'character-counter', 'sentence-counter', 'duplicate-line-remover'],
+        'word-frequency-counter'  => ['word-cloud-generator', 'word-counter', 'reading-level-checker', 'character-counter', 'sentence-counter'],
         'lorem-ipsum-generator'   => ['word-counter', 'words-to-pages', 'random-number-generator', 'online-notepad', 'password-generator'],
         'text-reverser'           => ['palindrome-checker', 'fancy-text-generator', 'case-converter', 'morse-code-translator', 'binary-to-text'],
         'fancy-text-generator'    => ['special-characters', 'text-reverser', 'case-converter', 'text-to-hashtags', 'lorem-ipsum-generator'],
@@ -522,6 +529,7 @@ function get_related_map(): array {
         'flashcard-maker'         => ['online-notepad', 'pomodoro-timer', 'text-to-csv', 'comma-separator', 'word-counter'],
         'serp-preview'            => ['schema-markup-generator', 'character-counter', 'text-to-slug', 'word-counter', 'reading-level-checker'],
         'schema-markup-generator' => ['serp-preview', 'json-formatter', 'text-to-slug', 'html-encoder-decoder', 'url-encoder-decoder'],
+        'word-cloud-generator'    => ['word-frequency-counter', 'word-counter', 'text-to-hashtags', 'reading-level-checker', 'sentence-counter'],
     ];
 }
 

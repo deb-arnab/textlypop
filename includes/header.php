@@ -194,6 +194,7 @@ header("Content-Security-Policy: default-src 'self'; script-src 'self' 'nonce-" 
         <li><a href="/tools/qr-code-generator">QR code generator</a></li>
         <li><a href="/tools/uuid-generator">UUID generator</a></li>
         <li><a href="/tools/special-characters">Special characters &amp; symbols</a></li>
+        <li><a href="/tools/word-cloud-generator">Word cloud generator</a></li>
         <li><a href="/tools/schema-markup-generator">Schema markup generator</a></li>
         <li><a href="/tools/pomodoro-timer">Pomodoro timer</a></li>
         <li><a href="/tools/flashcard-maker">Flashcard maker</a></li>
